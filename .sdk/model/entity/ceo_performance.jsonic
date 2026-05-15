@@ -1,0 +1,83 @@
+# Entity: ceo_performance
+
+main: kit: entity: ceo_performance: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ceo_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "company_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "compensation"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "performance_score"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "tenure_year"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "ceo_performance"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "desc"
+                kind: "query"
+                name: "order"
+                orig: "order"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "sort_by"
+                orig: "sort_by"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/metrics/ceo-performance"
+          parts: [
+            "metrics"
+            "ceo-performance"
+          ]
+          select: {
+            exist: [
+              "order"
+              "sort_by"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

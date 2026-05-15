@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://ceorater-api.onrender.com/docs"
+      }
+      description: "The CEORater API provides programmatic access to CEO performance metrics, compensation efficiency, and detailed company data. Users can retrieve information on companies, search for specific data, and access API status and health checks."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://ceorater-api.onrender.com"
+        }
+      ]
+      title: "CEORater API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

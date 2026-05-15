@@ -1,0 +1,146 @@
+# Entity: company
+
+main: kit: entity: company: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ceo_compensation"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "ceo_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "company_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "employee"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "headquarter"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "industry"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "performance_metric"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "revenue"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "company"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/companies"
+          parts: [
+            "companies"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "company_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/companies/{companyId}"
+          parts: [
+            "companies"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              companyId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

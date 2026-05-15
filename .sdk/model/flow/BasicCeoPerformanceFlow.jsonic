@@ -1,0 +1,22 @@
+# BasicCeoPerformanceFlow
+
+main: kit: flow: BasicCeoPerformanceFlow:
+{
+  entity: "ceo_performance",
+  kind: "basic",
+  name: "BasicCeoPerformanceFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ceo_performance_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCeoPerformanceFlow"
+}

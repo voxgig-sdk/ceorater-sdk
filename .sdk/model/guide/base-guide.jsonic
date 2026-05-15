@@ -1,0 +1,48 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 7
+  metrics: count: method: 7
+
+  entity: ceo_performance: {
+    path: "/metrics/ceo-performance": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: company: {
+    path: "/companies": {
+      op: list: method: *GET
+    }
+    path: "/companies/{companyId}": {
+      rename: param: "companyId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: compensation_efficiency: {
+    path: "/metrics/compensation-efficiency": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: general: {
+    path: "/health": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_root: {
+    path: "/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/search": {
+      op: list: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,8 @@
+# Entity Models
+
+@"ceo_performance.jsonic"
+@"company.jsonic"
+@"compensation_efficiency.jsonic"
+@"general.jsonic"
+@"get_root.jsonic"
+@"search.jsonic"

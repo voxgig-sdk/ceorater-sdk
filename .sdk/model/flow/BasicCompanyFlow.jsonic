@@ -1,0 +1,44 @@
+# BasicCompanyFlow
+
+main: kit: flow: BasicCompanyFlow:
+{
+  entity: "company",
+  kind: "basic",
+  name: "BasicCompanyFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "company_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "company_ref01",
+        srcdatavar: "company_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "company01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-company_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompanyFlow"
+}

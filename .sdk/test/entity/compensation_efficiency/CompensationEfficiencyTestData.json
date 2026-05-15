@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "compensation_efficiency": {
+      "COMPENSATION_EFFICIENCY00": {
+        "ceo_name": "s32",
+        "company_name": "s33",
+        "efficiency_ratio": 52,
+        "performance_score": 53,
+        "total_compensation": 54
+      },
+      "COMPENSATION_EFFICIENCY01": {
+        "ceo_name": "s64",
+        "company_name": "s65",
+        "efficiency_ratio": 102,
+        "performance_score": 103,
+        "total_compensation": 104
+      },
+      "COMPENSATION_EFFICIENCY02": {
+        "ceo_name": "s96",
+        "company_name": "s97",
+        "efficiency_ratio": 152,
+        "performance_score": 153,
+        "total_compensation": 154
+      }
+    }
+  },
+  "new": {
+    "compensation_efficiency": {
+      "compensation_efficiency_ref01": {
+        "ceo_name": "sc8",
+        "company_name": "sc9",
+        "efficiency_ratio": 202,
+        "performance_score": 203,
+        "total_compensation": 204
+      }
+    }
+  }
+}

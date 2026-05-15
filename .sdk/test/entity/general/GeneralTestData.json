@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "general": {
+      "GENERAL00": {
+        "status": "s14",
+        "timestamp": "s15"
+      },
+      "GENERAL01": {
+        "status": "s28",
+        "timestamp": "s29"
+      },
+      "GENERAL02": {
+        "status": "s3c",
+        "timestamp": "s3d"
+      }
+    }
+  },
+  "new": {
+    "general": {
+      "general_ref01": {
+        "status": "s50",
+        "timestamp": "s51"
+      }
+    }
+  }
+}

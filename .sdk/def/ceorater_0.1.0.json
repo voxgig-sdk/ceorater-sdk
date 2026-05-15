@@ -1,0 +1,492 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "CEORater API",
+    "description": "The CEORater API provides programmatic access to CEO performance metrics, compensation efficiency, and detailed company data. Users can retrieve information on companies, search for specific data, and access API status and health checks.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://ceorater-api.onrender.com/docs"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ceorater-api.onrender.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "API Root",
+        "description": "Returns basic API information and available endpoints",
+        "operationId": "getRoot",
+        "tags": [
+          "General"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with API information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "CEORater API"
+                    },
+                    "documentation": {
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://ceorater-api.onrender.com/docs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Returns the health status of the API",
+        "operationId": "getHealth",
+        "tags": [
+          "General"
+        ],
+        "responses": {
+          "200": {
+            "description": "API is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "healthy"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companies": {
+      "get": {
+        "summary": "Get All Companies",
+        "description": "Retrieve a list of all companies with CEO performance metrics and compensation data",
+        "operationId": "getCompanies",
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of companies to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of companies to skip for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of companies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "companies": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Company"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of companies available"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companies/{companyId}": {
+      "get": {
+        "summary": "Get Company by ID",
+        "description": "Retrieve detailed information about a specific company including CEO metrics and compensation efficiency",
+        "operationId": "getCompanyById",
+        "tags": [
+          "Companies"
+        ],
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Unique identifier of the company",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with company details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Search Companies",
+        "description": "Search for companies by name, CEO name, or other criteria",
+        "operationId": "searchCompanies",
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query string",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "description": "Field to search in (e.g., company_name, ceo_name)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "company_name",
+                "ceo_name",
+                "all"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Company"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid search parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/ceo-performance": {
+      "get": {
+        "summary": "Get CEO Performance Metrics",
+        "description": "Retrieve CEO performance metrics across all companies or filtered by criteria",
+        "operationId": "getCEOPerformanceMetrics",
+        "tags": [
+          "Metrics"
+        ],
+        "parameters": [
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Field to sort results by",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "performance_score",
+                "compensation",
+                "efficiency"
+              ]
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with CEO performance metrics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CEOPerformance"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/compensation-efficiency": {
+      "get": {
+        "summary": "Get Compensation Efficiency Metrics",
+        "description": "Retrieve compensation efficiency data for CEOs",
+        "operationId": "getCompensationEfficiency",
+        "tags": [
+          "Metrics"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with compensation efficiency data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompensationEfficiency"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Company": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the company"
+          },
+          "company_name": {
+            "type": "string",
+            "description": "Name of the company"
+          },
+          "ceo_name": {
+            "type": "string",
+            "description": "Name of the CEO"
+          },
+          "industry": {
+            "type": "string",
+            "description": "Industry sector"
+          },
+          "headquarters": {
+            "type": "string",
+            "description": "Company headquarters location"
+          },
+          "revenue": {
+            "type": "number",
+            "format": "double",
+            "description": "Annual revenue"
+          },
+          "employees": {
+            "type": "integer",
+            "description": "Number of employees"
+          },
+          "ceo_compensation": {
+            "type": "number",
+            "format": "double",
+            "description": "Total CEO compensation"
+          },
+          "performance_metrics": {
+            "$ref": "#/components/schemas/PerformanceMetrics"
+          }
+        }
+      },
+      "PerformanceMetrics": {
+        "type": "object",
+        "properties": {
+          "performance_score": {
+            "type": "number",
+            "format": "double",
+            "description": "Overall performance score"
+          },
+          "stock_performance": {
+            "type": "number",
+            "format": "double",
+            "description": "Stock performance percentage"
+          },
+          "revenue_growth": {
+            "type": "number",
+            "format": "double",
+            "description": "Revenue growth percentage"
+          },
+          "efficiency_rating": {
+            "type": "number",
+            "format": "double",
+            "description": "Compensation efficiency rating"
+          }
+        }
+      },
+      "CEOPerformance": {
+        "type": "object",
+        "properties": {
+          "ceo_name": {
+            "type": "string"
+          },
+          "company_name": {
+            "type": "string"
+          },
+          "performance_score": {
+            "type": "number",
+            "format": "double"
+          },
+          "compensation": {
+            "type": "number",
+            "format": "double"
+          },
+          "tenure_years": {
+            "type": "integer"
+          }
+        }
+      },
+      "CompensationEfficiency": {
+        "type": "object",
+        "properties": {
+          "company_name": {
+            "type": "string"
+          },
+          "ceo_name": {
+            "type": "string"
+          },
+          "total_compensation": {
+            "type": "number",
+            "format": "double"
+          },
+          "performance_score": {
+            "type": "number",
+            "format": "double"
+          },
+          "efficiency_ratio": {
+            "type": "number",
+            "format": "double",
+            "description": "Performance per compensation dollar"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "General",
+      "description": "General API operations including health checks"
+    },
+    {
+      "name": "Companies",
+      "description": "Operations related to company data"
+    },
+    {
+      "name": "Search",
+      "description": "Search operations for finding companies and CEOs"
+    },
+    {
+      "name": "Metrics",
+      "description": "CEO performance and compensation efficiency metrics"
+    }
+  ]
+}

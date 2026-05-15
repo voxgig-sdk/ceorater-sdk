@@ -1,0 +1,22 @@
+# BasicCompensationEfficiencyFlow
+
+main: kit: flow: BasicCompensationEfficiencyFlow:
+{
+  entity: "compensation_efficiency",
+  kind: "basic",
+  name: "BasicCompensationEfficiencyFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "compensation_efficiency_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompensationEfficiencyFlow"
+}

@@ -1,0 +1,58 @@
+# Entity: compensation_efficiency
+
+main: kit: entity: compensation_efficiency: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ceo_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "company_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "efficiency_ratio"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "performance_score"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "total_compensation"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "compensation_efficiency"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/metrics/compensation-efficiency"
+          parts: [
+            "metrics"
+            "compensation-efficiency"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
