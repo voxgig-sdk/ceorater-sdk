@@ -3,15 +3,18 @@
     "general": {
       "GENERAL00": {
         "status": "s14",
-        "timestamp": "s15"
+        "timestamp": "s15",
+        "id": "GENERAL00"
       },
       "GENERAL01": {
         "status": "s28",
-        "timestamp": "s29"
+        "timestamp": "s29",
+        "id": "GENERAL01"
       },
       "GENERAL02": {
         "status": "s3c",
-        "timestamp": "s3d"
+        "timestamp": "s3d",
+        "id": "GENERAL02"
       }
     }
   },

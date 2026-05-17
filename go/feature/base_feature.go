@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/ceorater-sdk/core"
+	"github.com/voxgig-sdk/ceorater-sdk/go/core"
 )
 
 type BaseFeature struct {

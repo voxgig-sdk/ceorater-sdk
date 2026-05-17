@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/ceorater-sdk/core"
+import "github.com/voxgig-sdk/ceorater-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

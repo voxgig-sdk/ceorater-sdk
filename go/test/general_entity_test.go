@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/ceorater-sdk"
-	"github.com/voxgig-sdk/ceorater-sdk/core"
+	sdk "github.com/voxgig-sdk/ceorater-sdk/go"
+	"github.com/voxgig-sdk/ceorater-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ceorater-sdk/go/utility/struct"
 )
 
 func TestGeneralEntity(t *testing.T) {

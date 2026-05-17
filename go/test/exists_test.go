@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ceorater-sdk"
+	sdk "github.com/voxgig-sdk/ceorater-sdk/go"
 )
 
 func TestExists(t *testing.T) {

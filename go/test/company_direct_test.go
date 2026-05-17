@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ceorater-sdk"
-	"github.com/voxgig-sdk/ceorater-sdk/core"
+	sdk "github.com/voxgig-sdk/ceorater-sdk/go"
+	"github.com/voxgig-sdk/ceorater-sdk/go/core"
 )
 
 func TestCompanyDirect(t *testing.T) {

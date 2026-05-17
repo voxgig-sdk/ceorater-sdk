@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/ceorater-sdk/core"
+	"github.com/voxgig-sdk/ceorater-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ceorater-sdk/go/utility/struct"
 )
 
 type GetRootEntity struct {
