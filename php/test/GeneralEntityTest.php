@@ -85,7 +85,6 @@ function general_basic_setup($extra)
         "CEORATER_TEST_GENERAL_ENTID" => $idmap,
         "CEORATER_TEST_LIVE" => "FALSE",
         "CEORATER_TEST_EXPLAIN" => "FALSE",
-        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function general_basic_setup($extra)
     if ($env["CEORATER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CEORATER_APIKEY"],
             ],
             $extra ?? [],
         ]);

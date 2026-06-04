@@ -16,8 +16,31 @@ main: {
       ]
       title: "CEORater API"
       version: "1.0.0"
+      tagline: "Look up CEO performance metrics, compensation efficiency, and company data by stock ticker"
+      homepage: "https://ceorater-api.onrender.com"
+      docs_url: "https://freepublicapis.com/ceorater-api"
+      license_short: "No licence information published"
+      license_md: `- No licence terms are published on the API endpoint or its catalogue page.
+- A public demo API key (\`CEORATER_PUBLIC_V1\`) is documented for trial use; treat returned data as sample/demo only.
+- Confirm permitted use with the CEORater operator before redistributing data.`
+      about_md: `CEORater API exposes CEO performance metrics, executive compensation efficiency, and related company information through a small HTTP interface. The service is hosted at \`https://ceorater-api.onrender.com\` and is catalogued on [Free Public APIs](https://freepublicapis.com/ceorater-api).
+
+What you get from the API:
+
+- Company lookup by stock ticker symbol (e.g. \`AAPL\`) via \`GET /v1/company/{ticker}\`.
+- CEO performance metrics and compensation-efficiency figures bundled with the company response.
+- A \`format=raw\` query parameter to request the unprocessed payload.
+
+Operational notes: requests are authenticated with an \`api_key\` query parameter; a public demo key (\`CEORATER_PUBLIC_V1\`) is documented in the catalogue listing. CORS is enabled. The catalogue page notes the hosted instance has been intermittently unavailable, so expect transient errors against the public host.`
+      entity_desc: {
+        ceo_performance: "CEO performance metrics returned as part of the company payload from `GET /v1/company/{ticker}`."
+        company: "Company record looked up by stock ticker via `GET /v1/company/{ticker}`."
+        compensation_efficiency: "Executive compensation-efficiency figures included in the company response."
+        general: "Miscellaneous service-level operations exposed by the API."
+        get_root: "Root endpoint of the service, typically used for a service banner or health probe."
+        search: "Lookup operations for locating CEOs or companies in the dataset."
+      }
+      auth: false
     }
   }
-}
-
 }

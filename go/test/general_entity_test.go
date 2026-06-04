@@ -117,7 +117,6 @@ func generalBasicSetup(extra map[string]any) *entityTestSetup {
 		"CEORATER_TEST_GENERAL_ENTID": idmap,
 		"CEORATER_TEST_LIVE":      "FALSE",
 		"CEORATER_TEST_EXPLAIN":   "FALSE",
-		"CEORATER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CEORATER_TEST_GENERAL_ENTID"])
@@ -128,7 +127,6 @@ func generalBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CEORATER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CEORATER_APIKEY"],
 			},
 			extra,
 		})
