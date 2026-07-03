@@ -1,20 +1,8 @@
 # Ceorater SDK
 
-Look up CEO performance metrics, compensation efficiency, and company data by stock ticker
+CEORater API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About CEORater API
-
-CEORater API exposes CEO performance metrics, executive compensation efficiency, and related company information through a small HTTP interface. The service is hosted at `https://ceorater-api.onrender.com` and is catalogued on [Free Public APIs](https://freepublicapis.com/ceorater-api).
-
-What you get from the API:
-
-- Company lookup by stock ticker symbol (e.g. `AAPL`) via `GET /v1/company/{ticker}`.
-- CEO performance metrics and compensation-efficiency figures bundled with the company response.
-- A `format=raw` query parameter to request the unprocessed payload.
-
-Operational notes: requests are authenticated with an `api_key` query parameter; a public demo key (`CEORATER_PUBLIC_V1`) is documented in the catalogue listing. CORS is enabled. The catalogue page notes the hosted instance has been intermittently unavailable, so expect transient errors against the public host.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install ceorater-sdk
 luarocks install ceorater-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CeoraterSDK } from 'ceorater'
 
-const client = new CeoraterSDK({})
+const client = new CeoraterSDK({
+  apikey: process.env.CEORATER_APIKEY,
+})
 
 // List all ceoperformances
 const ceoperformances = await client.CeoPerformance().list()
+console.log(ceoperformances.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,12 +90,12 @@ The API exposes 6 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **CeoPerformance** | CEO performance metrics returned as part of the company payload from `GET /v1/company/{ticker}`. | `/metrics/ceo-performance` |
-| **Company** | Company record looked up by stock ticker via `GET /v1/company/{ticker}`. | `/companies` |
-| **CompensationEfficiency** | Executive compensation-efficiency figures included in the company response. | `/metrics/compensation-efficiency` |
-| **General** | Miscellaneous service-level operations exposed by the API. | `/health` |
-| **GetRoot** | Root endpoint of the service, typically used for a service banner or health probe. | `/` |
-| **Search** | Lookup operations for locating CEOs or companies in the dataset. | `/search` |
+| **CeoPerformance** |  | `/metrics/ceo-performance` |
+| **Company** |  | `/companies` |
+| **CompensationEfficiency** |  | `/metrics/compensation-efficiency` |
+| **General** |  | `/health` |
+| **GetRoot** |  | `/` |
+| **Search** |  | `/search` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,12 +105,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from ceorater_sdk import CeoraterSDK
 
-client = CeoraterSDK({})
+client = CeoraterSDK({
+    "apikey": os.environ.get("CEORATER_APIKEY"),
+})
 
 # List all ceoperformances
-ceoperformances, err = client.CeoPerformance(None).list(None, None)
+ceoperformances, err = client.CeoPerformance().list()
+print(ceoperformances)
 ```
 
 ### PHP
@@ -129,10 +123,13 @@ ceoperformances, err = client.CeoPerformance(None).list(None, None)
 <?php
 require_once 'ceorater_sdk.php';
 
-$client = new CeoraterSDK([]);
+$client = new CeoraterSDK([
+    "apikey" => getenv("CEORATER_APIKEY"),
+]);
 
 // List all ceoperformances
-[$ceoperformances, $err] = $client->CeoPerformance(null)->list(null, null);
+[$ceoperformances, $err] = $client->CeoPerformance()->list();
+print_r($ceoperformances);
 ```
 
 ### Golang
@@ -140,10 +137,13 @@ $client = new CeoraterSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/ceorater-sdk/go"
 
-client := sdk.NewCeoraterSDK(map[string]any{})
+client := sdk.NewCeoraterSDK(map[string]any{
+    "apikey": os.Getenv("CEORATER_APIKEY"),
+})
 
 // List all ceoperformances
 ceoperformances, err := client.CeoPerformance(nil).List(nil, nil)
+fmt.Println(ceoperformances)
 ```
 
 ### Ruby
@@ -151,10 +151,13 @@ ceoperformances, err := client.CeoPerformance(nil).List(nil, nil)
 ```ruby
 require_relative "Ceorater_sdk"
 
-client = CeoraterSDK.new({})
+client = CeoraterSDK.new({
+  "apikey" => ENV["CEORATER_APIKEY"],
+})
 
 # List all ceoperformances
-ceoperformances, err = client.CeoPerformance(nil).list(nil, nil)
+ceoperformances, err = client.CeoPerformance().list
+puts ceoperformances
 ```
 
 ### Lua
@@ -162,10 +165,13 @@ ceoperformances, err = client.CeoPerformance(nil).list(nil, nil)
 ```lua
 local sdk = require("ceorater_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CEORATER_APIKEY"),
+})
 
 -- List all ceoperformances
-local ceoperformances, err = client:CeoPerformance(nil):list(nil, nil)
+local ceoperformances, err = client:CeoPerformance():list()
+print(ceoperformances)
 ```
 
 ## Unit testing in offline mode
@@ -184,25 +190,21 @@ const result = await client.CeoPerformance().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CeoraterSDK.test(None, None)
-result, err = client.CeoPerformance(None).load(
-    {"id": "test01"}, None
-)
+client = CeoraterSDK.test()
+result, err = client.CeoPerformance().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CeoraterSDK::test(null, null);
-[$result, $err] = $client->CeoPerformance(null)->load(
-    ["id" => "test01"], null
-);
+$client = CeoraterSDK::test();
+[$result, $err] = $client->CeoPerformance()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.CeoPerformance(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -211,19 +213,15 @@ result, err := client.CeoPerformance(nil).Load(
 ### Ruby
 
 ```ruby
-client = CeoraterSDK.test(nil, nil)
-result, err = client.CeoPerformance(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CeoraterSDK.test
+result, err = client.CeoPerformance().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:CeoPerformance(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:CeoPerformance():load({ id = "test01" })
 ```
 
 ## How it works
@@ -327,15 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the CEORater API
-
-- Upstream: [https://ceorater-api.onrender.com](https://ceorater-api.onrender.com)
-- API docs: [https://freepublicapis.com/ceorater-api](https://freepublicapis.com/ceorater-api)
-
-- No licence terms are published on the API endpoint or its catalogue page.
-- A public demo API key (`CEORATER_PUBLIC_V1`) is documented for trial use; treat returned data as sample/demo only.
-- Confirm permitted use with the CEORater operator before redistributing data.
 
 ---
 

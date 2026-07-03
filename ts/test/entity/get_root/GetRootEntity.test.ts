@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'CEORATER_TEST_GET_ROOT_ENTID': idmap,
     'CEORATER_TEST_LIVE': 'FALSE',
     'CEORATER_TEST_EXPLAIN': 'FALSE',
+    'CEORATER_APIKEY': 'NONE',
   })
 
   idmap = env['CEORATER_TEST_GET_ROOT_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CeoraterSDK(merge([
       {
+        apikey: env.CEORATER_APIKEY,
       },
       extra
     ]))

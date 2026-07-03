@@ -99,12 +99,14 @@ func get_rootDirectSetup(mockres any) *get_rootDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CEORATER_TEST_GET_ROOT_ENTID": map[string]any{},
 		"CEORATER_TEST_LIVE":    "FALSE",
+		"CEORATER_APIKEY":       "NONE",
 	})
 
 	live := env["CEORATER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["CEORATER_APIKEY"],
 		}
 		client := sdk.NewCeoraterSDK(mergedOpts)
 

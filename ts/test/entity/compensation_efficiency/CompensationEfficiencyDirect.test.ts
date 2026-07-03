@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'CEORATER_TEST_COMPENSATION_EFFICIENCY_ENTID': {},
     'CEORATER_TEST_LIVE': 'FALSE',
+    'CEORATER_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.CEORATER_TEST_LIVE
 
   if (live) {
     const client = new CeoraterSDK({
+      apikey: env.CEORATER_APIKEY,
     })
 
     let idmap: any = env['CEORATER_TEST_COMPENSATION_EFFICIENCY_ENTID']

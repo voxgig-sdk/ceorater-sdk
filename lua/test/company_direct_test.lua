@@ -117,12 +117,14 @@ function company_direct_setup(mockres)
   local env = runner.env_override({
     ["CEORATER_TEST_COMPANY_ENTID"] = {},
     ["CEORATER_TEST_LIVE"] = "FALSE",
+    ["CEORATER_APIKEY"] = "NONE",
   })
 
   local live = env["CEORATER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["CEORATER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

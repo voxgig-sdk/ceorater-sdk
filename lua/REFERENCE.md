@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -124,7 +124,7 @@ local ceo_performance = client:CeoPerformance(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CeoPerformance(nil):list(nil, nil)
+local results, err = client:CeoPerformance():list()
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ local company = client:Company(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Company(nil):list(nil, nil)
+local results, err = client:Company():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -192,7 +192,7 @@ local results, err = client:Company(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Company(nil):load({ id = "company_id" }, nil)
+local result, err = client:Company():load({ id = "company_id" })
 ```
 
 ### Common Methods
@@ -248,7 +248,7 @@ local compensation_efficiency = client:CompensationEfficiency(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CompensationEfficiency(nil):list(nil, nil)
+local results, err = client:CompensationEfficiency():list()
 ```
 
 ### Common Methods
@@ -301,7 +301,7 @@ local general = client:General(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:General(nil):load({ id = "general_id" }, nil)
+local result, err = client:General():load({ id = "general_id" })
 ```
 
 ### Common Methods
@@ -354,7 +354,7 @@ local get_root = client:GetRoot(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetRoot(nil):load({ id = "get_root_id" }, nil)
+local result, err = client:GetRoot():load({ id = "get_root_id" })
 ```
 
 ### Common Methods
@@ -414,7 +414,7 @@ local search = client:Search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Search(nil):list(nil, nil)
+local results, err = client:Search():list()
 ```
 
 ### Common Methods

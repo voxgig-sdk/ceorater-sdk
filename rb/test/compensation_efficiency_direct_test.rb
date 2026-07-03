@@ -62,12 +62,14 @@ def compensation_efficiency_direct_setup(mockres)
   env = Runner.env_override({
     "CEORATER_TEST_COMPENSATION_EFFICIENCY_ENTID" => {},
     "CEORATER_TEST_LIVE" => "FALSE",
+    "CEORATER_APIKEY" => "NONE",
   })
 
   live = env["CEORATER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["CEORATER_APIKEY"],
     }
     client = CeoraterSDK.new(merged_opts)
     return {

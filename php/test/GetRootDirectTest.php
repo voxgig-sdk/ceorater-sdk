@@ -67,12 +67,14 @@ function get_root_direct_setup($mockres)
     $env = Runner::env_override([
         "CEORATER_TEST_GET_ROOT_ENTID" => [],
         "CEORATER_TEST_LIVE" => "FALSE",
+        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $live = $env["CEORATER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["CEORATER_APIKEY"],
         ];
         $client = new CeoraterSDK($merged_opts);
         return [

@@ -102,6 +102,7 @@ def _company_basic_setup(extra):
         "CEORATER_TEST_COMPANY_ENTID": idmap,
         "CEORATER_TEST_LIVE": "FALSE",
         "CEORATER_TEST_EXPLAIN": "FALSE",
+        "CEORATER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,6 +113,7 @@ def _company_basic_setup(extra):
     if env.get("CEORATER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("CEORATER_APIKEY"),
             },
             extra or {},
         ])
