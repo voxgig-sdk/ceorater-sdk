@@ -10,7 +10,7 @@ The PHP SDK for the Ceorater API — an entity-oriented client using PHP convent
 
 ## Install
 ```bash
-composer require voxgig/ceorater-sdk
+composer require voxgig-sdk/ceorater
 ```
 
 

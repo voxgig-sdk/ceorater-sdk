@@ -8,12 +8,14 @@ source = {
   dir = "ceorater-sdk/lua"
 }
 description = {
-  summary = "Ceorater SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the CEORater public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/ceorater-sdk",
+  issues_url = "https://github.com/voxgig-sdk/ceorater-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "ceorater" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

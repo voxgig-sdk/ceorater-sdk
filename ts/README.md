@@ -10,7 +10,7 @@ The TypeScript SDK for the Ceorater API — a type-safe, entity-oriented client 
 
 ## Install
 ```bash
-npm install ceorater
+npm install @voxgig-sdk/ceorater
 ```
 ## Tutorial: your first API call
 

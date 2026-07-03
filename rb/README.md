@@ -10,13 +10,13 @@ The Ruby SDK for the Ceorater API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install ceorater-sdk
+gem install voxgig-sdk-ceorater
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "ceorater-sdk"
+gem "voxgig-sdk-ceorater"
 ```
 
 Then run:

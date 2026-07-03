@@ -10,7 +10,7 @@ The Python SDK for the Ceorater API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install ceorater-sdk
+pip install voxgig-sdk-ceorater
 ```
 
 Or install from source:
