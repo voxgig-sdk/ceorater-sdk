@@ -28,16 +28,14 @@ require_relative "Ceorater_sdk"
 client = CeoraterSDK.new
 ```
 
-### 2. List ceoperformances
+### 2. List ceoperformance records
 
 ```ruby
 begin
-  result = client.ceoperformance.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of CeoPerformance records — iterate directly.
+  ceoperformances = client.CeoPerformance.list
+  ceoperformances.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CeoraterSDK.test
+client = CeoraterSDK.test({
+  "entity" => { "ceoperformance" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.ceoperformance.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+ceoperformance = client.CeoPerformance.load({ "id" => "test01" })
+puts ceoperformance
 ```
 
 ### Use a custom fetch function
@@ -304,7 +306,7 @@ API path: `/search`
 
 ### CeoPerformance
 
-Create an instance: `const ceo_performance = client.ceo_performance`
+Create an instance: `ceo_performance = client.CeoPerformance`
 
 #### Operations
 
@@ -324,14 +326,15 @@ Create an instance: `const ceo_performance = client.ceo_performance`
 
 #### Example: List
 
-```ts
-const ceo_performances = await client.ceo_performance.list()
+```ruby
+# list returns an Array of CeoPerformance records (raises on error).
+ceo_performances = client.CeoPerformance.list
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.company`
+Create an instance: `company = client.Company`
 
 #### Operations
 
@@ -356,20 +359,22 @@ Create an instance: `const company = client.company`
 
 #### Example: Load
 
-```ts
-const company = await client.company.load({ id: 'company_id' })
+```ruby
+# load returns the bare Company record (raises on error).
+company = client.Company.load({ "id" => "company_id" })
 ```
 
 #### Example: List
 
-```ts
-const companys = await client.company.list()
+```ruby
+# list returns an Array of Company records (raises on error).
+companys = client.Company.list
 ```
 
 
 ### CompensationEfficiency
 
-Create an instance: `const compensation_efficiency = client.compensation_efficiency`
+Create an instance: `compensation_efficiency = client.CompensationEfficiency`
 
 #### Operations
 
@@ -389,14 +394,15 @@ Create an instance: `const compensation_efficiency = client.compensation_efficie
 
 #### Example: List
 
-```ts
-const compensation_efficiencys = await client.compensation_efficiency.list()
+```ruby
+# list returns an Array of CompensationEfficiency records (raises on error).
+compensation_efficiencys = client.CompensationEfficiency.list
 ```
 
 
 ### General
 
-Create an instance: `const general = client.general`
+Create an instance: `general = client.General`
 
 #### Operations
 
@@ -413,14 +419,15 @@ Create an instance: `const general = client.general`
 
 #### Example: Load
 
-```ts
-const general = await client.general.load({ id: 'general_id' })
+```ruby
+# load returns the bare General record (raises on error).
+general = client.General.load({ "id" => "general_id" })
 ```
 
 
 ### GetRoot
 
-Create an instance: `const get_root = client.get_root`
+Create an instance: `get_root = client.GetRoot`
 
 #### Operations
 
@@ -437,14 +444,15 @@ Create an instance: `const get_root = client.get_root`
 
 #### Example: Load
 
-```ts
-const get_root = await client.get_root.load({ id: 'get_root_id' })
+```ruby
+# load returns the bare GetRoot record (raises on error).
+get_root = client.GetRoot.load({ "id" => "get_root_id" })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -468,8 +476,9 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```ruby
+# list returns an Array of Search records (raises on error).
+searchs = client.Search.list
 ```
 
 
@@ -544,7 +553,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-ceoperformance = client.ceoperformance
+ceoperformance = client.CeoPerformance
 ceoperformance.load({ "id" => "example_id" })
 
 # ceoperformance.data_get now returns the loaded ceoperformance data

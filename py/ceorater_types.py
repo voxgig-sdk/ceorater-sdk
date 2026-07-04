@@ -4,126 +4,117 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class CeoPerformance:
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    compensation: Optional[float] = None
-    performance_score: Optional[float] = None
-    tenure_year: Optional[int] = None
+class CeoPerformance(TypedDict, total=False):
+    ceo_name: str
+    company_name: str
+    compensation: float
+    performance_score: float
+    tenure_year: int
 
 
-@dataclass
-class CeoPerformanceListMatch:
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    compensation: Optional[float] = None
-    performance_score: Optional[float] = None
-    tenure_year: Optional[int] = None
+class CeoPerformanceListMatch(TypedDict, total=False):
+    ceo_name: str
+    company_name: str
+    compensation: float
+    performance_score: float
+    tenure_year: int
 
 
-@dataclass
-class Company:
-    ceo_compensation: Optional[float] = None
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    employee: Optional[int] = None
-    headquarter: Optional[str] = None
-    id: Optional[str] = None
-    industry: Optional[str] = None
-    performance_metric: Optional[dict] = None
-    revenue: Optional[float] = None
+class Company(TypedDict, total=False):
+    ceo_compensation: float
+    ceo_name: str
+    company_name: str
+    employee: int
+    headquarter: str
+    id: str
+    industry: str
+    performance_metric: dict
+    revenue: float
 
 
-@dataclass
-class CompanyLoadMatch:
+class CompanyLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CompanyListMatch:
-    ceo_compensation: Optional[float] = None
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    employee: Optional[int] = None
-    headquarter: Optional[str] = None
-    id: Optional[str] = None
-    industry: Optional[str] = None
-    performance_metric: Optional[dict] = None
-    revenue: Optional[float] = None
+class CompanyListMatch(TypedDict, total=False):
+    ceo_compensation: float
+    ceo_name: str
+    company_name: str
+    employee: int
+    headquarter: str
+    id: str
+    industry: str
+    performance_metric: dict
+    revenue: float
 
 
-@dataclass
-class CompensationEfficiency:
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    efficiency_ratio: Optional[float] = None
-    performance_score: Optional[float] = None
-    total_compensation: Optional[float] = None
+class CompensationEfficiency(TypedDict, total=False):
+    ceo_name: str
+    company_name: str
+    efficiency_ratio: float
+    performance_score: float
+    total_compensation: float
 
 
-@dataclass
-class CompensationEfficiencyListMatch:
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    efficiency_ratio: Optional[float] = None
-    performance_score: Optional[float] = None
-    total_compensation: Optional[float] = None
+class CompensationEfficiencyListMatch(TypedDict, total=False):
+    ceo_name: str
+    company_name: str
+    efficiency_ratio: float
+    performance_score: float
+    total_compensation: float
 
 
-@dataclass
-class General:
-    status: Optional[str] = None
-    timestamp: Optional[str] = None
+class General(TypedDict, total=False):
+    status: str
+    timestamp: str
 
 
-@dataclass
-class GeneralLoadMatch:
-    status: Optional[str] = None
-    timestamp: Optional[str] = None
+class GeneralLoadMatch(TypedDict, total=False):
+    status: str
+    timestamp: str
 
 
-@dataclass
-class GetRoot:
-    documentation: Optional[str] = None
-    message: Optional[str] = None
+class GetRoot(TypedDict, total=False):
+    documentation: str
+    message: str
 
 
-@dataclass
-class GetRootLoadMatch:
-    documentation: Optional[str] = None
-    message: Optional[str] = None
+class GetRootLoadMatch(TypedDict, total=False):
+    documentation: str
+    message: str
 
 
-@dataclass
-class Search:
-    ceo_compensation: Optional[float] = None
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    employee: Optional[int] = None
-    headquarter: Optional[str] = None
-    id: Optional[str] = None
-    industry: Optional[str] = None
-    performance_metric: Optional[dict] = None
-    revenue: Optional[float] = None
+class Search(TypedDict, total=False):
+    ceo_compensation: float
+    ceo_name: str
+    company_name: str
+    employee: int
+    headquarter: str
+    id: str
+    industry: str
+    performance_metric: dict
+    revenue: float
 
 
-@dataclass
-class SearchListMatch:
-    ceo_compensation: Optional[float] = None
-    ceo_name: Optional[str] = None
-    company_name: Optional[str] = None
-    employee: Optional[int] = None
-    headquarter: Optional[str] = None
-    id: Optional[str] = None
-    industry: Optional[str] = None
-    performance_metric: Optional[dict] = None
-    revenue: Optional[float] = None
-
+class SearchListMatch(TypedDict, total=False):
+    ceo_compensation: float
+    ceo_name: str
+    company_name: str
+    employee: int
+    headquarter: str
+    id: str
+    industry: str
+    performance_metric: dict
+    revenue: float

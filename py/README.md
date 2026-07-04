@@ -31,14 +31,16 @@ from ceorater_sdk import CeoraterSDK
 client = CeoraterSDK()
 ```
 
-### 2. List ceoperformances
+### 2. List ceoperformance records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.ceoperformance.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    ceoperformances = client.CeoPerformance().list({})
+    for ceoperformance in ceoperformances:
+        print(ceoperformance)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CeoraterSDK.test()
 
-result = client.ceoperformance.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+ceoperformance = client.CeoPerformance().load({"id": "test01"})
+# ceoperformance contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -301,7 +304,7 @@ API path: `/search`
 
 ### CeoPerformance
 
-Create an instance: `const ceo_performance = client.ceo_performance`
+Create an instance: `ceo_performance = client.CeoPerformance()`
 
 #### Operations
 
@@ -321,14 +324,14 @@ Create an instance: `const ceo_performance = client.ceo_performance`
 
 #### Example: List
 
-```ts
-const ceo_performances = await client.ceo_performance.list()
+```python
+ceo_performances = client.CeoPerformance().list({})
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.company`
+Create an instance: `company = client.Company()`
 
 #### Operations
 
@@ -353,20 +356,20 @@ Create an instance: `const company = client.company`
 
 #### Example: Load
 
-```ts
-const company = await client.company.load({ id: 'company_id' })
+```python
+company = client.Company().load({"id": "company_id"})
 ```
 
 #### Example: List
 
-```ts
-const companys = await client.company.list()
+```python
+companys = client.Company().list({})
 ```
 
 
 ### CompensationEfficiency
 
-Create an instance: `const compensation_efficiency = client.compensation_efficiency`
+Create an instance: `compensation_efficiency = client.CompensationEfficiency()`
 
 #### Operations
 
@@ -386,14 +389,14 @@ Create an instance: `const compensation_efficiency = client.compensation_efficie
 
 #### Example: List
 
-```ts
-const compensation_efficiencys = await client.compensation_efficiency.list()
+```python
+compensation_efficiencys = client.CompensationEfficiency().list({})
 ```
 
 
 ### General
 
-Create an instance: `const general = client.general`
+Create an instance: `general = client.General()`
 
 #### Operations
 
@@ -410,14 +413,14 @@ Create an instance: `const general = client.general`
 
 #### Example: Load
 
-```ts
-const general = await client.general.load({ id: 'general_id' })
+```python
+general = client.General().load({"id": "general_id"})
 ```
 
 
 ### GetRoot
 
-Create an instance: `const get_root = client.get_root`
+Create an instance: `get_root = client.GetRoot()`
 
 #### Operations
 
@@ -434,14 +437,14 @@ Create an instance: `const get_root = client.get_root`
 
 #### Example: Load
 
-```ts
-const get_root = await client.get_root.load({ id: 'get_root_id' })
+```python
+get_root = client.GetRoot().load({"id": "get_root_id"})
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search()`
 
 #### Operations
 
@@ -465,8 +468,8 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```python
+searchs = client.Search().list({})
 ```
 
 
@@ -540,7 +543,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-ceoperformance = client.ceoperformance
+ceoperformance = client.CeoPerformance()
 ceoperformance.load({"id": "example_id"})
 
 # ceoperformance.data_get() now returns the loaded ceoperformance data

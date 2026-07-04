@@ -106,7 +106,7 @@ same parameters as `direct()`. Raises on error.
 ## CeoPerformanceEntity
 
 ```ruby
-ceo_performance = client.ceo_performance
+ceo_performance = client.CeoPerformance
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ ceo_performance = client.ceo_performance
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.ceo_performance.list(nil)
+results = client.CeoPerformance.list(nil)
 ```
 
 ### Common Methods
@@ -162,7 +162,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```ruby
-company = client.company
+company = client.Company
 ```
 
 ### Fields
@@ -186,7 +186,7 @@ company = client.company
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.company.list(nil)
+results = client.Company.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -194,7 +194,7 @@ results = client.company.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.company.load({ "id" => "company_id" })
+result = client.Company.load({ "id" => "company_id" })
 ```
 
 ### Common Methods
@@ -230,7 +230,7 @@ Return the entity name.
 ## CompensationEfficiencyEntity
 
 ```ruby
-compensation_efficiency = client.compensation_efficiency
+compensation_efficiency = client.CompensationEfficiency
 ```
 
 ### Fields
@@ -250,7 +250,7 @@ compensation_efficiency = client.compensation_efficiency
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.compensation_efficiency.list(nil)
+results = client.CompensationEfficiency.list(nil)
 ```
 
 ### Common Methods
@@ -286,7 +286,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```ruby
-general = client.general
+general = client.General
 ```
 
 ### Fields
@@ -303,7 +303,7 @@ general = client.general
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.general.load({ "id" => "general_id" })
+result = client.General.load({ "id" => "general_id" })
 ```
 
 ### Common Methods
@@ -339,7 +339,7 @@ Return the entity name.
 ## GetRootEntity
 
 ```ruby
-get_root = client.get_root
+get_root = client.GetRoot
 ```
 
 ### Fields
@@ -356,7 +356,7 @@ get_root = client.get_root
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_root.load({ "id" => "get_root_id" })
+result = client.GetRoot.load({ "id" => "get_root_id" })
 ```
 
 ### Common Methods
@@ -392,7 +392,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Fields
@@ -416,7 +416,7 @@ search = client.search
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.search.list(nil)
+results = client.Search.list(nil)
 ```
 
 ### Common Methods

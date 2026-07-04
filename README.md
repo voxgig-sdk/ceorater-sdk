@@ -26,9 +26,11 @@ import { CeoraterSDK } from '@voxgig-sdk/ceorater'
 
 const client = new CeoraterSDK()
 
-// List all ceoperformances
-const ceoperformances = await client.ceoperformance.list()
-console.log(ceoperformances.data)
+// List all ceoperformances (returns CeoPerformance[])
+const ceoperformances = await client.CeoPerformance().list()
+for (const ceoperformance of ceoperformances) {
+  console.log(ceoperformance)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -88,9 +90,10 @@ from ceorater_sdk import CeoraterSDK
 
 client = CeoraterSDK()
 
-# List all ceoperformances
-ceoperformances = client.ceoperformance.list()
-print(ceoperformances)
+# List all ceoperformances (returns a list, raises on error)
+ceoperformances = client.CeoPerformance().list({})
+for ceoperformance in ceoperformances:
+    print(ceoperformance)
 ```
 
 ### PHP
@@ -101,8 +104,8 @@ require_once 'ceorater_sdk.php';
 
 $client = new CeoraterSDK();
 
-// List all ceoperformances (throws on error)
-$ceoperformances = $client->ceoperformance()->list();
+// List all ceoperformances (returns an array; throws on error)
+$ceoperformances = $client->CeoPerformance()->list();
 print_r($ceoperformances);
 ```
 
@@ -125,8 +128,8 @@ require_relative "Ceorater_sdk"
 
 client = CeoraterSDK.new
 
-# List all ceoperformances
-ceoperformances = client.ceoperformance.list
+# List all ceoperformances (returns an Array; raises on error)
+ceoperformances = client.CeoPerformance.list
 puts ceoperformances
 ```
 
@@ -138,7 +141,7 @@ local sdk = require("ceorater_sdk")
 local client = sdk.new()
 
 -- List all ceoperformances
-local ceoperformances, err = client:ceoperformance():list()
+local ceoperformances, err = client:CeoPerformance():list()
 print(ceoperformances)
 ```
 
@@ -151,22 +154,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CeoraterSDK.test()
-const result = await client.ceoperformance.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const ceoperformance = await client.CeoPerformance().load({ id: 'test01' })
+// ceoperformance is a bare CeoPerformance populated with mock data
+console.log(ceoperformance)
 ```
 
 ### Python
 
 ```python
 client = CeoraterSDK.test()
-result = client.ceoperformance.load({"id": "test01"})
+ceoperformance = client.CeoPerformance().load({"id": "test01"})
+print(ceoperformance)
 ```
 
 ### PHP
 
 ```php
-$client = CeoraterSDK::test();
-$result = $client->ceoperformance()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CeoraterSDK::test([
+    "entity" => ["ceoperformance" => ["test01" => ["id" => "test01"]]],
+]);
+$ceoperformance = $client->CeoPerformance()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -181,15 +189,18 @@ result, err := client.CeoPerformance(nil).Load(
 ### Ruby
 
 ```ruby
-client = CeoraterSDK.test
-result = client.ceoperformance.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CeoraterSDK.test({
+  "entity" => { "ceoperformance" => { "test01" => { "id" => "test01" } } },
+})
+ceoperformance = client.CeoPerformance.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:ceoperformance():load({ id = "test01" })
+local result, err = client:CeoPerformance():load({ id = "test01" })
 ```
 
 ## How it works
@@ -237,6 +248,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

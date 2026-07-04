@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/ceorater-sdk/go=../ceorater-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/ceorater-sdk/go"
-    "github.com/voxgig-sdk/ceorater-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List ceoperformances
-
-```go
-    result, err := client.CeoPerformance(nil).List(nil, nil)
+    // List ceoperformance records — the value is the array of records itself.
+    ceoperformances, err := client.CeoPerformance(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range ceoperformances.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.CeoPerformance(nil).Load(
+ceoperformance, err := client.CeoPerformance(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(ceoperformance) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -215,17 +214,24 @@ All entities implement the `CeoraterEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    ceoperformance, err := client.CeoPerformance(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // ceoperformance is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -343,7 +349,11 @@ Create an instance: `ceo_performance := client.CeoPerformance(nil)`
 #### Example: List
 
 ```go
-results, err := client.CeoPerformance(nil).List(nil, nil)
+ceo_performances, err := client.CeoPerformance(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ceo_performances) // the array of records
 ```
 
 
@@ -375,13 +385,21 @@ Create an instance: `company := client.Company(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+company, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(company) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Company(nil).List(nil, nil)
+companys, err := client.Company(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(companys) // the array of records
 ```
 
 
@@ -408,7 +426,11 @@ Create an instance: `compensation_efficiency := client.CompensationEfficiency(ni
 #### Example: List
 
 ```go
-results, err := client.CompensationEfficiency(nil).List(nil, nil)
+compensation_efficiencys, err := client.CompensationEfficiency(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(compensation_efficiencys) // the array of records
 ```
 
 
@@ -432,7 +454,11 @@ Create an instance: `general := client.General(nil)`
 #### Example: Load
 
 ```go
-result, err := client.General(nil).Load(map[string]any{"id": "general_id"}, nil)
+general, err := client.General(nil).Load(map[string]any{"id": "general_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(general) // the loaded record
 ```
 
 
@@ -456,7 +482,11 @@ Create an instance: `get_root := client.GetRoot(nil)`
 #### Example: Load
 
 ```go
-result, err := client.GetRoot(nil).Load(map[string]any{"id": "get_root_id"}, nil)
+get_root, err := client.GetRoot(nil).Load(map[string]any{"id": "get_root_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_root) // the loaded record
 ```
 
 
@@ -487,7 +517,11 @@ Create an instance: `search := client.Search(nil)`
 #### Example: List
 
 ```go
-results, err := client.Search(nil).List(nil, nil)
+searchs, err := client.Search(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(searchs) // the array of records
 ```
 
 

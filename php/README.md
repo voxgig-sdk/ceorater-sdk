@@ -29,18 +29,16 @@ require_once 'ceorater_sdk.php';
 $client = new CeoraterSDK();
 ```
 
-### 2. List ceoperformances
+### 2. List ceoperformance records
 
 ```php
 try {
-    $result = $client->ceoperformance()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of CeoPerformance records — iterate directly.
+    $ceoperformances = $client->CeoPerformance()->list();
+    foreach ($ceoperformances as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = CeoraterSDK::test();
+$client = CeoraterSDK::test([
+    "entity" => ["ceoperformance" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->ceoperformance()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$ceoperformance = $client->CeoPerformance()->load(["id" => "test01"]);
+print_r($ceoperformance);
 ```
 
 ### Use a custom fetch function
@@ -309,7 +311,7 @@ API path: `/search`
 
 ### CeoPerformance
 
-Create an instance: `const ceo_performance = client.ceo_performance`
+Create an instance: `$ceo_performance = $client->CeoPerformance();`
 
 #### Operations
 
@@ -329,14 +331,15 @@ Create an instance: `const ceo_performance = client.ceo_performance`
 
 #### Example: List
 
-```ts
-const ceo_performances = await client.ceo_performance.list()
+```php
+// list() returns an array of CeoPerformance records (throws on error).
+$ceo_performances = $client->CeoPerformance()->list();
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.company`
+Create an instance: `$company = $client->Company();`
 
 #### Operations
 
@@ -361,20 +364,22 @@ Create an instance: `const company = client.company`
 
 #### Example: Load
 
-```ts
-const company = await client.company.load({ id: 'company_id' })
+```php
+// load() returns the bare Company record (throws on error).
+$company = $client->Company()->load(["id" => "company_id"]);
 ```
 
 #### Example: List
 
-```ts
-const companys = await client.company.list()
+```php
+// list() returns an array of Company records (throws on error).
+$companys = $client->Company()->list();
 ```
 
 
 ### CompensationEfficiency
 
-Create an instance: `const compensation_efficiency = client.compensation_efficiency`
+Create an instance: `$compensation_efficiency = $client->CompensationEfficiency();`
 
 #### Operations
 
@@ -394,14 +399,15 @@ Create an instance: `const compensation_efficiency = client.compensation_efficie
 
 #### Example: List
 
-```ts
-const compensation_efficiencys = await client.compensation_efficiency.list()
+```php
+// list() returns an array of CompensationEfficiency records (throws on error).
+$compensation_efficiencys = $client->CompensationEfficiency()->list();
 ```
 
 
 ### General
 
-Create an instance: `const general = client.general`
+Create an instance: `$general = $client->General();`
 
 #### Operations
 
@@ -418,14 +424,15 @@ Create an instance: `const general = client.general`
 
 #### Example: Load
 
-```ts
-const general = await client.general.load({ id: 'general_id' })
+```php
+// load() returns the bare General record (throws on error).
+$general = $client->General()->load(["id" => "general_id"]);
 ```
 
 
 ### GetRoot
 
-Create an instance: `const get_root = client.get_root`
+Create an instance: `$get_root = $client->GetRoot();`
 
 #### Operations
 
@@ -442,14 +449,15 @@ Create an instance: `const get_root = client.get_root`
 
 #### Example: Load
 
-```ts
-const get_root = await client.get_root.load({ id: 'get_root_id' })
+```php
+// load() returns the bare GetRoot record (throws on error).
+$get_root = $client->GetRoot()->load(["id" => "get_root_id"]);
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -473,8 +481,9 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```php
+// list() returns an array of Search records (throws on error).
+$searchs = $client->Search()->list();
 ```
 
 
@@ -549,7 +558,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$ceoperformance = $client->ceoperformance();
+$ceoperformance = $client->CeoPerformance();
 $ceoperformance->load(["id" => "example_id"]);
 
 // $ceoperformance->dataGet() now returns the loaded ceoperformance data

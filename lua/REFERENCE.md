@@ -103,7 +103,7 @@ same parameters as `direct()`.
 ## CeoPerformanceEntity
 
 ```lua
-local ceo_performance = client:ceo_performance(nil)
+local ceo_performance = client:CeoPerformance(nil)
 ```
 
 ### Fields
@@ -123,7 +123,7 @@ local ceo_performance = client:ceo_performance(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ceo_performance():list()
+local results, err = client:CeoPerformance():list()
 ```
 
 ### Common Methods
@@ -159,7 +159,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```lua
-local company = client:company(nil)
+local company = client:Company(nil)
 ```
 
 ### Fields
@@ -183,7 +183,7 @@ local company = client:company(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:company():list()
+local results, err = client:Company():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -191,7 +191,7 @@ local results, err = client:company():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:company():load({ id = "company_id" })
+local result, err = client:Company():load({ id = "company_id" })
 ```
 
 ### Common Methods
@@ -227,7 +227,7 @@ Return the entity name.
 ## CompensationEfficiencyEntity
 
 ```lua
-local compensation_efficiency = client:compensation_efficiency(nil)
+local compensation_efficiency = client:CompensationEfficiency(nil)
 ```
 
 ### Fields
@@ -247,7 +247,7 @@ local compensation_efficiency = client:compensation_efficiency(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:compensation_efficiency():list()
+local results, err = client:CompensationEfficiency():list()
 ```
 
 ### Common Methods
@@ -283,7 +283,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```lua
-local general = client:general(nil)
+local general = client:General(nil)
 ```
 
 ### Fields
@@ -300,7 +300,7 @@ local general = client:general(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:general():load({ id = "general_id" })
+local result, err = client:General():load({ id = "general_id" })
 ```
 
 ### Common Methods
@@ -336,7 +336,7 @@ Return the entity name.
 ## GetRootEntity
 
 ```lua
-local get_root = client:get_root(nil)
+local get_root = client:GetRoot(nil)
 ```
 
 ### Fields
@@ -353,7 +353,7 @@ local get_root = client:get_root(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_root():load({ id = "get_root_id" })
+local result, err = client:GetRoot():load({ id = "get_root_id" })
 ```
 
 ### Common Methods
@@ -389,7 +389,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:search(nil)
+local search = client:Search(nil)
 ```
 
 ### Fields
@@ -413,7 +413,7 @@ local search = client:search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:search():list()
+local results, err = client:Search():list()
 ```
 
 ### Common Methods

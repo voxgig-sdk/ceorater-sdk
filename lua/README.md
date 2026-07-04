@@ -31,17 +31,17 @@ local sdk = require("ceorater_sdk")
 local client = sdk.new()
 ```
 
-### 2. List ceoperformances
+### 2. List ceoperformance records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:ceoperformance():list()
+local ceoperformances, err = client:CeoPerformance():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(ceoperformances) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:ceoperformance():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:CeoPerformance():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -194,17 +194,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local ceo_performance, err = client:CeoPerformance():load({ id = "example_id" })
+    if err then error(err) end
+    -- ceo_performance is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -301,7 +306,7 @@ API path: `/search`
 
 ### CeoPerformance
 
-Create an instance: `const ceo_performance = client.ceo_performance`
+Create an instance: `local ceo_performance = client:CeoPerformance(nil)`
 
 #### Operations
 
@@ -321,14 +326,14 @@ Create an instance: `const ceo_performance = client.ceo_performance`
 
 #### Example: List
 
-```ts
-const ceo_performances = await client.ceo_performance.list()
+```lua
+local ceo_performances, err = client:CeoPerformance():list()
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.company`
+Create an instance: `local company = client:Company(nil)`
 
 #### Operations
 
@@ -353,20 +358,20 @@ Create an instance: `const company = client.company`
 
 #### Example: Load
 
-```ts
-const company = await client.company.load({ id: 'company_id' })
+```lua
+local company, err = client:Company():load({ id = "company_id" })
 ```
 
 #### Example: List
 
-```ts
-const companys = await client.company.list()
+```lua
+local companys, err = client:Company():list()
 ```
 
 
 ### CompensationEfficiency
 
-Create an instance: `const compensation_efficiency = client.compensation_efficiency`
+Create an instance: `local compensation_efficiency = client:CompensationEfficiency(nil)`
 
 #### Operations
 
@@ -386,14 +391,14 @@ Create an instance: `const compensation_efficiency = client.compensation_efficie
 
 #### Example: List
 
-```ts
-const compensation_efficiencys = await client.compensation_efficiency.list()
+```lua
+local compensation_efficiencys, err = client:CompensationEfficiency():list()
 ```
 
 
 ### General
 
-Create an instance: `const general = client.general`
+Create an instance: `local general = client:General(nil)`
 
 #### Operations
 
@@ -410,14 +415,14 @@ Create an instance: `const general = client.general`
 
 #### Example: Load
 
-```ts
-const general = await client.general.load({ id: 'general_id' })
+```lua
+local general, err = client:General():load({ id = "general_id" })
 ```
 
 
 ### GetRoot
 
-Create an instance: `const get_root = client.get_root`
+Create an instance: `local get_root = client:GetRoot(nil)`
 
 #### Operations
 
@@ -434,14 +439,14 @@ Create an instance: `const get_root = client.get_root`
 
 #### Example: Load
 
-```ts
-const get_root = await client.get_root.load({ id: 'get_root_id' })
+```lua
+local get_root, err = client:GetRoot():load({ id = "get_root_id" })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `local search = client:Search(nil)`
 
 #### Operations
 
@@ -465,8 +470,8 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```lua
+local searchs, err = client:Search():list()
 ```
 
 
@@ -541,7 +546,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local ceoperformance = client:ceoperformance()
+local ceoperformance = client:CeoPerformance()
 ceoperformance:load({ id = "example_id" })
 
 -- ceoperformance:data_get() now returns the loaded ceoperformance data

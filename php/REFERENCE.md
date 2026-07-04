@@ -105,7 +105,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CeoPerformanceEntity
 
 ```php
-$ceo_performance = $client->ceo_performance();
+$ceo_performance = $client->CeoPerformance();
 ```
 
 ### Fields
@@ -125,7 +125,7 @@ $ceo_performance = $client->ceo_performance();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->ceo_performance()->list([]);
+$results = $client->CeoPerformance()->list([]);
 ```
 
 ### Common Methods
@@ -161,7 +161,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```php
-$company = $client->company();
+$company = $client->Company();
 ```
 
 ### Fields
@@ -185,7 +185,7 @@ $company = $client->company();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->company()->list([]);
+$results = $client->Company()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -193,7 +193,7 @@ $results = $client->company()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->company()->load(["id" => "company_id"]);
+$result = $client->Company()->load(["id" => "company_id"]);
 ```
 
 ### Common Methods
@@ -229,7 +229,7 @@ Return the entity name.
 ## CompensationEfficiencyEntity
 
 ```php
-$compensation_efficiency = $client->compensation_efficiency();
+$compensation_efficiency = $client->CompensationEfficiency();
 ```
 
 ### Fields
@@ -249,7 +249,7 @@ $compensation_efficiency = $client->compensation_efficiency();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->compensation_efficiency()->list([]);
+$results = $client->CompensationEfficiency()->list([]);
 ```
 
 ### Common Methods
@@ -285,7 +285,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```php
-$general = $client->general();
+$general = $client->General();
 ```
 
 ### Fields
@@ -302,7 +302,7 @@ $general = $client->general();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->general()->load(["id" => "general_id"]);
+$result = $client->General()->load(["id" => "general_id"]);
 ```
 
 ### Common Methods
@@ -338,7 +338,7 @@ Return the entity name.
 ## GetRootEntity
 
 ```php
-$get_root = $client->get_root();
+$get_root = $client->GetRoot();
 ```
 
 ### Fields
@@ -355,7 +355,7 @@ $get_root = $client->get_root();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_root()->load(["id" => "get_root_id"]);
+$result = $client->GetRoot()->load(["id" => "get_root_id"]);
 ```
 
 ### Common Methods
@@ -391,7 +391,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->search();
+$search = $client->Search();
 ```
 
 ### Fields
@@ -415,7 +415,7 @@ $search = $client->search();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->search()->list([]);
+$results = $client->Search()->list([]);
 ```
 
 ### Common Methods

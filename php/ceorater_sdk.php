@@ -233,10 +233,10 @@ class CeoraterSDK
 
     private $_ceo_performance = null;
 
-    // Idiomatic facade: $client->ceo_performance()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CeoPerformance() (PHP method
-    // names are case-insensitive).
-    public function ceo_performance($data = null)
+    // Canonical facade: $client->CeoPerformance()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ceo_performance()
+    // resolves here too.
+    public function CeoPerformance($data = null)
     {
         require_once __DIR__ . '/entity/ceo_performance_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class CeoraterSDK
 
     private $_company = null;
 
-    // Idiomatic facade: $client->company()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Company() (PHP method
-    // names are case-insensitive).
-    public function company($data = null)
+    // Canonical facade: $client->Company()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->company()
+    // resolves here too.
+    public function Company($data = null)
     {
         require_once __DIR__ . '/entity/company_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class CeoraterSDK
 
     private $_compensation_efficiency = null;
 
-    // Idiomatic facade: $client->compensation_efficiency()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CompensationEfficiency() (PHP method
-    // names are case-insensitive).
-    public function compensation_efficiency($data = null)
+    // Canonical facade: $client->CompensationEfficiency()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->compensation_efficiency()
+    // resolves here too.
+    public function CompensationEfficiency($data = null)
     {
         require_once __DIR__ . '/entity/compensation_efficiency_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class CeoraterSDK
 
     private $_general = null;
 
-    // Idiomatic facade: $client->general()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias General() (PHP method
-    // names are case-insensitive).
-    public function general($data = null)
+    // Canonical facade: $client->General()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->general()
+    // resolves here too.
+    public function General($data = null)
     {
         require_once __DIR__ . '/entity/general_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class CeoraterSDK
 
     private $_get_root = null;
 
-    // Idiomatic facade: $client->get_root()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetRoot() (PHP method
-    // names are case-insensitive).
-    public function get_root($data = null)
+    // Canonical facade: $client->GetRoot()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_root()
+    // resolves here too.
+    public function GetRoot($data = null)
     {
         require_once __DIR__ . '/entity/get_root_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class CeoraterSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {

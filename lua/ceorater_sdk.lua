@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:ceo_performance():list() / client:ceo_performance():load({ id = ... })
-function CeoraterSDK:ceo_performance(data)
+-- Idiomatic facade: client:CeoPerformance():list() / client:CeoPerformance():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CeoraterSDK:CeoPerformance(data)
   local EntityMod = require("entity.ceo_performance_entity")
   if data == nil then
     if self._ceo_performance == nil then
@@ -256,15 +257,10 @@ function CeoraterSDK:ceo_performance(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ceo_performance() instead.
-function CeoraterSDK:CeoPerformance(data)
-  local EntityMod = require("entity.ceo_performance_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:company():list() / client:company():load({ id = ... })
-function CeoraterSDK:company(data)
+-- Idiomatic facade: client:Company():list() / client:Company():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CeoraterSDK:Company(data)
   local EntityMod = require("entity.company_entity")
   if data == nil then
     if self._company == nil then
@@ -275,15 +271,10 @@ function CeoraterSDK:company(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:company() instead.
-function CeoraterSDK:Company(data)
-  local EntityMod = require("entity.company_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:compensation_efficiency():list() / client:compensation_efficiency():load({ id = ... })
-function CeoraterSDK:compensation_efficiency(data)
+-- Idiomatic facade: client:CompensationEfficiency():list() / client:CompensationEfficiency():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CeoraterSDK:CompensationEfficiency(data)
   local EntityMod = require("entity.compensation_efficiency_entity")
   if data == nil then
     if self._compensation_efficiency == nil then
@@ -294,15 +285,10 @@ function CeoraterSDK:compensation_efficiency(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:compensation_efficiency() instead.
-function CeoraterSDK:CompensationEfficiency(data)
-  local EntityMod = require("entity.compensation_efficiency_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:general():list() / client:general():load({ id = ... })
-function CeoraterSDK:general(data)
+-- Idiomatic facade: client:General():list() / client:General():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CeoraterSDK:General(data)
   local EntityMod = require("entity.general_entity")
   if data == nil then
     if self._general == nil then
@@ -313,15 +299,10 @@ function CeoraterSDK:general(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:general() instead.
-function CeoraterSDK:General(data)
-  local EntityMod = require("entity.general_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_root():list() / client:get_root():load({ id = ... })
-function CeoraterSDK:get_root(data)
+-- Idiomatic facade: client:GetRoot():list() / client:GetRoot():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CeoraterSDK:GetRoot(data)
   local EntityMod = require("entity.get_root_entity")
   if data == nil then
     if self._get_root == nil then
@@ -332,15 +313,10 @@ function CeoraterSDK:get_root(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_root() instead.
-function CeoraterSDK:GetRoot(data)
-  local EntityMod = require("entity.get_root_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function CeoraterSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CeoraterSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -348,12 +324,6 @@ function CeoraterSDK:search(data)
     end
     return self._search
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:search() instead.
-function CeoraterSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 

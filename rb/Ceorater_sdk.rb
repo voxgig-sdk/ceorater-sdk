@@ -208,78 +208,42 @@ class CeoraterSDK
   end
 
 
-  # Idiomatic facade: client.ceo_performance.list / client.ceo_performance.load({ "id" => ... })
-  def ceo_performance
-    require_relative 'entity/ceo_performance_entity'
-    @ceo_performance ||= CeoPerformanceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ceo_performance instead.
+  # Canonical facade: client.CeoPerformance.list / client.CeoPerformance.load({ "id" => ... })
   def CeoPerformance(data = nil)
     require_relative 'entity/ceo_performance_entity'
     CeoPerformanceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.company.list / client.company.load({ "id" => ... })
-  def company
-    require_relative 'entity/company_entity'
-    @company ||= CompanyEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.company instead.
+  # Canonical facade: client.Company.list / client.Company.load({ "id" => ... })
   def Company(data = nil)
     require_relative 'entity/company_entity'
     CompanyEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.compensation_efficiency.list / client.compensation_efficiency.load({ "id" => ... })
-  def compensation_efficiency
-    require_relative 'entity/compensation_efficiency_entity'
-    @compensation_efficiency ||= CompensationEfficiencyEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.compensation_efficiency instead.
+  # Canonical facade: client.CompensationEfficiency.list / client.CompensationEfficiency.load({ "id" => ... })
   def CompensationEfficiency(data = nil)
     require_relative 'entity/compensation_efficiency_entity'
     CompensationEfficiencyEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.general.list / client.general.load({ "id" => ... })
-  def general
-    require_relative 'entity/general_entity'
-    @general ||= GeneralEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.general instead.
+  # Canonical facade: client.General.list / client.General.load({ "id" => ... })
   def General(data = nil)
     require_relative 'entity/general_entity'
     GeneralEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_root.list / client.get_root.load({ "id" => ... })
-  def get_root
-    require_relative 'entity/get_root_entity'
-    @get_root ||= GetRootEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_root instead.
+  # Canonical facade: client.GetRoot.list / client.GetRoot.load({ "id" => ... })
   def GetRoot(data = nil)
     require_relative 'entity/get_root_entity'
     GetRootEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)

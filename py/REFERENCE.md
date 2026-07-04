@@ -100,7 +100,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CeoPerformanceEntity
 
 ```python
-ceo_performance = client.ceo_performance
+ceo_performance = client.CeoPerformance()
 ```
 
 ### Fields
@@ -120,7 +120,9 @@ ceo_performance = client.ceo_performance
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.ceo_performance.list({})
+results = client.CeoPerformance().list({})
+for ceo_performance in results:
+    print(ceo_performance)
 ```
 
 ### Common Methods
@@ -155,7 +157,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```python
-company = client.company
+company = client.Company()
 ```
 
 ### Fields
@@ -179,7 +181,9 @@ company = client.company
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.company.list({})
+results = client.Company().list({})
+for company in results:
+    print(company)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -187,7 +191,7 @@ results = client.company.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.company.load({"id": "company_id"})
+result = client.Company().load({"id": "company_id"})
 ```
 
 ### Common Methods
@@ -222,7 +226,7 @@ Return the entity name.
 ## CompensationEfficiencyEntity
 
 ```python
-compensation_efficiency = client.compensation_efficiency
+compensation_efficiency = client.CompensationEfficiency()
 ```
 
 ### Fields
@@ -242,7 +246,9 @@ compensation_efficiency = client.compensation_efficiency
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.compensation_efficiency.list({})
+results = client.CompensationEfficiency().list({})
+for compensation_efficiency in results:
+    print(compensation_efficiency)
 ```
 
 ### Common Methods
@@ -277,7 +283,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```python
-general = client.general
+general = client.General()
 ```
 
 ### Fields
@@ -294,7 +300,7 @@ general = client.general
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.general.load({"id": "general_id"})
+result = client.General().load({"id": "general_id"})
 ```
 
 ### Common Methods
@@ -329,7 +335,7 @@ Return the entity name.
 ## GetRootEntity
 
 ```python
-get_root = client.get_root
+get_root = client.GetRoot()
 ```
 
 ### Fields
@@ -346,7 +352,7 @@ get_root = client.get_root
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_root.load({"id": "get_root_id"})
+result = client.GetRoot().load({"id": "get_root_id"})
 ```
 
 ### Common Methods
@@ -381,7 +387,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -405,7 +411,9 @@ search = client.search
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.search.list({})
+results = client.Search().list({})
+for search in results:
+    print(search)
 ```
 
 ### Common Methods
