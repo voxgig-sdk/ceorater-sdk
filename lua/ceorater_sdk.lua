@@ -244,36 +244,114 @@ end
 
 
 
+-- Idiomatic facade: client:ceo_performance():list() / client:ceo_performance():load({ id = ... })
+function CeoraterSDK:ceo_performance(data)
+  local EntityMod = require("entity.ceo_performance_entity")
+  if data == nil then
+    if self._ceo_performance == nil then
+      self._ceo_performance = EntityMod.new(self, nil)
+    end
+    return self._ceo_performance
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:ceo_performance() instead.
 function CeoraterSDK:CeoPerformance(data)
   local EntityMod = require("entity.ceo_performance_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:company():list() / client:company():load({ id = ... })
+function CeoraterSDK:company(data)
+  local EntityMod = require("entity.company_entity")
+  if data == nil then
+    if self._company == nil then
+      self._company = EntityMod.new(self, nil)
+    end
+    return self._company
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:company() instead.
 function CeoraterSDK:Company(data)
   local EntityMod = require("entity.company_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:compensation_efficiency():list() / client:compensation_efficiency():load({ id = ... })
+function CeoraterSDK:compensation_efficiency(data)
+  local EntityMod = require("entity.compensation_efficiency_entity")
+  if data == nil then
+    if self._compensation_efficiency == nil then
+      self._compensation_efficiency = EntityMod.new(self, nil)
+    end
+    return self._compensation_efficiency
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:compensation_efficiency() instead.
 function CeoraterSDK:CompensationEfficiency(data)
   local EntityMod = require("entity.compensation_efficiency_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:general():list() / client:general():load({ id = ... })
+function CeoraterSDK:general(data)
+  local EntityMod = require("entity.general_entity")
+  if data == nil then
+    if self._general == nil then
+      self._general = EntityMod.new(self, nil)
+    end
+    return self._general
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:general() instead.
 function CeoraterSDK:General(data)
   local EntityMod = require("entity.general_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_root():list() / client:get_root():load({ id = ... })
+function CeoraterSDK:get_root(data)
+  local EntityMod = require("entity.get_root_entity")
+  if data == nil then
+    if self._get_root == nil then
+      self._get_root = EntityMod.new(self, nil)
+    end
+    return self._get_root
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_root() instead.
 function CeoraterSDK:GetRoot(data)
   local EntityMod = require("entity.get_root_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function CeoraterSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function CeoraterSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)

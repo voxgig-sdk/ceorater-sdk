@@ -50,16 +50,14 @@ class CompanyEntityTest extends TestCase
         $company_ref01_ent = $client->Company(null);
         $company_ref01_match = [];
 
-        [$company_ref01_list_result, $err] = $company_ref01_ent->list($company_ref01_match, null);
-        $this->assertNull($err);
+        $company_ref01_list_result = $company_ref01_ent->list($company_ref01_match, null);
         $this->assertIsArray($company_ref01_list_result);
 
         // LOAD
         $company_ref01_match_dt0 = [
             "id" => $company_ref01_data["id"],
         ];
-        [$company_ref01_data_dt0_loaded, $err] = $company_ref01_ent->load($company_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $company_ref01_data_dt0_loaded = $company_ref01_ent->load($company_ref01_match_dt0, null);
         $company_ref01_data_dt0_load_result = Helpers::to_map($company_ref01_data_dt0_loaded);
         $this->assertNotNull($company_ref01_data_dt0_load_result);
         $this->assertEquals($company_ref01_data_dt0_load_result["id"], $company_ref01_data["id"]);
@@ -96,7 +94,6 @@ function company_basic_setup($extra)
         "CEORATER_TEST_COMPANY_ENTID" => $idmap,
         "CEORATER_TEST_LIVE" => "FALSE",
         "CEORATER_TEST_EXPLAIN" => "FALSE",
-        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function company_basic_setup($extra)
     if ($env["CEORATER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CEORATER_APIKEY"],
             ],
             $extra ?? [],
         ]);

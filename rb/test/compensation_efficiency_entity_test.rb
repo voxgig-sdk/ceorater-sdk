@@ -43,8 +43,7 @@ class CompensationEfficiencyEntityTest < Minitest::Test
     compensation_efficiency_ref01_ent = client.CompensationEfficiency(nil)
     compensation_efficiency_ref01_match = {}
 
-    compensation_efficiency_ref01_list_result, err = compensation_efficiency_ref01_ent.list(compensation_efficiency_ref01_match, nil)
-    assert_nil err
+    compensation_efficiency_ref01_list_result = compensation_efficiency_ref01_ent.list(compensation_efficiency_ref01_match, nil)
     assert compensation_efficiency_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def compensation_efficiency_basic_setup(extra)
     "CEORATER_TEST_COMPENSATION_EFFICIENCY_ENTID" => idmap,
     "CEORATER_TEST_LIVE" => "FALSE",
     "CEORATER_TEST_EXPLAIN" => "FALSE",
-    "CEORATER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def compensation_efficiency_basic_setup(extra)
   if env["CEORATER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CEORATER_APIKEY"],
       },
       extra || {},
     ])

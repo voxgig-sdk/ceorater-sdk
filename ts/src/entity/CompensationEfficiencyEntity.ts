@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CompensationEfficiency,
+  CompensationEfficiencyListMatch,
+} from '../CeoraterTypes'
 
 // TODO: needs Entity superclass
-class CompensationEfficiencyEntity extends CeoraterEntityBase {
+class CompensationEfficiencyEntity extends CeoraterEntityBase<CompensationEfficiency> {
 
   constructor(client: CeoraterSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CompensationEfficiencyEntity extends CeoraterEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CompensationEfficiencyListMatch, ctrl?: Control): Promise<CompensationEfficiency[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CompensationEfficiencyEntity extends CeoraterEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CompensationEfficiency[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

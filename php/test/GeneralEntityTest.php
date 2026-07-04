@@ -49,8 +49,7 @@ class GeneralEntityTest extends TestCase
         // LOAD
         $general_ref01_ent = $client->General(null);
         $general_ref01_match_dt0 = [];
-        [$general_ref01_data_dt0_loaded, $err] = $general_ref01_ent->load($general_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $general_ref01_data_dt0_loaded = $general_ref01_ent->load($general_ref01_match_dt0, null);
         $this->assertNotNull($general_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function general_basic_setup($extra)
         "CEORATER_TEST_GENERAL_ENTID" => $idmap,
         "CEORATER_TEST_LIVE" => "FALSE",
         "CEORATER_TEST_EXPLAIN" => "FALSE",
-        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function general_basic_setup($extra)
     if ($env["CEORATER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CEORATER_APIKEY"],
             ],
             $extra ?? [],
         ]);

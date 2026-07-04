@@ -50,8 +50,7 @@ class CeoPerformanceEntityTest extends TestCase
         $ceo_performance_ref01_ent = $client->CeoPerformance(null);
         $ceo_performance_ref01_match = [];
 
-        [$ceo_performance_ref01_list_result, $err] = $ceo_performance_ref01_ent->list($ceo_performance_ref01_match, null);
-        $this->assertNull($err);
+        $ceo_performance_ref01_list_result = $ceo_performance_ref01_ent->list($ceo_performance_ref01_match, null);
         $this->assertIsArray($ceo_performance_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function ceo_performance_basic_setup($extra)
         "CEORATER_TEST_CEO_PERFORMANCE_ENTID" => $idmap,
         "CEORATER_TEST_LIVE" => "FALSE",
         "CEORATER_TEST_EXPLAIN" => "FALSE",
-        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function ceo_performance_basic_setup($extra)
     if ($env["CEORATER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CEORATER_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CeoPerformance,
+  CeoPerformanceListMatch,
+} from '../CeoraterTypes'
 
 // TODO: needs Entity superclass
-class CeoPerformanceEntity extends CeoraterEntityBase {
+class CeoPerformanceEntity extends CeoraterEntityBase<CeoPerformance> {
 
   constructor(client: CeoraterSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CeoPerformanceEntity extends CeoraterEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CeoPerformanceListMatch, ctrl?: Control): Promise<CeoPerformance[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CeoPerformanceEntity extends CeoraterEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CeoPerformance[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

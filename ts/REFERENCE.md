@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -170,7 +169,7 @@ Alias for `CeoraterSDK.test()`.
 ## CeoPerformanceEntity
 
 ```ts
-const ceo_performance = client.CeoPerformance()
+const ceo_performance = client.ceo_performance
 ```
 
 ### Fields
@@ -190,7 +189,7 @@ const ceo_performance = client.CeoPerformance()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CeoPerformance().list()
+const results = await client.ceo_performance.list()
 ```
 
 ### Common Methods
@@ -224,7 +223,7 @@ Return a copy of the entity options.
 ## CompanyEntity
 
 ```ts
-const company = client.Company()
+const company = client.company
 ```
 
 ### Fields
@@ -248,7 +247,7 @@ const company = client.Company()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Company().list()
+const results = await client.company.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -256,7 +255,7 @@ const results = await client.Company().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Company().load({ id: 'company_id' })
+const result = await client.company.load({ id: 'company_id' })
 ```
 
 ### Common Methods
@@ -290,7 +289,7 @@ Return a copy of the entity options.
 ## CompensationEfficiencyEntity
 
 ```ts
-const compensation_efficiency = client.CompensationEfficiency()
+const compensation_efficiency = client.compensation_efficiency
 ```
 
 ### Fields
@@ -310,7 +309,7 @@ const compensation_efficiency = client.CompensationEfficiency()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CompensationEfficiency().list()
+const results = await client.compensation_efficiency.list()
 ```
 
 ### Common Methods
@@ -344,7 +343,7 @@ Return a copy of the entity options.
 ## GeneralEntity
 
 ```ts
-const general = client.General()
+const general = client.general
 ```
 
 ### Fields
@@ -361,7 +360,7 @@ const general = client.General()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.General().load({ id: 'general_id' })
+const result = await client.general.load({ id: 'general_id' })
 ```
 
 ### Common Methods
@@ -395,7 +394,7 @@ Return a copy of the entity options.
 ## GetRootEntity
 
 ```ts
-const get_root = client.GetRoot()
+const get_root = client.get_root
 ```
 
 ### Fields
@@ -412,7 +411,7 @@ const get_root = client.GetRoot()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetRoot().load({ id: 'get_root_id' })
+const result = await client.get_root.load({ id: 'get_root_id' })
 ```
 
 ### Common Methods
@@ -446,7 +445,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.Search()
+const search = client.search
 ```
 
 ### Fields
@@ -470,7 +469,7 @@ const search = client.Search()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Search().list()
+const results = await client.search.list()
 ```
 
 ### Common Methods

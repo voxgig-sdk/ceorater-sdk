@@ -7,6 +7,8 @@ import { GeneralEntity } from './entity/GeneralEntity'
 import { GetRootEntity } from './entity/GetRootEntity'
 import { SearchEntity } from './entity/SearchEntity'
 
+export type * from './CeoraterTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -207,36 +209,84 @@ class CeoraterSDK {
 
 
 
+  _ceo_performance?: CeoPerformanceEntity
+
+  // Idiomatic facade: `client.ceo_performance.list()` / `client.ceo_performance.load({ id })`.
+  get ceo_performance(): CeoPerformanceEntity {
+    return (this._ceo_performance ??= new CeoPerformanceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ceo_performance` instead. */
   CeoPerformance(data?: any) {
     const self = this
     return new CeoPerformanceEntity(self,data)
   }
 
 
+  _company?: CompanyEntity
+
+  // Idiomatic facade: `client.company.list()` / `client.company.load({ id })`.
+  get company(): CompanyEntity {
+    return (this._company ??= new CompanyEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.company` instead. */
   Company(data?: any) {
     const self = this
     return new CompanyEntity(self,data)
   }
 
 
+  _compensation_efficiency?: CompensationEfficiencyEntity
+
+  // Idiomatic facade: `client.compensation_efficiency.list()` / `client.compensation_efficiency.load({ id })`.
+  get compensation_efficiency(): CompensationEfficiencyEntity {
+    return (this._compensation_efficiency ??= new CompensationEfficiencyEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.compensation_efficiency` instead. */
   CompensationEfficiency(data?: any) {
     const self = this
     return new CompensationEfficiencyEntity(self,data)
   }
 
 
+  _general?: GeneralEntity
+
+  // Idiomatic facade: `client.general.list()` / `client.general.load({ id })`.
+  get general(): GeneralEntity {
+    return (this._general ??= new GeneralEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.general` instead. */
   General(data?: any) {
     const self = this
     return new GeneralEntity(self,data)
   }
 
 
+  _get_root?: GetRootEntity
+
+  // Idiomatic facade: `client.get_root.list()` / `client.get_root.load({ id })`.
+  get get_root(): GetRootEntity {
+    return (this._get_root ??= new GetRootEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_root` instead. */
   GetRoot(data?: any) {
     const self = this
     return new GetRootEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)

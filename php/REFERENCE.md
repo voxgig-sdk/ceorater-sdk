@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -76,7 +75,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -90,11 +92,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -102,7 +105,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## CeoPerformanceEntity
 
 ```php
-$ceo_performance = $client->CeoPerformance();
+$ceo_performance = $client->ceo_performance();
 ```
 
 ### Fields
@@ -117,12 +120,12 @@ $ceo_performance = $client->CeoPerformance();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->CeoPerformance()->list([]);
+$results = $client->ceo_performance()->list([]);
 ```
 
 ### Common Methods
@@ -158,7 +161,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```php
-$company = $client->Company();
+$company = $client->company();
 ```
 
 ### Fields
@@ -177,20 +180,20 @@ $company = $client->Company();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Company()->list([]);
+$results = $client->company()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Company()->load(["id" => "company_id"]);
+$result = $client->company()->load(["id" => "company_id"]);
 ```
 
 ### Common Methods
@@ -226,7 +229,7 @@ Return the entity name.
 ## CompensationEfficiencyEntity
 
 ```php
-$compensation_efficiency = $client->CompensationEfficiency();
+$compensation_efficiency = $client->compensation_efficiency();
 ```
 
 ### Fields
@@ -241,12 +244,12 @@ $compensation_efficiency = $client->CompensationEfficiency();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->CompensationEfficiency()->list([]);
+$results = $client->compensation_efficiency()->list([]);
 ```
 
 ### Common Methods
@@ -282,7 +285,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```php
-$general = $client->General();
+$general = $client->general();
 ```
 
 ### Fields
@@ -294,12 +297,12 @@ $general = $client->General();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->General()->load(["id" => "general_id"]);
+$result = $client->general()->load(["id" => "general_id"]);
 ```
 
 ### Common Methods
@@ -335,7 +338,7 @@ Return the entity name.
 ## GetRootEntity
 
 ```php
-$get_root = $client->GetRoot();
+$get_root = $client->get_root();
 ```
 
 ### Fields
@@ -347,12 +350,12 @@ $get_root = $client->GetRoot();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->GetRoot()->load(["id" => "get_root_id"]);
+$result = $client->get_root()->load(["id" => "get_root_id"]);
 ```
 
 ### Common Methods
@@ -388,7 +391,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->Search();
+$search = $client->search();
 ```
 
 ### Fields
@@ -407,12 +410,12 @@ $search = $client->Search();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Search()->list([]);
+$results = $client->search()->list([]);
 ```
 
 ### Common Methods

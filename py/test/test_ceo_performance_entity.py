@@ -50,8 +50,7 @@ class TestCeoPerformanceEntity:
         ceo_performance_ref01_ent = client.CeoPerformance(None)
         ceo_performance_ref01_match = {}
 
-        ceo_performance_ref01_list_result, err = ceo_performance_ref01_ent.list(ceo_performance_ref01_match, None)
-        assert err is None
+        ceo_performance_ref01_list_result = ceo_performance_ref01_ent.list(ceo_performance_ref01_match, None)
         assert isinstance(ceo_performance_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _ceo_performance_basic_setup(extra):
         "CEORATER_TEST_CEO_PERFORMANCE_ENTID": idmap,
         "CEORATER_TEST_LIVE": "FALSE",
         "CEORATER_TEST_EXPLAIN": "FALSE",
-        "CEORATER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _ceo_performance_basic_setup(extra):
     if env.get("CEORATER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CEORATER_APIKEY"),
             },
             extra or {},
         ])

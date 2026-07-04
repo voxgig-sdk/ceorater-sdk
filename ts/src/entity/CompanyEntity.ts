@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Company,
+  CompanyLoadMatch,
+  CompanyListMatch,
+} from '../CeoraterTypes'
 
 // TODO: needs Entity superclass
-class CompanyEntity extends CeoraterEntityBase {
+class CompanyEntity extends CeoraterEntityBase<Company> {
 
   constructor(client: CeoraterSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class CompanyEntity extends CeoraterEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CompanyLoadMatch, ctrl?: Control): Promise<Company> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class CompanyEntity extends CeoraterEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Company> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CompanyListMatch, ctrl?: Control): Promise<Company[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class CompanyEntity extends CeoraterEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Company[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CeoPerformanceListMatch
+---@param ctrl? table
+---@return CeoPerformance[]
+---@return string? err
 function CeoPerformanceEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

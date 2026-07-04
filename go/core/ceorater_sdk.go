@@ -245,31 +245,49 @@ func (sdk *CeoraterSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// CeoPerformance returns a CeoPerformance entity bound to this client.
+// Idiomatic usage: client.CeoPerformance(nil).List(nil, nil) or
+// client.CeoPerformance(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CeoraterSDK) CeoPerformance(data map[string]any) CeoraterEntity {
 	return NewCeoPerformanceEntityFunc(sdk, data)
 }
 
 
+// Company returns a Company entity bound to this client.
+// Idiomatic usage: client.Company(nil).List(nil, nil) or
+// client.Company(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CeoraterSDK) Company(data map[string]any) CeoraterEntity {
 	return NewCompanyEntityFunc(sdk, data)
 }
 
 
+// CompensationEfficiency returns a CompensationEfficiency entity bound to this client.
+// Idiomatic usage: client.CompensationEfficiency(nil).List(nil, nil) or
+// client.CompensationEfficiency(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CeoraterSDK) CompensationEfficiency(data map[string]any) CeoraterEntity {
 	return NewCompensationEfficiencyEntityFunc(sdk, data)
 }
 
 
+// General returns a General entity bound to this client.
+// Idiomatic usage: client.General(nil).List(nil, nil) or
+// client.General(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CeoraterSDK) General(data map[string]any) CeoraterEntity {
 	return NewGeneralEntityFunc(sdk, data)
 }
 
 
+// GetRoot returns a GetRoot entity bound to this client.
+// Idiomatic usage: client.GetRoot(nil).List(nil, nil) or
+// client.GetRoot(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CeoraterSDK) GetRoot(data map[string]any) CeoraterEntity {
 	return NewGetRootEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CeoraterSDK) Search(data map[string]any) CeoraterEntity {
 	return NewSearchEntityFunc(sdk, data)
 }

@@ -50,16 +50,14 @@ class TestCompanyEntity:
         company_ref01_ent = client.Company(None)
         company_ref01_match = {}
 
-        company_ref01_list_result, err = company_ref01_ent.list(company_ref01_match, None)
-        assert err is None
+        company_ref01_list_result = company_ref01_ent.list(company_ref01_match, None)
         assert isinstance(company_ref01_list_result, list)
 
         # LOAD
         company_ref01_match_dt0 = {
             "id": company_ref01_data["id"],
         }
-        company_ref01_data_dt0_loaded, err = company_ref01_ent.load(company_ref01_match_dt0, None)
-        assert err is None
+        company_ref01_data_dt0_loaded = company_ref01_ent.load(company_ref01_match_dt0, None)
         company_ref01_data_dt0_load_result = helpers.to_map(company_ref01_data_dt0_loaded)
         assert company_ref01_data_dt0_load_result is not None
         assert company_ref01_data_dt0_load_result["id"] == company_ref01_data["id"]
@@ -102,7 +100,6 @@ def _company_basic_setup(extra):
         "CEORATER_TEST_COMPANY_ENTID": idmap,
         "CEORATER_TEST_LIVE": "FALSE",
         "CEORATER_TEST_EXPLAIN": "FALSE",
-        "CEORATER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _company_basic_setup(extra):
     if env.get("CEORATER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CEORATER_APIKEY"),
             },
             extra or {},
         ])

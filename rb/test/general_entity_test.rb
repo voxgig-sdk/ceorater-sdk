@@ -42,8 +42,7 @@ class GeneralEntityTest < Minitest::Test
     # LOAD
     general_ref01_ent = client.General(nil)
     general_ref01_match_dt0 = {}
-    general_ref01_data_dt0_loaded, err = general_ref01_ent.load(general_ref01_match_dt0, nil)
-    assert_nil err
+    general_ref01_data_dt0_loaded = general_ref01_ent.load(general_ref01_match_dt0, nil)
     assert !general_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def general_basic_setup(extra)
     "CEORATER_TEST_GENERAL_ENTID" => idmap,
     "CEORATER_TEST_LIVE" => "FALSE",
     "CEORATER_TEST_EXPLAIN" => "FALSE",
-    "CEORATER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def general_basic_setup(extra)
   if env["CEORATER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CEORATER_APIKEY"],
       },
       extra || {},
     ])

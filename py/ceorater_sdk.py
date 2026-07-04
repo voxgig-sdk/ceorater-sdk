@@ -144,16 +144,23 @@ class CeoraterSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class CeoraterSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,40 +212,106 @@ class CeoraterSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def ceo_performance(self):
+        """Idiomatic facade: client.ceo_performance.list() / client.ceo_performance.load({"id": ...})."""
+        from entity.ceo_performance_entity import CeoPerformanceEntity
+        cached = getattr(self, "_ceo_performance", None)
+        if cached is None:
+            cached = CeoPerformanceEntity(self, None)
+            self._ceo_performance = cached
+        return cached
 
     def CeoPerformance(self, data=None):
+        # Deprecated: use client.ceo_performance instead.
         from entity.ceo_performance_entity import CeoPerformanceEntity
         return CeoPerformanceEntity(self, data)
 
 
+    @property
+    def company(self):
+        """Idiomatic facade: client.company.list() / client.company.load({"id": ...})."""
+        from entity.company_entity import CompanyEntity
+        cached = getattr(self, "_company", None)
+        if cached is None:
+            cached = CompanyEntity(self, None)
+            self._company = cached
+        return cached
+
     def Company(self, data=None):
+        # Deprecated: use client.company instead.
         from entity.company_entity import CompanyEntity
         return CompanyEntity(self, data)
 
 
+    @property
+    def compensation_efficiency(self):
+        """Idiomatic facade: client.compensation_efficiency.list() / client.compensation_efficiency.load({"id": ...})."""
+        from entity.compensation_efficiency_entity import CompensationEfficiencyEntity
+        cached = getattr(self, "_compensation_efficiency", None)
+        if cached is None:
+            cached = CompensationEfficiencyEntity(self, None)
+            self._compensation_efficiency = cached
+        return cached
+
     def CompensationEfficiency(self, data=None):
+        # Deprecated: use client.compensation_efficiency instead.
         from entity.compensation_efficiency_entity import CompensationEfficiencyEntity
         return CompensationEfficiencyEntity(self, data)
 
 
+    @property
+    def general(self):
+        """Idiomatic facade: client.general.list() / client.general.load({"id": ...})."""
+        from entity.general_entity import GeneralEntity
+        cached = getattr(self, "_general", None)
+        if cached is None:
+            cached = GeneralEntity(self, None)
+            self._general = cached
+        return cached
+
     def General(self, data=None):
+        # Deprecated: use client.general instead.
         from entity.general_entity import GeneralEntity
         return GeneralEntity(self, data)
 
 
+    @property
+    def get_root(self):
+        """Idiomatic facade: client.get_root.list() / client.get_root.load({"id": ...})."""
+        from entity.get_root_entity import GetRootEntity
+        cached = getattr(self, "_get_root", None)
+        if cached is None:
+            cached = GetRootEntity(self, None)
+            self._get_root = cached
+        return cached
+
     def GetRoot(self, data=None):
+        # Deprecated: use client.get_root instead.
         from entity.get_root_entity import GetRootEntity
         return GetRootEntity(self, data)
 
 
+    @property
+    def search(self):
+        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
+        from entity.search_entity import SearchEntity
+        cached = getattr(self, "_search", None)
+        if cached is None:
+            cached = SearchEntity(self, None)
+            self._search = cached
+        return cached
+
     def Search(self, data=None):
+        # Deprecated: use client.search instead.
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 

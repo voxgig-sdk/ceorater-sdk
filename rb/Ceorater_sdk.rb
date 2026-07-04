@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Ceorater_types'
+
 
 class CeoraterSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class CeoraterSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class CeoraterSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue CeoraterError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = CeoraterHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class CeoraterSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,46 +198,88 @@ class CeoraterSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.ceo_performance.list / client.ceo_performance.load({ "id" => ... })
+  def ceo_performance
+    require_relative 'entity/ceo_performance_entity'
+    @ceo_performance ||= CeoPerformanceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.ceo_performance instead.
   def CeoPerformance(data = nil)
     require_relative 'entity/ceo_performance_entity'
     CeoPerformanceEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.company.list / client.company.load({ "id" => ... })
+  def company
+    require_relative 'entity/company_entity'
+    @company ||= CompanyEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.company instead.
   def Company(data = nil)
     require_relative 'entity/company_entity'
     CompanyEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.compensation_efficiency.list / client.compensation_efficiency.load({ "id" => ... })
+  def compensation_efficiency
+    require_relative 'entity/compensation_efficiency_entity'
+    @compensation_efficiency ||= CompensationEfficiencyEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.compensation_efficiency instead.
   def CompensationEfficiency(data = nil)
     require_relative 'entity/compensation_efficiency_entity'
     CompensationEfficiencyEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.general.list / client.general.load({ "id" => ... })
+  def general
+    require_relative 'entity/general_entity'
+    @general ||= GeneralEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.general instead.
   def General(data = nil)
     require_relative 'entity/general_entity'
     GeneralEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_root.list / client.get_root.load({ "id" => ... })
+  def get_root
+    require_relative 'entity/get_root_entity'
+    @get_root ||= GetRootEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_root instead.
   def GetRoot(data = nil)
     require_relative 'entity/get_root_entity'
     GetRootEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
+  def search
+    require_relative 'entity/search_entity'
+    @search ||= SearchEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.search instead.
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)

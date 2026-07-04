@@ -49,8 +49,7 @@ class GetRootEntityTest extends TestCase
         // LOAD
         $get_root_ref01_ent = $client->GetRoot(null);
         $get_root_ref01_match_dt0 = [];
-        [$get_root_ref01_data_dt0_loaded, $err] = $get_root_ref01_ent->load($get_root_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_root_ref01_data_dt0_loaded = $get_root_ref01_ent->load($get_root_ref01_match_dt0, null);
         $this->assertNotNull($get_root_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function get_root_basic_setup($extra)
         "CEORATER_TEST_GET_ROOT_ENTID" => $idmap,
         "CEORATER_TEST_LIVE" => "FALSE",
         "CEORATER_TEST_EXPLAIN" => "FALSE",
-        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function get_root_basic_setup($extra)
     if ($env["CEORATER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CEORATER_APIKEY"],
             ],
             $extra ?? [],
         ]);

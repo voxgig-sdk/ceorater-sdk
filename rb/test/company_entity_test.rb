@@ -43,16 +43,14 @@ class CompanyEntityTest < Minitest::Test
     company_ref01_ent = client.Company(nil)
     company_ref01_match = {}
 
-    company_ref01_list_result, err = company_ref01_ent.list(company_ref01_match, nil)
-    assert_nil err
+    company_ref01_list_result = company_ref01_ent.list(company_ref01_match, nil)
     assert company_ref01_list_result.is_a?(Array)
 
     # LOAD
     company_ref01_match_dt0 = {
       "id" => company_ref01_data["id"],
     }
-    company_ref01_data_dt0_loaded, err = company_ref01_ent.load(company_ref01_match_dt0, nil)
-    assert_nil err
+    company_ref01_data_dt0_loaded = company_ref01_ent.load(company_ref01_match_dt0, nil)
     company_ref01_data_dt0_load_result = Helpers.to_map(company_ref01_data_dt0_loaded)
     assert !company_ref01_data_dt0_load_result.nil?
     assert_equal company_ref01_data_dt0_load_result["id"], company_ref01_data["id"]
@@ -93,7 +91,6 @@ def company_basic_setup(extra)
     "CEORATER_TEST_COMPANY_ENTID" => idmap,
     "CEORATER_TEST_LIVE" => "FALSE",
     "CEORATER_TEST_EXPLAIN" => "FALSE",
-    "CEORATER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def company_basic_setup(extra)
   if env["CEORATER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CEORATER_APIKEY"],
       },
       extra || {},
     ])

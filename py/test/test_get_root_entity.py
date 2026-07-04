@@ -49,8 +49,7 @@ class TestGetRootEntity:
         # LOAD
         get_root_ref01_ent = client.GetRoot(None)
         get_root_ref01_match_dt0 = {}
-        get_root_ref01_data_dt0_loaded, err = get_root_ref01_ent.load(get_root_ref01_match_dt0, None)
-        assert err is None
+        get_root_ref01_data_dt0_loaded = get_root_ref01_ent.load(get_root_ref01_match_dt0, None)
         assert get_root_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_root_basic_setup(extra):
         "CEORATER_TEST_GET_ROOT_ENTID": idmap,
         "CEORATER_TEST_LIVE": "FALSE",
         "CEORATER_TEST_EXPLAIN": "FALSE",
-        "CEORATER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_root_basic_setup(extra):
     if env.get("CEORATER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CEORATER_APIKEY"),
             },
             extra or {},
         ])

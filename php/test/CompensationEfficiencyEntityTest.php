@@ -50,8 +50,7 @@ class CompensationEfficiencyEntityTest extends TestCase
         $compensation_efficiency_ref01_ent = $client->CompensationEfficiency(null);
         $compensation_efficiency_ref01_match = [];
 
-        [$compensation_efficiency_ref01_list_result, $err] = $compensation_efficiency_ref01_ent->list($compensation_efficiency_ref01_match, null);
-        $this->assertNull($err);
+        $compensation_efficiency_ref01_list_result = $compensation_efficiency_ref01_ent->list($compensation_efficiency_ref01_match, null);
         $this->assertIsArray($compensation_efficiency_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function compensation_efficiency_basic_setup($extra)
         "CEORATER_TEST_COMPENSATION_EFFICIENCY_ENTID" => $idmap,
         "CEORATER_TEST_LIVE" => "FALSE",
         "CEORATER_TEST_EXPLAIN" => "FALSE",
-        "CEORATER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function compensation_efficiency_basic_setup($extra)
     if ($env["CEORATER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["CEORATER_APIKEY"],
             ],
             $extra ?? [],
         ]);

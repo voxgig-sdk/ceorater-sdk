@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CompensationEfficiencyListMatch
+---@param ctrl? table
+---@return CompensationEfficiency[]
+---@return string? err
 function CompensationEfficiencyEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
