@@ -107,20 +107,20 @@ ceo_performance = client.CeoPerformance()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `compensation` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `tenure_year` | ``$INTEGER`` | No |  |
+| `ceo_name` | `str` | No |  |
+| `company_name` | `str` | No |  |
+| `compensation` | `float` | No |  |
+| `performance_score` | `float` | No |  |
+| `tenure_year` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CeoPerformance().list({})
+results = client.CeoPerformance().list()
 for ceo_performance in results:
     print(ceo_performance)
 ```
@@ -164,24 +164,24 @@ company = client.Company()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `float` | No |  |
+| `ceo_name` | `str` | No |  |
+| `company_name` | `str` | No |  |
+| `employee` | `int` | No |  |
+| `headquarter` | `str` | No |  |
+| `id` | `str` | No |  |
+| `industry` | `str` | No |  |
+| `performance_metric` | `dict` | No |  |
+| `revenue` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Company().list({})
+results = client.Company().list()
 for company in results:
     print(company)
 ```
@@ -233,20 +233,20 @@ compensation_efficiency = client.CompensationEfficiency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `efficiency_ratio` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `total_compensation` | ``$NUMBER`` | No |  |
+| `ceo_name` | `str` | No |  |
+| `company_name` | `str` | No |  |
+| `efficiency_ratio` | `float` | No |  |
+| `performance_score` | `float` | No |  |
+| `total_compensation` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CompensationEfficiency().list({})
+results = client.CompensationEfficiency().list()
 for compensation_efficiency in results:
     print(compensation_efficiency)
 ```
@@ -290,8 +290,8 @@ general = client.General()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `status` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `status` | `str` | No |  |
+| `timestamp` | `str` | No |  |
 
 ### Operations
 
@@ -300,7 +300,7 @@ general = client.General()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.General().load({"id": "general_id"})
+result = client.General().load()
 ```
 
 ### Common Methods
@@ -342,8 +342,8 @@ get_root = client.GetRoot()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documentation` | ``$STRING`` | No |  |
-| `message` | ``$STRING`` | No |  |
+| `documentation` | `str` | No |  |
+| `message` | `str` | No |  |
 
 ### Operations
 
@@ -352,7 +352,7 @@ get_root = client.GetRoot()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetRoot().load({"id": "get_root_id"})
+result = client.GetRoot().load()
 ```
 
 ### Common Methods
@@ -394,24 +394,24 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `float` | No |  |
+| `ceo_name` | `str` | No |  |
+| `company_name` | `str` | No |  |
+| `employee` | `int` | No |  |
+| `headquarter` | `str` | No |  |
+| `id` | `str` | No |  |
+| `industry` | `str` | No |  |
+| `performance_metric` | `dict` | No |  |
+| `revenue` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Search().list({})
+results = client.Search().list()
 for search in results:
     print(search)
 ```

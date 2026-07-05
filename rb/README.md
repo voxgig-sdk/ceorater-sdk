@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Ceorater API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.CeoPerformance` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,11 +37,38 @@ begin
   # list returns an Array of CeoPerformance records — iterate directly.
   ceoperformances = client.CeoPerformance.list
   ceoperformances.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["ceo_name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  ceoperformances = client.CeoPerformance.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -60,7 +89,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -83,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = CeoraterSDK.test({
-  "entity" => { "ceoperformance" => { "test01" => { "id" => "test01" } } },
-})
+client = CeoraterSDK.test
 
-# load returns the bare mock record (raises on error).
-ceoperformance = client.CeoPerformance.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+ceoperformance = client.CeoPerformance.list()
 puts ceoperformance
 ```
 
@@ -183,10 +211,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -318,11 +343,11 @@ Create an instance: `ceo_performance = client.CeoPerformance`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `compensation` | ``$NUMBER`` |  |
-| `performance_score` | ``$NUMBER`` |  |
-| `tenure_year` | ``$INTEGER`` |  |
+| `ceo_name` | `String` |  |
+| `company_name` | `String` |  |
+| `compensation` | `Float` |  |
+| `performance_score` | `Float` |  |
+| `tenure_year` | `Integer` |  |
 
 #### Example: List
 
@@ -347,15 +372,15 @@ Create an instance: `company = client.Company`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` |  |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `employee` | ``$INTEGER`` |  |
-| `headquarter` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `industry` | ``$STRING`` |  |
-| `performance_metric` | ``$OBJECT`` |  |
-| `revenue` | ``$NUMBER`` |  |
+| `ceo_compensation` | `Float` |  |
+| `ceo_name` | `String` |  |
+| `company_name` | `String` |  |
+| `employee` | `Integer` |  |
+| `headquarter` | `String` |  |
+| `id` | `String` |  |
+| `industry` | `String` |  |
+| `performance_metric` | `Hash` |  |
+| `revenue` | `Float` |  |
 
 #### Example: Load
 
@@ -386,11 +411,11 @@ Create an instance: `compensation_efficiency = client.CompensationEfficiency`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `efficiency_ratio` | ``$NUMBER`` |  |
-| `performance_score` | ``$NUMBER`` |  |
-| `total_compensation` | ``$NUMBER`` |  |
+| `ceo_name` | `String` |  |
+| `company_name` | `String` |  |
+| `efficiency_ratio` | `Float` |  |
+| `performance_score` | `Float` |  |
+| `total_compensation` | `Float` |  |
 
 #### Example: List
 
@@ -414,14 +439,14 @@ Create an instance: `general = client.General`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `status` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
+| `status` | `String` |  |
+| `timestamp` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare General record (raises on error).
-general = client.General.load({ "id" => "general_id" })
+general = client.General.load()
 ```
 
 
@@ -439,14 +464,14 @@ Create an instance: `get_root = client.GetRoot`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `documentation` | ``$STRING`` |  |
-| `message` | ``$STRING`` |  |
+| `documentation` | `String` |  |
+| `message` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare GetRoot record (raises on error).
-get_root = client.GetRoot.load({ "id" => "get_root_id" })
+get_root = client.GetRoot.load()
 ```
 
 
@@ -464,15 +489,15 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` |  |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `employee` | ``$INTEGER`` |  |
-| `headquarter` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `industry` | ``$STRING`` |  |
-| `performance_metric` | ``$OBJECT`` |  |
-| `revenue` | ``$NUMBER`` |  |
+| `ceo_compensation` | `Float` |  |
+| `ceo_name` | `String` |  |
+| `company_name` | `String` |  |
+| `employee` | `Integer` |  |
+| `headquarter` | `String` |  |
+| `id` | `String` |  |
+| `industry` | `String` |  |
+| `performance_metric` | `Hash` |  |
+| `revenue` | `Float` |  |
 
 #### Example: List
 
@@ -482,12 +507,16 @@ searchs = client.Search.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -504,8 +533,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -549,14 +579,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 ceoperformance = client.CeoPerformance
-ceoperformance.load({ "id" => "example_id" })
+ceoperformance.list()
 
-# ceoperformance.data_get now returns the loaded ceoperformance data
+# ceoperformance.data_get now returns the ceoperformance data from the last list
 # ceoperformance.match_get returns the last match criteria
 ```
 

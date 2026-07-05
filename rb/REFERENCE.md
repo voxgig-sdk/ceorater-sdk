@@ -8,7 +8,7 @@ Complete API reference for the Ceorater Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ceorater_sdk'
+require_relative 'Ceorater_sdk'
 
 client = CeoraterSDK.new(options)
 ```
@@ -113,20 +113,20 @@ ceo_performance = client.CeoPerformance
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `compensation` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `tenure_year` | ``$INTEGER`` | No |  |
+| `ceo_name` | `String` | No |  |
+| `company_name` | `String` | No |  |
+| `compensation` | `Float` | No |  |
+| `performance_score` | `Float` | No |  |
+| `tenure_year` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CeoPerformance.list(nil)
+results = client.CeoPerformance.list
 ```
 
 ### Common Methods
@@ -169,24 +169,24 @@ company = client.Company
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `Float` | No |  |
+| `ceo_name` | `String` | No |  |
+| `company_name` | `String` | No |  |
+| `employee` | `Integer` | No |  |
+| `headquarter` | `String` | No |  |
+| `id` | `String` | No |  |
+| `industry` | `String` | No |  |
+| `performance_metric` | `Hash` | No |  |
+| `revenue` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Company.list(nil)
+results = client.Company.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -237,20 +237,20 @@ compensation_efficiency = client.CompensationEfficiency
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `efficiency_ratio` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `total_compensation` | ``$NUMBER`` | No |  |
+| `ceo_name` | `String` | No |  |
+| `company_name` | `String` | No |  |
+| `efficiency_ratio` | `Float` | No |  |
+| `performance_score` | `Float` | No |  |
+| `total_compensation` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CompensationEfficiency.list(nil)
+results = client.CompensationEfficiency.list
 ```
 
 ### Common Methods
@@ -293,8 +293,8 @@ general = client.General
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `status` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `status` | `String` | No |  |
+| `timestamp` | `String` | No |  |
 
 ### Operations
 
@@ -303,7 +303,7 @@ general = client.General
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.General.load({ "id" => "general_id" })
+result = client.General.load()
 ```
 
 ### Common Methods
@@ -346,8 +346,8 @@ get_root = client.GetRoot
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documentation` | ``$STRING`` | No |  |
-| `message` | ``$STRING`` | No |  |
+| `documentation` | `String` | No |  |
+| `message` | `String` | No |  |
 
 ### Operations
 
@@ -356,7 +356,7 @@ get_root = client.GetRoot
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetRoot.load({ "id" => "get_root_id" })
+result = client.GetRoot.load()
 ```
 
 ### Common Methods
@@ -399,24 +399,24 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `Float` | No |  |
+| `ceo_name` | `String` | No |  |
+| `company_name` | `String` | No |  |
+| `employee` | `Integer` | No |  |
+| `headquarter` | `String` | No |  |
+| `id` | `String` | No |  |
+| `industry` | `String` | No |  |
+| `performance_metric` | `Hash` | No |  |
+| `revenue` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Search.list(nil)
+results = client.Search.list
 ```
 
 ### Common Methods

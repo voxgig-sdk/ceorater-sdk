@@ -17,8 +17,7 @@ type CeoPerformance struct {
 	TenureYear *int `json:"tenure_year,omitempty"`
 }
 
-// CeoPerformanceListMatch mirrors the ceo_performance fields as an all-optional match
-// filter (Go analog of Partial<CeoPerformance>).
+// CeoPerformanceListMatch is the typed request payload for CeoPerformance.ListTyped.
 type CeoPerformanceListMatch struct {
 	CeoName *string `json:"ceo_name,omitempty"`
 	CompanyName *string `json:"company_name,omitempty"`
@@ -45,8 +44,7 @@ type CompanyLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CompanyListMatch mirrors the company fields as an all-optional match
-// filter (Go analog of Partial<Company>).
+// CompanyListMatch is the typed request payload for Company.ListTyped.
 type CompanyListMatch struct {
 	CeoCompensation *float64 `json:"ceo_compensation,omitempty"`
 	CeoName *string `json:"ceo_name,omitempty"`
@@ -68,8 +66,7 @@ type CompensationEfficiency struct {
 	TotalCompensation *float64 `json:"total_compensation,omitempty"`
 }
 
-// CompensationEfficiencyListMatch mirrors the compensation_efficiency fields as an all-optional match
-// filter (Go analog of Partial<CompensationEfficiency>).
+// CompensationEfficiencyListMatch is the typed request payload for CompensationEfficiency.ListTyped.
 type CompensationEfficiencyListMatch struct {
 	CeoName *string `json:"ceo_name,omitempty"`
 	CompanyName *string `json:"company_name,omitempty"`
@@ -84,8 +81,7 @@ type General struct {
 	Timestamp *string `json:"timestamp,omitempty"`
 }
 
-// GeneralLoadMatch mirrors the general fields as an all-optional match
-// filter (Go analog of Partial<General>).
+// GeneralLoadMatch is the typed request payload for General.LoadTyped.
 type GeneralLoadMatch struct {
 	Status *string `json:"status,omitempty"`
 	Timestamp *string `json:"timestamp,omitempty"`
@@ -97,8 +93,7 @@ type GetRoot struct {
 	Message *string `json:"message,omitempty"`
 }
 
-// GetRootLoadMatch mirrors the get_root fields as an all-optional match
-// filter (Go analog of Partial<GetRoot>).
+// GetRootLoadMatch is the typed request payload for GetRoot.LoadTyped.
 type GetRootLoadMatch struct {
 	Documentation *string `json:"documentation,omitempty"`
 	Message *string `json:"message,omitempty"`
@@ -117,8 +112,7 @@ type Search struct {
 	Revenue *float64 `json:"revenue,omitempty"`
 }
 
-// SearchListMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	CeoCompensation *float64 `json:"ceo_compensation,omitempty"`
 	CeoName *string `json:"ceo_name,omitempty"`

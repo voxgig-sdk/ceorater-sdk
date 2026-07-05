@@ -176,11 +176,11 @@ const ceo_performance = client.CeoPerformance()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `compensation` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `tenure_year` | ``$INTEGER`` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `compensation` | `number` | No |  |
+| `performance_score` | `number` | No |  |
+| `tenure_year` | `number` | No |  |
 
 ### Operations
 
@@ -230,15 +230,15 @@ const company = client.Company()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `number` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `employee` | `number` | No |  |
+| `headquarter` | `string` | No |  |
+| `id` | `string` | No |  |
+| `industry` | `string` | No |  |
+| `performance_metric` | `Record<string, any>` | No |  |
+| `revenue` | `number` | No |  |
 
 ### Operations
 
@@ -296,11 +296,11 @@ const compensation_efficiency = client.CompensationEfficiency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `efficiency_ratio` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `total_compensation` | ``$NUMBER`` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `efficiency_ratio` | `number` | No |  |
+| `performance_score` | `number` | No |  |
+| `total_compensation` | `number` | No |  |
 
 ### Operations
 
@@ -350,8 +350,8 @@ const general = client.General()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `status` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -360,7 +360,7 @@ const general = client.General()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.General().load({ id: 'general_id' })
+const result = await client.General().load()
 ```
 
 ### Common Methods
@@ -401,8 +401,8 @@ const get_root = client.GetRoot()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documentation` | ``$STRING`` | No |  |
-| `message` | ``$STRING`` | No |  |
+| `documentation` | `string` | No |  |
+| `message` | `string` | No |  |
 
 ### Operations
 
@@ -411,7 +411,7 @@ const get_root = client.GetRoot()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetRoot().load({ id: 'get_root_id' })
+const result = await client.GetRoot().load()
 ```
 
 ### Common Methods
@@ -452,15 +452,15 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `number` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `employee` | `number` | No |  |
+| `headquarter` | `string` | No |  |
+| `id` | `string` | No |  |
+| `industry` | `string` | No |  |
+| `performance_metric` | `Record<string, any>` | No |  |
+| `revenue` | `number` | No |  |
 
 ### Operations
 

@@ -117,11 +117,11 @@ ceo_performance := client.CeoPerformance(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `compensation` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `tenure_year` | ``$INTEGER`` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `compensation` | `float64` | No |  |
+| `performance_score` | `float64` | No |  |
+| `tenure_year` | `int` | No |  |
 
 ### Operations
 
@@ -167,15 +167,15 @@ company := client.Company(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `float64` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `employee` | `int` | No |  |
+| `headquarter` | `string` | No |  |
+| `id` | `string` | No |  |
+| `industry` | `string` | No |  |
+| `performance_metric` | `map[string]any` | No |  |
+| `revenue` | `float64` | No |  |
 
 ### Operations
 
@@ -229,11 +229,11 @@ compensation_efficiency := client.CompensationEfficiency(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `efficiency_ratio` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `total_compensation` | ``$NUMBER`` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `efficiency_ratio` | `float64` | No |  |
+| `performance_score` | `float64` | No |  |
+| `total_compensation` | `float64` | No |  |
 
 ### Operations
 
@@ -279,8 +279,8 @@ general := client.General(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `status` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -289,7 +289,7 @@ general := client.General(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.General(nil).Load(map[string]any{"id": "general_id"}, nil)
+result, err := client.General(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -326,8 +326,8 @@ get_root := client.GetRoot(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documentation` | ``$STRING`` | No |  |
-| `message` | ``$STRING`` | No |  |
+| `documentation` | `string` | No |  |
+| `message` | `string` | No |  |
 
 ### Operations
 
@@ -336,7 +336,7 @@ get_root := client.GetRoot(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetRoot(nil).Load(map[string]any{"id": "get_root_id"}, nil)
+result, err := client.GetRoot(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -373,15 +373,15 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `float64` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `employee` | `int` | No |  |
+| `headquarter` | `string` | No |  |
+| `id` | `string` | No |  |
+| `industry` | `string` | No |  |
+| `performance_metric` | `map[string]any` | No |  |
+| `revenue` | `float64` | No |  |
 
 ### Operations
 

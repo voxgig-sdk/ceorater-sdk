@@ -4,6 +4,11 @@
 
 The Python SDK for the Ceorater API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.CeoPerformance()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,11 +43,39 @@ error — iterate it directly.
 
 ```python
 try:
-    ceoperformances = client.CeoPerformance().list({})
+    ceoperformances = client.CeoPerformance().list()
     for ceoperformance in ceoperformances:
         print(ceoperformance)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    ceoperformances = client.CeoPerformance().list()
+    print(ceoperformances)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -63,7 +96,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -89,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = CeoraterSDK.test()
 
 # Entity ops return the bare record and raise on error.
-ceoperformance = client.CeoPerformance().load({"id": "test01"})
+ceoperformance = client.CeoPerformance().list()
 # ceoperformance contains the mock response record
 ```
 
@@ -181,9 +217,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -310,22 +343,22 @@ Create an instance: `ceo_performance = client.CeoPerformance()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `compensation` | ``$NUMBER`` |  |
-| `performance_score` | ``$NUMBER`` |  |
-| `tenure_year` | ``$INTEGER`` |  |
+| `ceo_name` | `str` |  |
+| `company_name` | `str` |  |
+| `compensation` | `float` |  |
+| `performance_score` | `float` |  |
+| `tenure_year` | `int` |  |
 
 #### Example: List
 
 ```python
-ceo_performances = client.CeoPerformance().list({})
+ceo_performances = client.CeoPerformance().list()
 ```
 
 
@@ -337,22 +370,22 @@ Create an instance: `company = client.Company()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` |  |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `employee` | ``$INTEGER`` |  |
-| `headquarter` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `industry` | ``$STRING`` |  |
-| `performance_metric` | ``$OBJECT`` |  |
-| `revenue` | ``$NUMBER`` |  |
+| `ceo_compensation` | `float` |  |
+| `ceo_name` | `str` |  |
+| `company_name` | `str` |  |
+| `employee` | `int` |  |
+| `headquarter` | `str` |  |
+| `id` | `str` |  |
+| `industry` | `str` |  |
+| `performance_metric` | `dict` |  |
+| `revenue` | `float` |  |
 
 #### Example: Load
 
@@ -363,7 +396,7 @@ company = client.Company().load({"id": "company_id"})
 #### Example: List
 
 ```python
-companys = client.Company().list({})
+companys = client.Company().list()
 ```
 
 
@@ -375,22 +408,22 @@ Create an instance: `compensation_efficiency = client.CompensationEfficiency()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `efficiency_ratio` | ``$NUMBER`` |  |
-| `performance_score` | ``$NUMBER`` |  |
-| `total_compensation` | ``$NUMBER`` |  |
+| `ceo_name` | `str` |  |
+| `company_name` | `str` |  |
+| `efficiency_ratio` | `float` |  |
+| `performance_score` | `float` |  |
+| `total_compensation` | `float` |  |
 
 #### Example: List
 
 ```python
-compensation_efficiencys = client.CompensationEfficiency().list({})
+compensation_efficiencys = client.CompensationEfficiency().list()
 ```
 
 
@@ -408,13 +441,13 @@ Create an instance: `general = client.General()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `status` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
+| `status` | `str` |  |
+| `timestamp` | `str` |  |
 
 #### Example: Load
 
 ```python
-general = client.General().load({"id": "general_id"})
+general = client.General().load()
 ```
 
 
@@ -432,13 +465,13 @@ Create an instance: `get_root = client.GetRoot()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `documentation` | ``$STRING`` |  |
-| `message` | ``$STRING`` |  |
+| `documentation` | `str` |  |
+| `message` | `str` |  |
 
 #### Example: Load
 
 ```python
-get_root = client.GetRoot().load({"id": "get_root_id"})
+get_root = client.GetRoot().load()
 ```
 
 
@@ -450,35 +483,39 @@ Create an instance: `search = client.Search()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` |  |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `employee` | ``$INTEGER`` |  |
-| `headquarter` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `industry` | ``$STRING`` |  |
-| `performance_metric` | ``$OBJECT`` |  |
-| `revenue` | ``$NUMBER`` |  |
+| `ceo_compensation` | `float` |  |
+| `ceo_name` | `str` |  |
+| `company_name` | `str` |  |
+| `employee` | `int` |  |
+| `headquarter` | `str` |  |
+| `id` | `str` |  |
+| `industry` | `str` |  |
+| `performance_metric` | `dict` |  |
+| `revenue` | `float` |  |
 
 #### Example: List
 
 ```python
-searchs = client.Search().list({})
+searchs = client.Search().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -495,8 +532,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -539,14 +577,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 ceoperformance = client.CeoPerformance()
-ceoperformance.load({"id": "example_id"})
+ceoperformance.list()
 
-# ceoperformance.data_get() now returns the loaded ceoperformance data
+# ceoperformance.data_get() now returns the ceoperformance data from the last list
 # ceoperformance.match_get() returns the last match criteria
 ```
 

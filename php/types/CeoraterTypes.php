@@ -22,7 +22,7 @@ class CeoPerformance
     public ?int $tenure_year = null;
 }
 
-/** Match filter for CeoPerformance#list (any subset of CeoPerformance fields). */
+/** Request payload for CeoPerformance#list. */
 class CeoPerformanceListMatch
 {
     public ?string $ceo_name = null;
@@ -52,7 +52,7 @@ class CompanyLoadMatch
     public string $id;
 }
 
-/** Match filter for Company#list (any subset of Company fields). */
+/** Request payload for Company#list. */
 class CompanyListMatch
 {
     public ?float $ceo_compensation = null;
@@ -76,7 +76,7 @@ class CompensationEfficiency
     public ?float $total_compensation = null;
 }
 
-/** Match filter for CompensationEfficiency#list (any subset of CompensationEfficiency fields). */
+/** Request payload for CompensationEfficiency#list. */
 class CompensationEfficiencyListMatch
 {
     public ?string $ceo_name = null;
@@ -93,7 +93,7 @@ class General
     public ?string $timestamp = null;
 }
 
-/** Match filter for General#load (any subset of General fields). */
+/** Request payload for General#load. */
 class GeneralLoadMatch
 {
     public ?string $status = null;
@@ -107,7 +107,7 @@ class GetRoot
     public ?string $message = null;
 }
 
-/** Match filter for GetRoot#load (any subset of GetRoot fields). */
+/** Request payload for GetRoot#load. */
 class GetRootLoadMatch
 {
     public ?string $documentation = null;
@@ -128,7 +128,7 @@ class Search
     public ?float $revenue = null;
 }
 
-/** Match filter for Search#list (any subset of Search fields). */
+/** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?float $ceo_compensation = null;

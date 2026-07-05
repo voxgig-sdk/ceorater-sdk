@@ -33,7 +33,7 @@ CeoPerformance = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CeoPerformance#list (any subset of CeoPerformance fields).
+# Request payload for CeoPerformance#list.
 #
 # @!attribute [rw] ceo_name
 #   @return [String, nil]
@@ -108,7 +108,7 @@ CompanyLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Company#list (any subset of Company fields).
+# Request payload for Company#list.
 #
 # @!attribute [rw] ceo_compensation
 #   @return [Float, nil]
@@ -174,7 +174,7 @@ CompensationEfficiency = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CompensationEfficiency#list (any subset of CompensationEfficiency fields).
+# Request payload for CompensationEfficiency#list.
 #
 # @!attribute [rw] ceo_name
 #   @return [String, nil]
@@ -212,7 +212,7 @@ General = Struct.new(
   keyword_init: true
 )
 
-# Match filter for General#load (any subset of General fields).
+# Request payload for General#load.
 #
 # @!attribute [rw] status
 #   @return [String, nil]
@@ -238,7 +238,7 @@ GetRoot = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetRoot#load (any subset of GetRoot fields).
+# Request payload for GetRoot#load.
 #
 # @!attribute [rw] documentation
 #   @return [String, nil]
@@ -292,7 +292,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#list (any subset of Search fields).
+# Request payload for Search#list.
 #
 # @!attribute [rw] ceo_compensation
 #   @return [Float, nil]

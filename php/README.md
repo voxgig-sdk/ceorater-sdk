@@ -4,6 +4,8 @@
 
 The PHP SDK for the Ceorater API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->CeoPerformance()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ try {
     // list() returns an array of CeoPerformance records — iterate directly.
     $ceoperformances = $client->CeoPerformance()->list();
     foreach ($ceoperformances as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["ceo_name"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $ceoperformances = $client->CeoPerformance()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = CeoraterSDK::test([
-    "entity" => ["ceoperformance" => ["test01" => ["id" => "test01"]]],
-]);
+$client = CeoraterSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$ceoperformance = $client->CeoPerformance()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$ceoperformance = $client->CeoPerformance()->list();
 print_r($ceoperformance);
 ```
 
@@ -187,10 +220,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -323,11 +353,11 @@ Create an instance: `$ceo_performance = $client->CeoPerformance();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `compensation` | ``$NUMBER`` |  |
-| `performance_score` | ``$NUMBER`` |  |
-| `tenure_year` | ``$INTEGER`` |  |
+| `ceo_name` | `string` |  |
+| `company_name` | `string` |  |
+| `compensation` | `float` |  |
+| `performance_score` | `float` |  |
+| `tenure_year` | `int` |  |
 
 #### Example: List
 
@@ -352,15 +382,15 @@ Create an instance: `$company = $client->Company();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` |  |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `employee` | ``$INTEGER`` |  |
-| `headquarter` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `industry` | ``$STRING`` |  |
-| `performance_metric` | ``$OBJECT`` |  |
-| `revenue` | ``$NUMBER`` |  |
+| `ceo_compensation` | `float` |  |
+| `ceo_name` | `string` |  |
+| `company_name` | `string` |  |
+| `employee` | `int` |  |
+| `headquarter` | `string` |  |
+| `id` | `string` |  |
+| `industry` | `string` |  |
+| `performance_metric` | `array` |  |
+| `revenue` | `float` |  |
 
 #### Example: Load
 
@@ -391,11 +421,11 @@ Create an instance: `$compensation_efficiency = $client->CompensationEfficiency(
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `efficiency_ratio` | ``$NUMBER`` |  |
-| `performance_score` | ``$NUMBER`` |  |
-| `total_compensation` | ``$NUMBER`` |  |
+| `ceo_name` | `string` |  |
+| `company_name` | `string` |  |
+| `efficiency_ratio` | `float` |  |
+| `performance_score` | `float` |  |
+| `total_compensation` | `float` |  |
 
 #### Example: List
 
@@ -419,14 +449,14 @@ Create an instance: `$general = $client->General();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `status` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
+| `status` | `string` |  |
+| `timestamp` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare General record (throws on error).
-$general = $client->General()->load(["id" => "general_id"]);
+$general = $client->General()->load();
 ```
 
 
@@ -444,14 +474,14 @@ Create an instance: `$get_root = $client->GetRoot();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `documentation` | ``$STRING`` |  |
-| `message` | ``$STRING`` |  |
+| `documentation` | `string` |  |
+| `message` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare GetRoot record (throws on error).
-$get_root = $client->GetRoot()->load(["id" => "get_root_id"]);
+$get_root = $client->GetRoot()->load();
 ```
 
 
@@ -469,15 +499,15 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` |  |
-| `ceo_name` | ``$STRING`` |  |
-| `company_name` | ``$STRING`` |  |
-| `employee` | ``$INTEGER`` |  |
-| `headquarter` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `industry` | ``$STRING`` |  |
-| `performance_metric` | ``$OBJECT`` |  |
-| `revenue` | ``$NUMBER`` |  |
+| `ceo_compensation` | `float` |  |
+| `ceo_name` | `string` |  |
+| `company_name` | `string` |  |
+| `employee` | `int` |  |
+| `headquarter` | `string` |  |
+| `id` | `string` |  |
+| `industry` | `string` |  |
+| `performance_metric` | `array` |  |
+| `revenue` | `float` |  |
 
 #### Example: List
 
@@ -487,12 +517,16 @@ $searchs = $client->Search()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -509,8 +543,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -554,15 +589,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $ceoperformance = $client->CeoPerformance();
-$ceoperformance->load(["id" => "example_id"]);
+$ceoperformance->list();
 
-// $ceoperformance->dataGet() now returns the loaded ceoperformance data
-// $ceoperformance->matchGet() returns the last match criteria
+// $ceoperformance->data_get() now returns the ceoperformance data from the last list
+// $ceoperformance->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

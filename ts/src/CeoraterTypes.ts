@@ -13,7 +13,13 @@ export interface CeoPerformance {
   tenure_year?: number
 }
 
-export type CeoPerformanceListMatch = Partial<CeoPerformance>
+export interface CeoPerformanceListMatch {
+  ceo_name?: string
+  company_name?: string
+  compensation?: number
+  performance_score?: number
+  tenure_year?: number
+}
 
 export interface Company {
   ceo_compensation?: number
@@ -31,7 +37,17 @@ export interface CompanyLoadMatch {
   id: string
 }
 
-export type CompanyListMatch = Partial<Company>
+export interface CompanyListMatch {
+  ceo_compensation?: number
+  ceo_name?: string
+  company_name?: string
+  employee?: number
+  headquarter?: string
+  id?: string
+  industry?: string
+  performance_metric?: Record<string, any>
+  revenue?: number
+}
 
 export interface CompensationEfficiency {
   ceo_name?: string
@@ -41,21 +57,33 @@ export interface CompensationEfficiency {
   total_compensation?: number
 }
 
-export type CompensationEfficiencyListMatch = Partial<CompensationEfficiency>
+export interface CompensationEfficiencyListMatch {
+  ceo_name?: string
+  company_name?: string
+  efficiency_ratio?: number
+  performance_score?: number
+  total_compensation?: number
+}
 
 export interface General {
   status?: string
   timestamp?: string
 }
 
-export type GeneralLoadMatch = Partial<General>
+export interface GeneralLoadMatch {
+  status?: string
+  timestamp?: string
+}
 
 export interface GetRoot {
   documentation?: string
   message?: string
 }
 
-export type GetRootLoadMatch = Partial<GetRoot>
+export interface GetRootLoadMatch {
+  documentation?: string
+  message?: string
+}
 
 export interface Search {
   ceo_compensation?: number
@@ -69,5 +97,15 @@ export interface Search {
   revenue?: number
 }
 
-export type SearchListMatch = Partial<Search>
+export interface SearchListMatch {
+  ceo_compensation?: number
+  ceo_name?: string
+  company_name?: string
+  employee?: number
+  headquarter?: string
+  id?: string
+  industry?: string
+  performance_metric?: Record<string, any>
+  revenue?: number
+}
 

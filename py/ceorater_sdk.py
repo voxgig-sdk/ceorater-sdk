@@ -221,37 +221,37 @@ class CeoraterSDK:
 
 
     def CeoPerformance(self, data=None) -> "CeoPerformanceEntity":
-        """Entity factory: client.CeoPerformance().list({}) / client.CeoPerformance().load({"id": ...})."""
+        """Entity factory: client.CeoPerformance().list() / client.CeoPerformance().load({"id": ...})."""
         from entity.ceo_performance_entity import CeoPerformanceEntity
         return CeoPerformanceEntity(self, data)
 
 
     def Company(self, data=None) -> "CompanyEntity":
-        """Entity factory: client.Company().list({}) / client.Company().load({"id": ...})."""
+        """Entity factory: client.Company().list() / client.Company().load({"id": ...})."""
         from entity.company_entity import CompanyEntity
         return CompanyEntity(self, data)
 
 
     def CompensationEfficiency(self, data=None) -> "CompensationEfficiencyEntity":
-        """Entity factory: client.CompensationEfficiency().list({}) / client.CompensationEfficiency().load({"id": ...})."""
+        """Entity factory: client.CompensationEfficiency().list() / client.CompensationEfficiency().load({"id": ...})."""
         from entity.compensation_efficiency_entity import CompensationEfficiencyEntity
         return CompensationEfficiencyEntity(self, data)
 
 
     def General(self, data=None) -> "GeneralEntity":
-        """Entity factory: client.General().list({}) / client.General().load({"id": ...})."""
+        """Entity factory: client.General().list() / client.General().load({"id": ...})."""
         from entity.general_entity import GeneralEntity
         return GeneralEntity(self, data)
 
 
     def GetRoot(self, data=None) -> "GetRootEntity":
-        """Entity factory: client.GetRoot().list({}) / client.GetRoot().load({"id": ...})."""
+        """Entity factory: client.GetRoot().list() / client.GetRoot().load({"id": ...})."""
         from entity.get_root_entity import GetRootEntity
         return GetRootEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 

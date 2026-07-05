@@ -66,8 +66,12 @@ class CeoPerformanceEntity:
     
 
     
-    def list(self, reqmatch: CeoPerformanceListMatch, ctrl=None) -> list[CeoPerformance]:
+    def list(self, reqmatch=None, ctrl=None) -> list[CeoPerformance]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.CeoPerformance().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

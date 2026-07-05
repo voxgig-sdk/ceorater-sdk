@@ -65,11 +65,11 @@ Create a new `GetRootEntity` instance. Pass `null` for no initial data.
 
 Create a new `SearchEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): CeoraterUtility`
 
 Return a copy of the SDK utility object.
 
@@ -112,37 +112,37 @@ $ceo_performance = $client->CeoPerformance();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `compensation` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `tenure_year` | ``$INTEGER`` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `compensation` | `float` | No |  |
+| `performance_score` | `float` | No |  |
+| `tenure_year` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->CeoPerformance()->list([]);
+$results = $client->CeoPerformance()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -151,7 +151,7 @@ Set the entity match criteria.
 Create a new `CeoPerformanceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -168,24 +168,24 @@ $company = $client->Company();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `float` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `employee` | `int` | No |  |
+| `headquarter` | `string` | No |  |
+| `id` | `string` | No |  |
+| `industry` | `string` | No |  |
+| `performance_metric` | `array` | No |  |
+| `revenue` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Company()->list([]);
+$results = $client->Company()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -198,19 +198,19 @@ $result = $client->Company()->load(["id" => "company_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -219,7 +219,7 @@ Set the entity match criteria.
 Create a new `CompanyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -236,37 +236,37 @@ $compensation_efficiency = $client->CompensationEfficiency();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `efficiency_ratio` | ``$NUMBER`` | No |  |
-| `performance_score` | ``$NUMBER`` | No |  |
-| `total_compensation` | ``$NUMBER`` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `efficiency_ratio` | `float` | No |  |
+| `performance_score` | `float` | No |  |
+| `total_compensation` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->CompensationEfficiency()->list([]);
+$results = $client->CompensationEfficiency()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -275,7 +275,7 @@ Set the entity match criteria.
 Create a new `CompensationEfficiencyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -292,8 +292,8 @@ $general = $client->General();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `status` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
 
 ### Operations
 
@@ -302,24 +302,24 @@ $general = $client->General();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->General()->load(["id" => "general_id"]);
+$result = $client->General()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -328,7 +328,7 @@ Set the entity match criteria.
 Create a new `GeneralEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -345,8 +345,8 @@ $get_root = $client->GetRoot();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documentation` | ``$STRING`` | No |  |
-| `message` | ``$STRING`` | No |  |
+| `documentation` | `string` | No |  |
+| `message` | `string` | No |  |
 
 ### Operations
 
@@ -355,24 +355,24 @@ $get_root = $client->GetRoot();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetRoot()->load(["id" => "get_root_id"]);
+$result = $client->GetRoot()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -381,7 +381,7 @@ Set the entity match criteria.
 Create a new `GetRootEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -398,41 +398,41 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | ``$NUMBER`` | No |  |
-| `ceo_name` | ``$STRING`` | No |  |
-| `company_name` | ``$STRING`` | No |  |
-| `employee` | ``$INTEGER`` | No |  |
-| `headquarter` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `industry` | ``$STRING`` | No |  |
-| `performance_metric` | ``$OBJECT`` | No |  |
-| `revenue` | ``$NUMBER`` | No |  |
+| `ceo_compensation` | `float` | No |  |
+| `ceo_name` | `string` | No |  |
+| `company_name` | `string` | No |  |
+| `employee` | `int` | No |  |
+| `headquarter` | `string` | No |  |
+| `id` | `string` | No |  |
+| `industry` | `string` | No |  |
+| `performance_metric` | `array` | No |  |
+| `revenue` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Search()->list([]);
+$results = $client->Search()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -441,7 +441,7 @@ Set the entity match criteria.
 Create a new `SearchEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
