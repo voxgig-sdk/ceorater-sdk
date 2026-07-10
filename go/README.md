@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List ceoperformance records — the value is the array of records itself.
-    ceoperformances, err := client.CeoPerformance(nil).List(nil, nil)
+    // List ceoPerformance records — the value is the array of records itself.
+    ceoPerformances, err := client.CeoPerformance(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range ceoperformances.([]any) {
+    for _, item := range ceoPerformances.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-ceoperformance, err := client.CeoPerformance(nil).List(
+ceoPerformance, err := client.CeoPerformance(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(ceoperformance) // the returned mock data
+fmt.Println(ceoPerformance) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -254,9 +254,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    ceoperformance, err := client.CeoPerformance(nil).List(map[string]any{/* fields */}, nil)
+    ceoPerformance, err := client.CeoPerformance(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // ceoperformance is the returned record
+    // ceoPerformance is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -356,7 +356,7 @@ API path: `/search`
 
 ### CeoPerformance
 
-Create an instance: `ceo_performance := client.CeoPerformance(nil)`
+Create an instance: `ceoPerformance := client.CeoPerformance(nil)`
 
 #### Operations
 
@@ -377,11 +377,11 @@ Create an instance: `ceo_performance := client.CeoPerformance(nil)`
 #### Example: List
 
 ```go
-ceo_performances, err := client.CeoPerformance(nil).List(nil, nil)
+ceoPerformances, err := client.CeoPerformance(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ceo_performances) // the array of records
+fmt.Println(ceoPerformances) // the array of records
 ```
 
 
@@ -433,7 +433,7 @@ fmt.Println(companys) // the array of records
 
 ### CompensationEfficiency
 
-Create an instance: `compensation_efficiency := client.CompensationEfficiency(nil)`
+Create an instance: `compensationEfficiency := client.CompensationEfficiency(nil)`
 
 #### Operations
 
@@ -454,11 +454,11 @@ Create an instance: `compensation_efficiency := client.CompensationEfficiency(ni
 #### Example: List
 
 ```go
-compensation_efficiencys, err := client.CompensationEfficiency(nil).List(nil, nil)
+compensationEfficiencys, err := client.CompensationEfficiency(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(compensation_efficiencys) // the array of records
+fmt.Println(compensationEfficiencys) // the array of records
 ```
 
 
@@ -492,7 +492,7 @@ fmt.Println(general) // the loaded record
 
 ### GetRoot
 
-Create an instance: `get_root := client.GetRoot(nil)`
+Create an instance: `getRoot := client.GetRoot(nil)`
 
 #### Operations
 
@@ -510,11 +510,11 @@ Create an instance: `get_root := client.GetRoot(nil)`
 #### Example: Load
 
 ```go
-get_root, err := client.GetRoot(nil).Load(nil, nil)
+getRoot, err := client.GetRoot(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_root) // the loaded record
+fmt.Println(getRoot) // the loaded record
 ```
 
 

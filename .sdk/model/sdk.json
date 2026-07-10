@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -830,14 +827,17 @@
           "url": "https://ceorater-api.onrender.com/docs"
         },
         "description": "The CEORater API provides programmatic access to CEO performance metrics, compensation efficiency, and detailed company data. Users can retrieve information on companies, search for specific data, and access API status and health checks.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://ceorater-api.onrender.com"
           }
         ],
+        "summary": "The CEORater API provides programmatic access to CEO performance metrics, compensation efficiency, and detailed company data.",
         "title": "CEORater API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://ceorater-api.onrender.com"
       },
       "option": {},
       "target": {
@@ -890,6 +890,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -940,6 +943,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

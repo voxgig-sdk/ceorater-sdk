@@ -15,9 +15,9 @@ main: {
           url: "https://ceorater-api.onrender.com"
         }
       ]
+      summary: "The CEORater API provides programmatic access to CEO performance metrics, compensation efficiency, and detailed company data."
       title: "CEORater API"
       version: "1.0.0"
+      website: "https://ceorater-api.onrender.com"
     }
   }
-}
-

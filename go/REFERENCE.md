@@ -110,7 +110,8 @@ same parameters as `Direct()`.
 ## CeoPerformanceEntity
 
 ```go
-ceo_performance := client.CeoPerformance(nil)
+ceoPerformance := client.CeoPerformance(nil)
+fmt.Println(ceoPerformance.GetName()) // "ceo_performance"
 ```
 
 ### Fields
@@ -131,6 +132,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.CeoPerformance(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -161,6 +166,7 @@ Return the entity name.
 
 ```go
 company := client.Company(nil)
+fmt.Println(company.GetName()) // "company"
 ```
 
 ### Fields
@@ -185,6 +191,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Company(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -193,6 +203,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -222,7 +236,8 @@ Return the entity name.
 ## CompensationEfficiencyEntity
 
 ```go
-compensation_efficiency := client.CompensationEfficiency(nil)
+compensationEfficiency := client.CompensationEfficiency(nil)
+fmt.Println(compensationEfficiency.GetName()) // "compensation_efficiency"
 ```
 
 ### Fields
@@ -243,6 +258,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.CompensationEfficiency(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -273,6 +292,7 @@ Return the entity name.
 
 ```go
 general := client.General(nil)
+fmt.Println(general.GetName()) // "general"
 ```
 
 ### Fields
@@ -290,6 +310,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.General(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -319,7 +343,8 @@ Return the entity name.
 ## GetRootEntity
 
 ```go
-get_root := client.GetRoot(nil)
+getRoot := client.GetRoot(nil)
+fmt.Println(getRoot.GetName()) // "get_root"
 ```
 
 ### Fields
@@ -337,6 +362,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetRoot(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -367,6 +396,7 @@ Return the entity name.
 
 ```go
 search := client.Search(nil)
+fmt.Println(search.GetName()) // "search"
 ```
 
 ### Fields
@@ -391,6 +421,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Search(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
