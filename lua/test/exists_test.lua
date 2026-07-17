@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Ceorater SDK exists test
 
 local sdk = require("ceorater_sdk")
 
