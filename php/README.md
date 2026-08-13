@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $ceoperformances = $client->CeoPerformance()->list();
+    $general = $client->General()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = CeoraterSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$ceoperformance = $client->CeoPerformance()->list();
-print_r($ceoperformance);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$general = $client->General()->load();
+print_r($general);
 ```
 
 ### Use a custom fetch function
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -256,7 +257,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `company_name` |  |
 | `compensation` |  |
 | `performance_score` |  |
-| `tenure_year` |  |
+| `tenure_years` |  |
 
 Operations: List.
 
@@ -269,12 +270,16 @@ API path: `/metrics/ceo-performance`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `efficiency_rating` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
+| `performance_score` |  |
 | `revenue` |  |
+| `revenue_growth` |  |
+| `stock_performance` |  |
 
 Operations: List, Load.
 
@@ -323,11 +328,11 @@ API path: `/`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
 | `revenue` |  |
 
 Operations: List.
@@ -357,7 +362,7 @@ Create an instance: `$ceo_performance = $client->CeoPerformance();`
 | `company_name` | `string` |  |
 | `compensation` | `float` |  |
 | `performance_score` | `float` |  |
-| `tenure_year` | `int` |  |
+| `tenure_years` | `int` |  |
 
 #### Example: List
 
@@ -385,17 +390,21 @@ Create an instance: `$company = $client->Company();`
 | `ceo_compensation` | `float` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `int` |  |
-| `headquarter` | `string` |  |
+| `efficiency_rating` | `float` |  |
+| `employees` | `int` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `array` |  |
+| `performance_metrics` | `array` |  |
+| `performance_score` | `float` |  |
 | `revenue` | `float` |  |
+| `revenue_growth` | `float` |  |
+| `stock_performance` | `float` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Company record (throws on error).
+// load() returns the ENTITY — call data_get() for the Company record (throws on error).
 $company = $client->Company()->load(["id" => "company_id"]);
 ```
 
@@ -455,7 +464,7 @@ Create an instance: `$general = $client->General();`
 #### Example: Load
 
 ```php
-// load() returns the bare General record (throws on error).
+// load() returns the ENTITY — call data_get() for the General record (throws on error).
 $general = $client->General()->load();
 ```
 
@@ -480,7 +489,7 @@ Create an instance: `$get_root = $client->GetRoot();`
 #### Example: Load
 
 ```php
-// load() returns the bare GetRoot record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetRoot record (throws on error).
 $get_root = $client->GetRoot()->load();
 ```
 
@@ -502,11 +511,11 @@ Create an instance: `$search = $client->Search();`
 | `ceo_compensation` | `float` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `int` |  |
-| `headquarter` | `string` |  |
+| `employees` | `int` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `array` |  |
+| `performance_metrics` | `array` |  |
 | `revenue` | `float` |  |
 
 #### Example: List
@@ -589,15 +598,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$ceoperformance = $client->CeoPerformance();
-$ceoperformance->list();
+$general = $client->General();
+$general->load();
 
-// $ceoperformance->data_get() now returns the ceoperformance data from the last list
-// $ceoperformance->match_get() returns the last match criteria
+// $general->data_get() now returns the general data from the last load
+// $general->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

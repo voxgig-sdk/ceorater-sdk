@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import CeoraterSDK
-from core.error import CeoraterError
-from core.result import CeoraterResult
-from core.response import CeoraterResponse
-from core.spec import CeoraterSpec
-from feature.base_feature import CeoraterBaseFeature
+from projectname_sdk.core.error import CeoraterError
+from projectname_sdk.core.result import CeoraterResult
+from projectname_sdk.core.response import CeoraterResponse
+from projectname_sdk.core.spec import CeoraterSpec
+from projectname_sdk.feature.base_feature import CeoraterBaseFeature
 
 
 def _client():

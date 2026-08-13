@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = CeoraterSDK.test()
-const ceoperformances = await client.CeoPerformance().list()
-// ceoperformances is an array of bare CeoPerformance records populated with mock data
-console.log(ceoperformances)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = CeoraterSDK.test({
+  entity: {
+    general: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const general = await client.General().load()
+// general is the General entity, populated with mock data
+// — call general.data() for the record itself
+console.log(general)
 ```
 
 ### Python
 
 ```python
 client = CeoraterSDK.test()
-ceoperformances = client.CeoPerformance().list()
-print(ceoperformances)
+general = client.General().load()
+print(general)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(ceoperformances)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = CeoraterSDK::test([
-    "entity" => ["ceoperformance" => ["test01" => []]],
+    "entity" => ["general" => ["test01" => []]],
 ]);
-$ceoperformances = $client->CeoPerformance()->list();
+$general = $client->General()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.CeoPerformance(nil).List(
+result, err := client.General(nil).Load(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.CeoPerformance(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = CeoraterSDK.test({
-  "entity" => { "ceoperformance" => { "test01" => {} } },
+  "entity" => { "general" => { "test01" => {} } },
 })
-ceoperformances = client.CeoPerformance.list()
+general = client.General.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:CeoPerformance():list()
+local result, err = client:General():load()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { CeoraterSDK } from '@voxgig-sdk/ceorater'
 
 const client = new CeoraterSDK()
 
-// List all ceoperformances (returns CeoPerformance[])
+// List all ceoperformances (returns CeoPerformanceEntity[] — .data() for the record)
 const ceoperformances = await client.CeoPerformance().list()
 for (const ceoperformance of ceoperformances) {
   console.log(ceoperformance)
@@ -348,6 +357,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://ceorater-api.onrender.com/docs](https://ceorater-api.onrender.com/docs)
 

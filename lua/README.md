@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local ceoperformances, err = client:CeoPerformance():list()
+local general, err = client:General():load()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CeoPerformance():list()
+local result, err = client:General():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -225,9 +225,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local ceo_performance, err = client:CeoPerformance():load()
+    local company, err = client:Company():load({ id = "example_id" })
     if err then error(err) end
-    -- ceo_performance is the loaded record
+    -- company is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -242,7 +242,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `company_name` |  |
 | `compensation` |  |
 | `performance_score` |  |
-| `tenure_year` |  |
+| `tenure_years` |  |
 
 Operations: List.
 
@@ -255,12 +255,16 @@ API path: `/metrics/ceo-performance`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `efficiency_rating` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
+| `performance_score` |  |
 | `revenue` |  |
+| `revenue_growth` |  |
+| `stock_performance` |  |
 
 Operations: List, Load.
 
@@ -309,11 +313,11 @@ API path: `/`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
 | `revenue` |  |
 
 Operations: List.
@@ -343,7 +347,7 @@ Create an instance: `local ceo_performance = client:CeoPerformance(nil)`
 | `company_name` | `string` |  |
 | `compensation` | `number` |  |
 | `performance_score` | `number` |  |
-| `tenure_year` | `number` |  |
+| `tenure_years` | `number` |  |
 
 #### Example: List
 
@@ -370,12 +374,16 @@ Create an instance: `local company = client:Company(nil)`
 | `ceo_compensation` | `number` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `number` |  |
-| `headquarter` | `string` |  |
+| `efficiency_rating` | `number` |  |
+| `employees` | `number` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `table` |  |
+| `performance_metrics` | `table` |  |
+| `performance_score` | `number` |  |
 | `revenue` | `number` |  |
+| `revenue_growth` | `number` |  |
+| `stock_performance` | `number` |  |
 
 #### Example: Load
 
@@ -482,11 +490,11 @@ Create an instance: `local search = client:Search(nil)`
 | `ceo_compensation` | `number` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `number` |  |
-| `headquarter` | `string` |  |
+| `employees` | `number` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `table` |  |
+| `performance_metrics` | `table` |  |
 | `revenue` | `number` |  |
 
 #### Example: List
@@ -568,15 +576,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local ceoperformance = client:CeoPerformance()
-ceoperformance:list()
+local general = client:General()
+general:load()
 
--- ceoperformance:data_get() now returns the ceoperformance data from the last list
--- ceoperformance:match_get() returns the last match criteria
+-- general:data_get() now returns the general data from the last load
+-- general:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

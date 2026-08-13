@@ -11,25 +11,29 @@
 ---@field company_name? string
 ---@field compensation? number
 ---@field performance_score? number
----@field tenure_year? number
+---@field tenure_years? number
 
 ---@class CeoPerformanceListMatch
 ---@field ceo_name? string
 ---@field company_name? string
 ---@field compensation? number
 ---@field performance_score? number
----@field tenure_year? number
+---@field tenure_years? number
 
 ---@class Company
 ---@field ceo_compensation? number
 ---@field ceo_name? string
 ---@field company_name? string
----@field employee? number
----@field headquarter? string
+---@field efficiency_rating? number
+---@field employees? number
+---@field headquarters? string
 ---@field id? string
 ---@field industry? string
----@field performance_metric? table
+---@field performance_metrics? table
+---@field performance_score? number
 ---@field revenue? number
+---@field revenue_growth? number
+---@field stock_performance? number
 
 ---@class CompanyLoadMatch
 ---@field id string
@@ -38,12 +42,16 @@
 ---@field ceo_compensation? number
 ---@field ceo_name? string
 ---@field company_name? string
----@field employee? number
----@field headquarter? string
+---@field efficiency_rating? number
+---@field employees? number
+---@field headquarters? string
 ---@field id? string
 ---@field industry? string
----@field performance_metric? table
+---@field performance_metrics? table
+---@field performance_score? number
 ---@field revenue? number
+---@field revenue_growth? number
+---@field stock_performance? number
 
 ---@class CompensationEfficiency
 ---@field ceo_name? string
@@ -79,22 +87,22 @@
 ---@field ceo_compensation? number
 ---@field ceo_name? string
 ---@field company_name? string
----@field employee? number
----@field headquarter? string
+---@field employees? number
+---@field headquarters? string
 ---@field id? string
 ---@field industry? string
----@field performance_metric? table
+---@field performance_metrics? table
 ---@field revenue? number
 
 ---@class SearchListMatch
 ---@field ceo_compensation? number
 ---@field ceo_name? string
 ---@field company_name? string
----@field employee? number
----@field headquarter? string
+---@field employees? number
+---@field headquarters? string
 ---@field id? string
 ---@field industry? string
----@field performance_metric? table
+---@field performance_metrics? table
 ---@field revenue? number
 
 local M = {}

@@ -10,7 +10,7 @@ export interface CeoPerformance {
   company_name?: string
   compensation?: number
   performance_score?: number
-  tenure_year?: number
+  tenure_years?: number
 }
 
 export interface CeoPerformanceListMatch {
@@ -18,19 +18,23 @@ export interface CeoPerformanceListMatch {
   company_name?: string
   compensation?: number
   performance_score?: number
-  tenure_year?: number
+  tenure_years?: number
 }
 
 export interface Company {
   ceo_compensation?: number
   ceo_name?: string
   company_name?: string
-  employee?: number
-  headquarter?: string
+  efficiency_rating?: number
+  employees?: number
+  headquarters?: string
   id?: string
   industry?: string
-  performance_metric?: Record<string, any>
+  performance_metrics?: Record<string, any>
+  performance_score?: number
   revenue?: number
+  revenue_growth?: number
+  stock_performance?: number
 }
 
 export interface CompanyLoadMatch {
@@ -41,12 +45,16 @@ export interface CompanyListMatch {
   ceo_compensation?: number
   ceo_name?: string
   company_name?: string
-  employee?: number
-  headquarter?: string
+  efficiency_rating?: number
+  employees?: number
+  headquarters?: string
   id?: string
   industry?: string
-  performance_metric?: Record<string, any>
+  performance_metrics?: Record<string, any>
+  performance_score?: number
   revenue?: number
+  revenue_growth?: number
+  stock_performance?: number
 }
 
 export interface CompensationEfficiency {
@@ -89,11 +97,11 @@ export interface Search {
   ceo_compensation?: number
   ceo_name?: string
   company_name?: string
-  employee?: number
-  headquarter?: string
+  employees?: number
+  headquarters?: string
   id?: string
   industry?: string
-  performance_metric?: Record<string, any>
+  performance_metrics?: Record<string, any>
   revenue?: number
 }
 
@@ -101,11 +109,11 @@ export interface SearchListMatch {
   ceo_compensation?: number
   ceo_name?: string
   company_name?: string
-  employee?: number
-  headquarter?: string
+  employees?: number
+  headquarters?: string
   id?: string
   industry?: string
-  performance_metric?: Record<string, any>
+  performance_metrics?: Record<string, any>
   revenue?: number
 }
 

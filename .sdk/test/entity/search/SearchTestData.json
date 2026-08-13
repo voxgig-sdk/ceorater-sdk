@@ -5,33 +5,33 @@
         "ceo_compensation": 90,
         "ceo_name": "s5b",
         "company_name": "s5c",
-        "employee": "s5d",
-        "headquarter": "s5e",
+        "employees": "s5d",
+        "headquarters": "s5e",
         "id": "SEARCH00",
         "industry": "s60",
-        "performance_metric": {},
+        "performance_metrics": {},
         "revenue": 98
       },
       "SEARCH01": {
         "ceo_compensation": 180,
         "ceo_name": "sb5",
         "company_name": "sb6",
-        "employee": "sb7",
-        "headquarter": "sb8",
+        "employees": "sb7",
+        "headquarters": "sb8",
         "id": "SEARCH01",
         "industry": "sba",
-        "performance_metric": {},
+        "performance_metrics": {},
         "revenue": 188
       },
       "SEARCH02": {
         "ceo_compensation": 270,
         "ceo_name": "s10f",
         "company_name": "s110",
-        "employee": "s111",
-        "headquarter": "s112",
+        "employees": "s111",
+        "headquarters": "s112",
         "id": "SEARCH02",
         "industry": "s114",
-        "performance_metric": {},
+        "performance_metrics": {},
         "revenue": 278
       }
     }
@@ -42,10 +42,10 @@
         "ceo_compensation": 360,
         "ceo_name": "s169",
         "company_name": "s16a",
-        "employee": "s16b",
-        "headquarter": "s16c",
+        "employees": "s16b",
+        "headquarters": "s16c",
         "industry": "s16e",
-        "performance_metric": {},
+        "performance_metrics": {},
         "revenue": 368
       }
     }

@@ -6,21 +6,21 @@
         "company_name": "s33",
         "compensation": 52,
         "performance_score": 53,
-        "tenure_year": "s36"
+        "tenure_years": "s36"
       },
       "CEO_PERFORMANCE01": {
         "ceo_name": "s64",
         "company_name": "s65",
         "compensation": 102,
         "performance_score": 103,
-        "tenure_year": "s68"
+        "tenure_years": "s68"
       },
       "CEO_PERFORMANCE02": {
         "ceo_name": "s96",
         "company_name": "s97",
         "compensation": 152,
         "performance_score": 153,
-        "tenure_year": "s9a"
+        "tenure_years": "s9a"
       }
     }
   },
@@ -31,7 +31,7 @@
         "company_name": "sc9",
         "compensation": 202,
         "performance_score": 203,
-        "tenure_year": "scc"
+        "tenure_years": "scc"
       }
     }
   }

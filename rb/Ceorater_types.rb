@@ -22,14 +22,14 @@
 # @!attribute [rw] performance_score
 #   @return [Float, nil]
 #
-# @!attribute [rw] tenure_year
+# @!attribute [rw] tenure_years
 #   @return [Integer, nil]
 CeoPerformance = Struct.new(
   :ceo_name,
   :company_name,
   :compensation,
   :performance_score,
-  :tenure_year,
+  :tenure_years,
   keyword_init: true
 )
 
@@ -47,14 +47,14 @@ CeoPerformance = Struct.new(
 # @!attribute [rw] performance_score
 #   @return [Float, nil]
 #
-# @!attribute [rw] tenure_year
+# @!attribute [rw] tenure_years
 #   @return [Integer, nil]
 CeoPerformanceListMatch = Struct.new(
   :ceo_name,
   :company_name,
   :compensation,
   :performance_score,
-  :tenure_year,
+  :tenure_years,
   keyword_init: true
 )
 
@@ -69,10 +69,13 @@ CeoPerformanceListMatch = Struct.new(
 # @!attribute [rw] company_name
 #   @return [String, nil]
 #
-# @!attribute [rw] employee
+# @!attribute [rw] efficiency_rating
+#   @return [Float, nil]
+#
+# @!attribute [rw] employees
 #   @return [Integer, nil]
 #
-# @!attribute [rw] headquarter
+# @!attribute [rw] headquarters
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -81,21 +84,34 @@ CeoPerformanceListMatch = Struct.new(
 # @!attribute [rw] industry
 #   @return [String, nil]
 #
-# @!attribute [rw] performance_metric
+# @!attribute [rw] performance_metrics
 #   @return [Hash, nil]
 #
+# @!attribute [rw] performance_score
+#   @return [Float, nil]
+#
 # @!attribute [rw] revenue
+#   @return [Float, nil]
+#
+# @!attribute [rw] revenue_growth
+#   @return [Float, nil]
+#
+# @!attribute [rw] stock_performance
 #   @return [Float, nil]
 Company = Struct.new(
   :ceo_compensation,
   :ceo_name,
   :company_name,
-  :employee,
-  :headquarter,
+  :efficiency_rating,
+  :employees,
+  :headquarters,
   :id,
   :industry,
-  :performance_metric,
+  :performance_metrics,
+  :performance_score,
   :revenue,
+  :revenue_growth,
+  :stock_performance,
   keyword_init: true
 )
 
@@ -119,10 +135,13 @@ CompanyLoadMatch = Struct.new(
 # @!attribute [rw] company_name
 #   @return [String, nil]
 #
-# @!attribute [rw] employee
+# @!attribute [rw] efficiency_rating
+#   @return [Float, nil]
+#
+# @!attribute [rw] employees
 #   @return [Integer, nil]
 #
-# @!attribute [rw] headquarter
+# @!attribute [rw] headquarters
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -131,21 +150,34 @@ CompanyLoadMatch = Struct.new(
 # @!attribute [rw] industry
 #   @return [String, nil]
 #
-# @!attribute [rw] performance_metric
+# @!attribute [rw] performance_metrics
 #   @return [Hash, nil]
 #
+# @!attribute [rw] performance_score
+#   @return [Float, nil]
+#
 # @!attribute [rw] revenue
+#   @return [Float, nil]
+#
+# @!attribute [rw] revenue_growth
+#   @return [Float, nil]
+#
+# @!attribute [rw] stock_performance
 #   @return [Float, nil]
 CompanyListMatch = Struct.new(
   :ceo_compensation,
   :ceo_name,
   :company_name,
-  :employee,
-  :headquarter,
+  :efficiency_rating,
+  :employees,
+  :headquarters,
   :id,
   :industry,
-  :performance_metric,
+  :performance_metrics,
+  :performance_score,
   :revenue,
+  :revenue_growth,
+  :stock_performance,
   keyword_init: true
 )
 
@@ -262,10 +294,10 @@ GetRootLoadMatch = Struct.new(
 # @!attribute [rw] company_name
 #   @return [String, nil]
 #
-# @!attribute [rw] employee
+# @!attribute [rw] employees
 #   @return [Integer, nil]
 #
-# @!attribute [rw] headquarter
+# @!attribute [rw] headquarters
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -274,7 +306,7 @@ GetRootLoadMatch = Struct.new(
 # @!attribute [rw] industry
 #   @return [String, nil]
 #
-# @!attribute [rw] performance_metric
+# @!attribute [rw] performance_metrics
 #   @return [Hash, nil]
 #
 # @!attribute [rw] revenue
@@ -283,11 +315,11 @@ Search = Struct.new(
   :ceo_compensation,
   :ceo_name,
   :company_name,
-  :employee,
-  :headquarter,
+  :employees,
+  :headquarters,
   :id,
   :industry,
-  :performance_metric,
+  :performance_metrics,
   :revenue,
   keyword_init: true
 )
@@ -303,10 +335,10 @@ Search = Struct.new(
 # @!attribute [rw] company_name
 #   @return [String, nil]
 #
-# @!attribute [rw] employee
+# @!attribute [rw] employees
 #   @return [Integer, nil]
 #
-# @!attribute [rw] headquarter
+# @!attribute [rw] headquarters
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -315,7 +347,7 @@ Search = Struct.new(
 # @!attribute [rw] industry
 #   @return [String, nil]
 #
-# @!attribute [rw] performance_metric
+# @!attribute [rw] performance_metrics
 #   @return [Hash, nil]
 #
 # @!attribute [rw] revenue
@@ -324,11 +356,11 @@ SearchListMatch = Struct.new(
   :ceo_compensation,
   :ceo_name,
   :company_name,
-  :employee,
-  :headquarter,
+  :employees,
+  :headquarters,
   :id,
   :industry,
-  :performance_metric,
+  :performance_metrics,
   :revenue,
   keyword_init: true
 )

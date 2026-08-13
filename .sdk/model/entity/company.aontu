@@ -21,12 +21,17 @@ main: kit: entity: company: {
       type: "`$STRING`"
     }
     {
-      name: "employee"
+      name: "efficiency_rating"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "employees"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "headquarter"
+      name: "headquarters"
       req: false
       type: "`$STRING`"
     }
@@ -41,12 +46,27 @@ main: kit: entity: company: {
       type: "`$STRING`"
     }
     {
-      name: "performance_metric"
+      name: "performance_metrics"
       req: false
       type: "`$OBJECT`"
     }
     {
+      name: "performance_score"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
       name: "revenue"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "revenue_growth"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "stock_performance"
       req: false
       type: "`$NUMBER`"
     }
@@ -96,7 +116,7 @@ main: kit: entity: company: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.companies`"
           }
         }
       ]
@@ -134,7 +154,7 @@ main: kit: entity: company: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.performance_metrics`"
           }
         }
       ]

@@ -122,7 +122,7 @@ fmt.Println(ceoPerformance.GetName()) // "ceo_performance"
 | `company_name` | `string` | No |  |
 | `compensation` | `float64` | No |  |
 | `performance_score` | `float64` | No |  |
-| `tenure_year` | `int` | No |  |
+| `tenure_years` | `int` | No |  |
 
 ### Operations
 
@@ -176,12 +176,16 @@ fmt.Println(company.GetName()) // "company"
 | `ceo_compensation` | `float64` | No |  |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `employee` | `int` | No |  |
-| `headquarter` | `string` | No |  |
+| `efficiency_rating` | `float64` | No |  |
+| `employees` | `int` | No |  |
+| `headquarters` | `string` | No |  |
 | `id` | `string` | No |  |
 | `industry` | `string` | No |  |
-| `performance_metric` | `map[string]any` | No |  |
+| `performance_metrics` | `map[string]any` | No |  |
+| `performance_score` | `float64` | No |  |
 | `revenue` | `float64` | No |  |
+| `revenue_growth` | `float64` | No |  |
+| `stock_performance` | `float64` | No |  |
 
 ### Operations
 
@@ -406,11 +410,11 @@ fmt.Println(search.GetName()) // "search"
 | `ceo_compensation` | `float64` | No |  |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `employee` | `int` | No |  |
-| `headquarter` | `string` | No |  |
+| `employees` | `int` | No |  |
+| `headquarters` | `string` | No |  |
 | `id` | `string` | No |  |
 | `industry` | `string` | No |  |
-| `performance_metric` | `map[string]any` | No |  |
+| `performance_metrics` | `map[string]any` | No |  |
 | `revenue` | `float64` | No |  |
 
 ### Operations

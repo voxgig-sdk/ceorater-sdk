@@ -14,10 +14,12 @@ guide: {
   entity: company: {
     path: "/companies": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.companies`")|top
     }
     path: "/companies/{companyId}": {
       rename: param: "companyId": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.performance_metrics`")|top
     }
   }
 
@@ -42,6 +44,7 @@ guide: {
   entity: search: {
     path: "/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

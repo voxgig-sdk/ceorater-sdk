@@ -87,7 +87,7 @@ class CompanyEntityTest < Minitest::Test
       "id" => company_ref01_data["id"],
     }
     company_ref01_data_dt0_loaded = company_ref01_ent.load(company_ref01_match_dt0, nil)
-    company_ref01_data_dt0_load_result = Helpers.to_map(company_ref01_data_dt0_loaded)
+    company_ref01_data_dt0_load_result = Helpers.to_map(company_ref01_data_dt0_loaded.respond_to?(:data_get) ? company_ref01_data_dt0_loaded.data_get : company_ref01_data_dt0_loaded)
     assert !company_ref01_data_dt0_load_result.nil?
     assert_equal company_ref01_data_dt0_load_result["id"], company_ref01_data["id"]
 

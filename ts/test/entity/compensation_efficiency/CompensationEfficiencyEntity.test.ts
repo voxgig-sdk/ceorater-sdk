@@ -63,7 +63,7 @@ describe('CompensationEfficiencyEntity', async () => {
     const compensation_efficiency_ref01_ent = client.CompensationEfficiency()
     const compensation_efficiency_ref01_match: any = {}
 
-    const compensation_efficiency_ref01_list = await compensation_efficiency_ref01_ent.list(compensation_efficiency_ref01_match)
+    const compensation_efficiency_ref01_list = (await compensation_efficiency_ref01_ent.list(compensation_efficiency_ref01_match)).map((e: any) => e.data())
 
 
   })

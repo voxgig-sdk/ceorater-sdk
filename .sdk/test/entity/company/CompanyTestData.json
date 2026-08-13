@@ -2,51 +2,67 @@
   "existing": {
     "company": {
       "COMPANY00": {
-        "ceo_compensation": 90,
-        "ceo_name": "s5b",
-        "company_name": "s5c",
-        "employee": "s5d",
-        "headquarter": "s5e",
+        "ceo_compensation": 130,
+        "ceo_name": "s83",
+        "company_name": "s84",
+        "efficiency_rating": 133,
+        "employees": "s86",
+        "headquarters": "s87",
         "id": "COMPANY00",
-        "industry": "s60",
-        "performance_metric": {},
-        "revenue": 98
+        "industry": "s89",
+        "performance_metrics": {},
+        "performance_score": 139,
+        "revenue": 140,
+        "revenue_growth": 141,
+        "stock_performance": 142
       },
       "COMPANY01": {
-        "ceo_compensation": 180,
-        "ceo_name": "sb5",
-        "company_name": "sb6",
-        "employee": "sb7",
-        "headquarter": "sb8",
+        "ceo_compensation": 260,
+        "ceo_name": "s105",
+        "company_name": "s106",
+        "efficiency_rating": 263,
+        "employees": "s108",
+        "headquarters": "s109",
         "id": "COMPANY01",
-        "industry": "sba",
-        "performance_metric": {},
-        "revenue": 188
+        "industry": "s10b",
+        "performance_metrics": {},
+        "performance_score": 269,
+        "revenue": 270,
+        "revenue_growth": 271,
+        "stock_performance": 272
       },
       "COMPANY02": {
-        "ceo_compensation": 270,
-        "ceo_name": "s10f",
-        "company_name": "s110",
-        "employee": "s111",
-        "headquarter": "s112",
+        "ceo_compensation": 390,
+        "ceo_name": "s187",
+        "company_name": "s188",
+        "efficiency_rating": 393,
+        "employees": "s18a",
+        "headquarters": "s18b",
         "id": "COMPANY02",
-        "industry": "s114",
-        "performance_metric": {},
-        "revenue": 278
+        "industry": "s18d",
+        "performance_metrics": {},
+        "performance_score": 399,
+        "revenue": 400,
+        "revenue_growth": 401,
+        "stock_performance": 402
       }
     }
   },
   "new": {
     "company": {
       "company_ref01": {
-        "ceo_compensation": 360,
-        "ceo_name": "s169",
-        "company_name": "s16a",
-        "employee": "s16b",
-        "headquarter": "s16c",
-        "industry": "s16e",
-        "performance_metric": {},
-        "revenue": 368
+        "ceo_compensation": 520,
+        "ceo_name": "s209",
+        "company_name": "s20a",
+        "efficiency_rating": 523,
+        "employees": "s20c",
+        "headquarters": "s20d",
+        "industry": "s20f",
+        "performance_metrics": {},
+        "performance_score": 529,
+        "revenue": 530,
+        "revenue_growth": 531,
+        "stock_performance": 532
       }
     }
   }

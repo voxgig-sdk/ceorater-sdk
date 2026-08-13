@@ -65,7 +65,7 @@ class CeoraterConfig
             ],
             [
               'active' => true,
-              'name' => 'tenure_year',
+              'name' => 'tenure_years',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 4,
@@ -100,6 +100,7 @@ class CeoraterConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/metrics/ceo-performance',
                   'parts' => [
@@ -151,45 +152,73 @@ class CeoraterConfig
             ],
             [
               'active' => true,
-              'name' => 'employee',
+              'name' => 'efficiency_rating',
               'req' => false,
-              'type' => '`$INTEGER`',
+              'type' => '`$NUMBER`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'headquarter',
+              'name' => 'employees',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$INTEGER`',
               'index$' => 4,
             ],
             [
               'active' => true,
-              'name' => 'id',
+              'name' => 'headquarters',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'industry',
+              'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 6,
             ],
             [
               'active' => true,
-              'name' => 'performance_metric',
+              'name' => 'industry',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 7,
+            ],
+            [
+              'active' => true,
+              'name' => 'performance_metrics',
               'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
+              'index$' => 8,
+            ],
+            [
+              'active' => true,
+              'name' => 'performance_score',
+              'req' => false,
+              'type' => '`$NUMBER`',
+              'index$' => 9,
             ],
             [
               'active' => true,
               'name' => 'revenue',
               'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 8,
+              'index$' => 10,
+            ],
+            [
+              'active' => true,
+              'name' => 'revenue_growth',
+              'req' => false,
+              'type' => '`$NUMBER`',
+              'index$' => 11,
+            ],
+            [
+              'active' => true,
+              'name' => 'stock_performance',
+              'req' => false,
+              'type' => '`$NUMBER`',
+              'index$' => 12,
             ],
           ],
           'name' => 'company',
@@ -222,6 +251,7 @@ class CeoraterConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/companies',
                   'parts' => [
@@ -235,7 +265,7 @@ class CeoraterConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.companies`',
                   ],
                   'index$' => 0,
                 ],
@@ -261,6 +291,7 @@ class CeoraterConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/companies/{companyId}',
                   'parts' => [
@@ -279,7 +310,7 @@ class CeoraterConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.performance_metrics`',
                   ],
                   'index$' => 0,
                 ],
@@ -338,6 +369,7 @@ class CeoraterConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/metrics/compensation-efficiency',
                   'parts' => [
@@ -385,6 +417,7 @@ class CeoraterConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/health',
                   'parts' => [
@@ -431,6 +464,7 @@ class CeoraterConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
                   'parts' => [],
@@ -474,14 +508,14 @@ class CeoraterConfig
             ],
             [
               'active' => true,
-              'name' => 'employee',
+              'name' => 'employees',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'headquarter',
+              'name' => 'headquarters',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 4,
@@ -502,7 +536,7 @@ class CeoraterConfig
             ],
             [
               'active' => true,
-              'name' => 'performance_metric',
+              'name' => 'performance_metrics',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 7,
@@ -543,6 +577,7 @@ class CeoraterConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
                   'parts' => [
@@ -556,7 +591,7 @@ class CeoraterConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.results`',
                   ],
                   'index$' => 0,
                 ],

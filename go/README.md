@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-ceoperformances, err := client.CeoPerformance(nil).List(nil, nil)
+general, err := client.General(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = ceoperformances
+_ = general
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-ceoPerformance, err := client.CeoPerformance(nil).List(
+general, err := client.General(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(ceoPerformance) // the returned mock data
+fmt.Println(general) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -271,7 +271,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"company_name"` |  |
 | `"compensation"` |  |
 | `"performance_score"` |  |
-| `"tenure_year"` |  |
+| `"tenure_years"` |  |
 
 Operations: List.
 
@@ -284,12 +284,16 @@ API path: `/metrics/ceo-performance`
 | `"ceo_compensation"` |  |
 | `"ceo_name"` |  |
 | `"company_name"` |  |
-| `"employee"` |  |
-| `"headquarter"` |  |
+| `"efficiency_rating"` |  |
+| `"employees"` |  |
+| `"headquarters"` |  |
 | `"id"` |  |
 | `"industry"` |  |
-| `"performance_metric"` |  |
+| `"performance_metrics"` |  |
+| `"performance_score"` |  |
 | `"revenue"` |  |
+| `"revenue_growth"` |  |
+| `"stock_performance"` |  |
 
 Operations: List, Load.
 
@@ -338,11 +342,11 @@ API path: `/`
 | `"ceo_compensation"` |  |
 | `"ceo_name"` |  |
 | `"company_name"` |  |
-| `"employee"` |  |
-| `"headquarter"` |  |
+| `"employees"` |  |
+| `"headquarters"` |  |
 | `"id"` |  |
 | `"industry"` |  |
-| `"performance_metric"` |  |
+| `"performance_metrics"` |  |
 | `"revenue"` |  |
 
 Operations: List.
@@ -372,7 +376,7 @@ Create an instance: `ceoPerformance := client.CeoPerformance(nil)`
 | `company_name` | `string` |  |
 | `compensation` | `float64` |  |
 | `performance_score` | `float64` |  |
-| `tenure_year` | `int` |  |
+| `tenure_years` | `int` |  |
 
 #### Example: List
 
@@ -403,12 +407,16 @@ Create an instance: `company := client.Company(nil)`
 | `ceo_compensation` | `float64` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `int` |  |
-| `headquarter` | `string` |  |
+| `efficiency_rating` | `float64` |  |
+| `employees` | `int` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `map[string]any` |  |
+| `performance_metrics` | `map[string]any` |  |
+| `performance_score` | `float64` |  |
 | `revenue` | `float64` |  |
+| `revenue_growth` | `float64` |  |
+| `stock_performance` | `float64` |  |
 
 #### Example: Load
 
@@ -535,11 +543,11 @@ Create an instance: `search := client.Search(nil)`
 | `ceo_compensation` | `float64` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `int` |  |
-| `headquarter` | `string` |  |
+| `employees` | `int` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `map[string]any` |  |
+| `performance_metrics` | `map[string]any` |  |
 | `revenue` | `float64` |  |
 
 #### Example: List
@@ -622,15 +630,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-ceoperformance := client.CeoPerformance(nil)
-ceoperformance.List(nil, nil)
+general := client.General(nil)
+general.Load(nil, nil)
 
-// ceoperformance.Data() now returns the ceoperformance data from the last list
-// ceoperformance.Match() returns the last match criteria
+// general.Data() now returns the general data from the last load
+// general.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

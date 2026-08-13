@@ -51,9 +51,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  ceoperformances = client.CeoPerformance.list()
+  general = client.General.load()
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = CeoraterSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-ceoperformance = client.CeoPerformance.list()
-puts ceoperformance
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+general = client.General.load()
+puts general
 ```
 
 ### Use a custom fetch function
@@ -246,7 +247,7 @@ returns a result `Hash` with these keys:
 | `company_name` |  |
 | `compensation` |  |
 | `performance_score` |  |
-| `tenure_year` |  |
+| `tenure_years` |  |
 
 Operations: List.
 
@@ -259,12 +260,16 @@ API path: `/metrics/ceo-performance`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `efficiency_rating` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
+| `performance_score` |  |
 | `revenue` |  |
+| `revenue_growth` |  |
+| `stock_performance` |  |
 
 Operations: List, Load.
 
@@ -313,11 +318,11 @@ API path: `/`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
 | `revenue` |  |
 
 Operations: List.
@@ -347,7 +352,7 @@ Create an instance: `ceo_performance = client.CeoPerformance`
 | `company_name` | `String` |  |
 | `compensation` | `Float` |  |
 | `performance_score` | `Float` |  |
-| `tenure_year` | `Integer` |  |
+| `tenure_years` | `Integer` |  |
 
 #### Example: List
 
@@ -375,17 +380,21 @@ Create an instance: `company = client.Company`
 | `ceo_compensation` | `Float` |  |
 | `ceo_name` | `String` |  |
 | `company_name` | `String` |  |
-| `employee` | `Integer` |  |
-| `headquarter` | `String` |  |
+| `efficiency_rating` | `Float` |  |
+| `employees` | `Integer` |  |
+| `headquarters` | `String` |  |
 | `id` | `String` |  |
 | `industry` | `String` |  |
-| `performance_metric` | `Hash` |  |
+| `performance_metrics` | `Hash` |  |
+| `performance_score` | `Float` |  |
 | `revenue` | `Float` |  |
+| `revenue_growth` | `Float` |  |
+| `stock_performance` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Company record (raises on error).
+# load returns the ENTITY — call data_get for the Company record (raises on error).
 company = client.Company.load({ "id" => "company_id" })
 ```
 
@@ -445,7 +454,7 @@ Create an instance: `general = client.General`
 #### Example: Load
 
 ```ruby
-# load returns the bare General record (raises on error).
+# load returns the ENTITY — call data_get for the General record (raises on error).
 general = client.General.load()
 ```
 
@@ -470,7 +479,7 @@ Create an instance: `get_root = client.GetRoot`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetRoot record (raises on error).
+# load returns the ENTITY — call data_get for the GetRoot record (raises on error).
 get_root = client.GetRoot.load()
 ```
 
@@ -492,11 +501,11 @@ Create an instance: `search = client.Search`
 | `ceo_compensation` | `Float` |  |
 | `ceo_name` | `String` |  |
 | `company_name` | `String` |  |
-| `employee` | `Integer` |  |
-| `headquarter` | `String` |  |
+| `employees` | `Integer` |  |
+| `headquarters` | `String` |  |
 | `id` | `String` |  |
 | `industry` | `String` |  |
-| `performance_metric` | `Hash` |  |
+| `performance_metrics` | `Hash` |  |
 | `revenue` | `Float` |  |
 
 #### Example: List
@@ -579,15 +588,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-ceoperformance = client.CeoPerformance
-ceoperformance.list()
+general = client.General
+general.load()
 
-# ceoperformance.data_get now returns the ceoperformance data from the last list
-# ceoperformance.match_get returns the last match criteria
+# general.data_get now returns the general data from the last load
+# general.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

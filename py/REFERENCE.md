@@ -111,7 +111,7 @@ ceo_performance = client.CeoPerformance()
 | `company_name` | `str` | No |  |
 | `compensation` | `float` | No |  |
 | `performance_score` | `float` | No |  |
-| `tenure_year` | `int` | No |  |
+| `tenure_years` | `int` | No |  |
 
 ### Operations
 
@@ -167,12 +167,16 @@ company = client.Company()
 | `ceo_compensation` | `float` | No |  |
 | `ceo_name` | `str` | No |  |
 | `company_name` | `str` | No |  |
-| `employee` | `int` | No |  |
-| `headquarter` | `str` | No |  |
+| `efficiency_rating` | `float` | No |  |
+| `employees` | `int` | No |  |
+| `headquarters` | `str` | No |  |
 | `id` | `str` | No |  |
 | `industry` | `str` | No |  |
-| `performance_metric` | `dict` | No |  |
+| `performance_metrics` | `dict` | No |  |
+| `performance_score` | `float` | No |  |
 | `revenue` | `float` | No |  |
+| `revenue_growth` | `float` | No |  |
+| `stock_performance` | `float` | No |  |
 
 ### Operations
 
@@ -397,11 +401,11 @@ search = client.Search()
 | `ceo_compensation` | `float` | No |  |
 | `ceo_name` | `str` | No |  |
 | `company_name` | `str` | No |  |
-| `employee` | `int` | No |  |
-| `headquarter` | `str` | No |  |
+| `employees` | `int` | No |  |
+| `headquarters` | `str` | No |  |
 | `id` | `str` | No |  |
 | `industry` | `str` | No |  |
-| `performance_metric` | `dict` | No |  |
+| `performance_metrics` | `dict` | No |  |
 | `revenue` | `float` | No |  |
 
 ### Operations

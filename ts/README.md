@@ -35,7 +35,9 @@ const client = new CeoraterSDK()
 
 ### 2. List ceoperformance records
 
-`list()` resolves to an array of CeoPerformance objects — iterate it directly:
+`list()` resolves to an array of CeoPerformance ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const ceoperformances = await client.CeoPerformance().list()
@@ -52,10 +54,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const ceoperformances = await client.CeoPerformance().list()
-  console.log(ceoperformances)
+  const general = await client.General().load()
+  console.log(general)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = CeoraterSDK.test()
 
-const ceoperformance = await client.CeoPerformance().list()
-// ceoperformance is a bare entity populated with mock response data
-console.log(ceoperformance)
+const general = await client.General().load()
+// general is the entity, populated with mock response data
+// — call general.data() for the record itself
+console.log(general)
 ```
 
 You can also use the instance method:
@@ -136,10 +139,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.CeoPerformance()
+const entity = client.General()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -295,7 +298,7 @@ The `prepare()` method returns:
 | `company_name` |  |
 | `compensation` |  |
 | `performance_score` |  |
-| `tenure_year` |  |
+| `tenure_years` |  |
 
 Operations: list.
 
@@ -308,12 +311,16 @@ API path: `/metrics/ceo-performance`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `efficiency_rating` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
+| `performance_score` |  |
 | `revenue` |  |
+| `revenue_growth` |  |
+| `stock_performance` |  |
 
 Operations: list, load.
 
@@ -362,11 +369,11 @@ API path: `/`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
 | `revenue` |  |
 
 Operations: list.
@@ -396,7 +403,7 @@ Create an instance: `const ceo_performance = client.CeoPerformance()`
 | `company_name` | `string` |  |
 | `compensation` | `number` |  |
 | `performance_score` | `number` |  |
-| `tenure_year` | `number` |  |
+| `tenure_years` | `number` |  |
 
 #### Example: List
 
@@ -423,12 +430,16 @@ Create an instance: `const company = client.Company()`
 | `ceo_compensation` | `number` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `number` |  |
-| `headquarter` | `string` |  |
+| `efficiency_rating` | `number` |  |
+| `employees` | `number` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `Record<string, any>` |  |
+| `performance_metrics` | `Record<string, any>` |  |
+| `performance_score` | `number` |  |
 | `revenue` | `number` |  |
+| `revenue_growth` | `number` |  |
+| `stock_performance` | `number` |  |
 
 #### Example: Load
 
@@ -535,11 +546,11 @@ Create an instance: `const search = client.Search()`
 | `ceo_compensation` | `number` |  |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `employee` | `number` |  |
-| `headquarter` | `string` |  |
+| `employees` | `number` |  |
+| `headquarters` | `string` |  |
 | `id` | `string` |  |
 | `industry` | `string` |  |
-| `performance_metric` | `Record<string, any>` |  |
+| `performance_metrics` | `Record<string, any>` |  |
 | `revenue` | `number` |  |
 
 #### Example: List
@@ -613,16 +624,16 @@ import { CeoraterSDK } from '@voxgig-sdk/ceorater'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const ceoperformance = client.CeoPerformance()
-await ceoperformance.list()
+const general = client.General()
+await general.load()
 
-// ceoperformance.data() now returns the ceoperformance data from the last `list`
-// ceoperformance.match() returns the last match criteria
+// general.data() now returns the general data from the last `load`
+// general.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

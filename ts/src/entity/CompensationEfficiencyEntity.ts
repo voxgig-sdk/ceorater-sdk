@@ -37,7 +37,7 @@ class CompensationEfficiencyEntity extends CeoraterEntityBase<CompensationEffici
 
 
 
-  async list(this: any, reqmatch?: CompensationEfficiencyListMatch, ctrl?: Control): Promise<CompensationEfficiency[]> {
+  async list(this: any, reqmatch?: CompensationEfficiencyListMatch, ctrl?: Control): Promise<CompensationEfficiencyEntity[]> {
 
     const utility = this._utility
 

@@ -116,7 +116,7 @@ $ceo_performance = $client->CeoPerformance();
 | `company_name` | `string` | No |  |
 | `compensation` | `float` | No |  |
 | `performance_score` | `float` | No |  |
-| `tenure_year` | `int` | No |  |
+| `tenure_years` | `int` | No |  |
 
 ### Operations
 
@@ -171,12 +171,16 @@ $company = $client->Company();
 | `ceo_compensation` | `float` | No |  |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `employee` | `int` | No |  |
-| `headquarter` | `string` | No |  |
+| `efficiency_rating` | `float` | No |  |
+| `employees` | `int` | No |  |
+| `headquarters` | `string` | No |  |
 | `id` | `string` | No |  |
 | `industry` | `string` | No |  |
-| `performance_metric` | `array` | No |  |
+| `performance_metrics` | `array` | No |  |
+| `performance_score` | `float` | No |  |
 | `revenue` | `float` | No |  |
+| `revenue_growth` | `float` | No |  |
+| `stock_performance` | `float` | No |  |
 
 ### Operations
 
@@ -401,11 +405,11 @@ $search = $client->Search();
 | `ceo_compensation` | `float` | No |  |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `employee` | `int` | No |  |
-| `headquarter` | `string` | No |  |
+| `employees` | `int` | No |  |
+| `headquarters` | `string` | No |  |
 | `id` | `string` | No |  |
 | `industry` | `string` | No |  |
-| `performance_metric` | `array` | No |  |
+| `performance_metrics` | `array` | No |  |
 | `revenue` | `float` | No |  |
 
 ### Operations

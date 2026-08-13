@@ -63,13 +63,13 @@ describe('CompanyEntity', async () => {
     const company_ref01_ent = client.Company()
     const company_ref01_match: any = {}
 
-    const company_ref01_list = await company_ref01_ent.list(company_ref01_match)
+    const company_ref01_list = (await company_ref01_ent.list(company_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const company_ref01_match_dt0: any = {}
     company_ref01_match_dt0.id = company_ref01_data.id
-    const company_ref01_data_dt0 = await company_ref01_ent.load(company_ref01_match_dt0)
+    const company_ref01_data_dt0 = (await company_ref01_ent.load(company_ref01_match_dt0)).data()
     assert(company_ref01_data_dt0.id === company_ref01_data.id)
 
 

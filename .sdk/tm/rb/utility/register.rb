@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ CeoraterUtility.registrar = ->(u) {
   u.prepare_params = CeoraterUtilities::PrepareParams
   u.prepare_path = CeoraterUtilities::PreparePath
   u.prepare_query = CeoraterUtilities::PrepareQuery
+  u.graphql_body = CeoraterUtilities::GraphqlBody
+  u.graphql_errors = CeoraterUtilities::GraphqlErrors
   u.result_basic = CeoraterUtilities::ResultBasic
   u.result_body = CeoraterUtilities::ResultBody
   u.result_headers = CeoraterUtilities::ResultHeaders

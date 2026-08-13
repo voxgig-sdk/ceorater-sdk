@@ -59,7 +59,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "tenure_year",
+						"name": "tenure_years",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 4,
@@ -94,6 +94,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/metrics/ceo-performance",
 								"parts": []any{
@@ -113,7 +114,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -145,45 +145,73 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "employee",
+						"name": "efficiency_rating",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$NUMBER`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "headquarter",
+						"name": "employees",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$INTEGER`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "id",
+						"name": "headquarters",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "industry",
+						"name": "id",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "performance_metric",
+						"name": "industry",
+						"req": false,
+						"type": "`$STRING`",
+						"index$": 7,
+					},
+					map[string]any{
+						"active": true,
+						"name": "performance_metrics",
 						"req": false,
 						"type": "`$OBJECT`",
-						"index$": 7,
+						"index$": 8,
+					},
+					map[string]any{
+						"active": true,
+						"name": "performance_score",
+						"req": false,
+						"type": "`$NUMBER`",
+						"index$": 9,
 					},
 					map[string]any{
 						"active": true,
 						"name": "revenue",
 						"req": false,
 						"type": "`$NUMBER`",
-						"index$": 8,
+						"index$": 10,
+					},
+					map[string]any{
+						"active": true,
+						"name": "revenue_growth",
+						"req": false,
+						"type": "`$NUMBER`",
+						"index$": 11,
+					},
+					map[string]any{
+						"active": true,
+						"name": "stock_performance",
+						"req": false,
+						"type": "`$NUMBER`",
+						"index$": 12,
 					},
 				},
 				"name": "company",
@@ -216,6 +244,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/companies",
 								"parts": []any{
@@ -229,12 +258,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.companies`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -255,6 +283,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/companies/{companyId}",
 								"parts": []any{
@@ -273,12 +302,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.performance_metrics`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -332,6 +360,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/metrics/compensation-efficiency",
 								"parts": []any{
@@ -346,7 +375,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -379,6 +407,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/health",
 								"parts": []any{
@@ -392,7 +421,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -425,6 +453,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/",
 								"parts": []any{},
@@ -436,7 +465,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -468,14 +496,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "employee",
+						"name": "employees",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "headquarter",
+						"name": "headquarters",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 4,
@@ -496,7 +524,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "performance_metric",
+						"name": "performance_metrics",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 7,
@@ -537,6 +565,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
 								"parts": []any{
@@ -550,12 +579,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.results`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

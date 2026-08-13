@@ -21,12 +21,12 @@ main: kit: entity: search: {
       type: "`$STRING`"
     }
     {
-      name: "employee"
+      name: "employees"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "headquarter"
+      name: "headquarters"
       req: false
       type: "`$STRING`"
     }
@@ -41,7 +41,7 @@ main: kit: entity: search: {
       type: "`$STRING`"
     }
     {
-      name: "performance_metric"
+      name: "performance_metrics"
       req: false
       type: "`$OBJECT`"
     }
@@ -94,7 +94,7 @@ main: kit: entity: search: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

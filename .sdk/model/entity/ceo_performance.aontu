@@ -26,7 +26,7 @@ main: kit: entity: ceo_performance: {
       type: "`$NUMBER`"
     }
     {
-      name: "tenure_year"
+      name: "tenure_years"
       req: false
       type: "`$INTEGER`"
     }

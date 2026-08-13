@@ -19,7 +19,7 @@ class CeoPerformance
     public ?string $company_name = null;
     public ?float $compensation = null;
     public ?float $performance_score = null;
-    public ?int $tenure_year = null;
+    public ?int $tenure_years = null;
 }
 
 /** Request payload for CeoPerformance#list. */
@@ -29,7 +29,7 @@ class CeoPerformanceListMatch
     public ?string $company_name = null;
     public ?float $compensation = null;
     public ?float $performance_score = null;
-    public ?int $tenure_year = null;
+    public ?int $tenure_years = null;
 }
 
 /** Company entity data model. */
@@ -38,12 +38,16 @@ class Company
     public ?float $ceo_compensation = null;
     public ?string $ceo_name = null;
     public ?string $company_name = null;
-    public ?int $employee = null;
-    public ?string $headquarter = null;
+    public ?float $efficiency_rating = null;
+    public ?int $employees = null;
+    public ?string $headquarters = null;
     public ?string $id = null;
     public ?string $industry = null;
-    public ?array $performance_metric = null;
+    public ?array $performance_metrics = null;
+    public ?float $performance_score = null;
     public ?float $revenue = null;
+    public ?float $revenue_growth = null;
+    public ?float $stock_performance = null;
 }
 
 /** Request payload for Company#load. */
@@ -58,12 +62,16 @@ class CompanyListMatch
     public ?float $ceo_compensation = null;
     public ?string $ceo_name = null;
     public ?string $company_name = null;
-    public ?int $employee = null;
-    public ?string $headquarter = null;
+    public ?float $efficiency_rating = null;
+    public ?int $employees = null;
+    public ?string $headquarters = null;
     public ?string $id = null;
     public ?string $industry = null;
-    public ?array $performance_metric = null;
+    public ?array $performance_metrics = null;
+    public ?float $performance_score = null;
     public ?float $revenue = null;
+    public ?float $revenue_growth = null;
+    public ?float $stock_performance = null;
 }
 
 /** CompensationEfficiency entity data model. */
@@ -120,11 +128,11 @@ class Search
     public ?float $ceo_compensation = null;
     public ?string $ceo_name = null;
     public ?string $company_name = null;
-    public ?int $employee = null;
-    public ?string $headquarter = null;
+    public ?int $employees = null;
+    public ?string $headquarters = null;
     public ?string $id = null;
     public ?string $industry = null;
-    public ?array $performance_metric = null;
+    public ?array $performance_metrics = null;
     public ?float $revenue = null;
 }
 
@@ -134,11 +142,11 @@ class SearchListMatch
     public ?float $ceo_compensation = null;
     public ?string $ceo_name = null;
     public ?string $company_name = null;
-    public ?int $employee = null;
-    public ?string $headquarter = null;
+    public ?int $employees = null;
+    public ?string $headquarters = null;
     public ?string $id = null;
     public ?string $industry = null;
-    public ?array $performance_metric = null;
+    public ?array $performance_metrics = null;
     public ?float $revenue = null;
 }
 

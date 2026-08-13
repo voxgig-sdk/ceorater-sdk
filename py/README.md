@@ -57,10 +57,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    ceoperformances = client.CeoPerformance().list()
-    print(ceoperformances)
+    general = client.General().load()
+    print(general)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CeoraterSDK.test()
 
-# Entity ops return the bare record and raise on error.
-ceoperformance = client.CeoPerformance().list()
-# ceoperformance contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+general = client.General().load()
+# general contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -252,7 +253,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `company_name` |  |
 | `compensation` |  |
 | `performance_score` |  |
-| `tenure_year` |  |
+| `tenure_years` |  |
 
 Operations: List.
 
@@ -265,12 +266,16 @@ API path: `/metrics/ceo-performance`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `efficiency_rating` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
+| `performance_score` |  |
 | `revenue` |  |
+| `revenue_growth` |  |
+| `stock_performance` |  |
 
 Operations: List, Load.
 
@@ -319,11 +324,11 @@ API path: `/`
 | `ceo_compensation` |  |
 | `ceo_name` |  |
 | `company_name` |  |
-| `employee` |  |
-| `headquarter` |  |
+| `employees` |  |
+| `headquarters` |  |
 | `id` |  |
 | `industry` |  |
-| `performance_metric` |  |
+| `performance_metrics` |  |
 | `revenue` |  |
 
 Operations: List.
@@ -353,7 +358,7 @@ Create an instance: `ceo_performance = client.CeoPerformance()`
 | `company_name` | `str` |  |
 | `compensation` | `float` |  |
 | `performance_score` | `float` |  |
-| `tenure_year` | `int` |  |
+| `tenure_years` | `int` |  |
 
 #### Example: List
 
@@ -380,12 +385,16 @@ Create an instance: `company = client.Company()`
 | `ceo_compensation` | `float` |  |
 | `ceo_name` | `str` |  |
 | `company_name` | `str` |  |
-| `employee` | `int` |  |
-| `headquarter` | `str` |  |
+| `efficiency_rating` | `float` |  |
+| `employees` | `int` |  |
+| `headquarters` | `str` |  |
 | `id` | `str` |  |
 | `industry` | `str` |  |
-| `performance_metric` | `dict` |  |
+| `performance_metrics` | `dict` |  |
+| `performance_score` | `float` |  |
 | `revenue` | `float` |  |
+| `revenue_growth` | `float` |  |
+| `stock_performance` | `float` |  |
 
 #### Example: Load
 
@@ -492,11 +501,11 @@ Create an instance: `search = client.Search()`
 | `ceo_compensation` | `float` |  |
 | `ceo_name` | `str` |  |
 | `company_name` | `str` |  |
-| `employee` | `int` |  |
-| `headquarter` | `str` |  |
+| `employees` | `int` |  |
+| `headquarters` | `str` |  |
 | `id` | `str` |  |
 | `industry` | `str` |  |
-| `performance_metric` | `dict` |  |
+| `performance_metrics` | `dict` |  |
 | `revenue` | `float` |  |
 
 #### Example: List
@@ -577,15 +586,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-ceoperformance = client.CeoPerformance()
-ceoperformance.list()
+general = client.General()
+general.load()
 
-# ceoperformance.data_get() now returns the ceoperformance data from the last list
-# ceoperformance.match_get() returns the last match criteria
+# general.data_get() now returns the general data from the last load
+# general.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

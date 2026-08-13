@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import CeoraterControl
-from core.error import CeoraterError
-from core.result import CeoraterResult
-from core.spec import CeoraterSpec
+from ceorater_sdk.config import make_config
+from ceorater_sdk.features import _make_feature
+from ceorater_sdk.core.control import CeoraterControl
+from ceorater_sdk.core.error import CeoraterError
+from ceorater_sdk.core.result import CeoraterResult
+from ceorater_sdk.core.spec import CeoraterSpec
 
 
 # True when this SDK was generated with the named feature.

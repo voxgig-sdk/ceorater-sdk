@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Ceorater SDK exists test
 
 import pytest
 from ceorater_sdk import CeoraterSDK

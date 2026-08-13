@@ -37,7 +37,7 @@ class CeoPerformanceEntity extends CeoraterEntityBase<CeoPerformance> {
 
 
 
-  async list(this: any, reqmatch?: CeoPerformanceListMatch, ctrl?: Control): Promise<CeoPerformance[]> {
+  async list(this: any, reqmatch?: CeoPerformanceListMatch, ctrl?: Control): Promise<CeoPerformanceEntity[]> {
 
     const utility = this._utility
 

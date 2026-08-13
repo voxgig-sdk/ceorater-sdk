@@ -114,7 +114,7 @@ local ceo_performance = client:CeoPerformance(nil)
 | `company_name` | `string` | No |  |
 | `compensation` | `number` | No |  |
 | `performance_score` | `number` | No |  |
-| `tenure_year` | `number` | No |  |
+| `tenure_years` | `number` | No |  |
 
 ### Operations
 
@@ -169,12 +169,16 @@ local company = client:Company(nil)
 | `ceo_compensation` | `number` | No |  |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `employee` | `number` | No |  |
-| `headquarter` | `string` | No |  |
+| `efficiency_rating` | `number` | No |  |
+| `employees` | `number` | No |  |
+| `headquarters` | `string` | No |  |
 | `id` | `string` | No |  |
 | `industry` | `string` | No |  |
-| `performance_metric` | `table` | No |  |
+| `performance_metrics` | `table` | No |  |
+| `performance_score` | `number` | No |  |
 | `revenue` | `number` | No |  |
+| `revenue_growth` | `number` | No |  |
+| `stock_performance` | `number` | No |  |
 
 ### Operations
 
@@ -399,11 +403,11 @@ local search = client:Search(nil)
 | `ceo_compensation` | `number` | No |  |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `employee` | `number` | No |  |
-| `headquarter` | `string` | No |  |
+| `employees` | `number` | No |  |
+| `headquarters` | `string` | No |  |
 | `id` | `string` | No |  |
 | `industry` | `string` | No |  |
-| `performance_metric` | `table` | No |  |
+| `performance_metrics` | `table` | No |  |
 | `revenue` | `number` | No |  |
 
 ### Operations

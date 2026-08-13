@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from ceorater_sdk.utility.voxgig_struct import voxgig_struct as vs
 from ceorater_sdk import CeoraterSDK
-from core import helpers
+from ceorater_sdk.core import helpers
 from test import runner
 
 
