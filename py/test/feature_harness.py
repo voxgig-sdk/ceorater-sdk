@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from ceorater_sdk.config import make_config
+from ceorater_sdk.config import shared_config
 from ceorater_sdk.features import _make_feature
 from ceorater_sdk.core.control import CeoraterControl
 from ceorater_sdk.core.error import CeoraterError
@@ -24,7 +24,7 @@ from ceorater_sdk.core.spec import CeoraterSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

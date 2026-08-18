@@ -28,7 +28,7 @@ class CeoraterSDK
     utility = CeoraterUtility.new
     @_utility = utility
 
-    config = CeoraterConfig.make_config
+    config = CeoraterConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -40,7 +40,7 @@ class CeoraterSDK
         $utility = new CeoraterUtility();
         $this->_utility = $utility;
 
-        $config = CeoraterConfig::make_config();
+        $config = CeoraterConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

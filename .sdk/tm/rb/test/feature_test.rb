@@ -15,7 +15,7 @@ require_relative "../Ceorater_sdk"
 module CeoraterFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = CeoraterConfig.make_config["feature"]
+    f = CeoraterConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
