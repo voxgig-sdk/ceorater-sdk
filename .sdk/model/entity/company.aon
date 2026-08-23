@@ -8,41 +8,49 @@ main: kit: entity: company: {
     {
       name: "ceo_compensation"
       req: false
+      short: "Total CEO compensation"
       type: "`$NUMBER`"
     }
     {
       name: "ceo_name"
       req: false
+      short: "Name of the CEO"
       type: "`$STRING`"
     }
     {
       name: "company_name"
       req: false
+      short: "Name of the company"
       type: "`$STRING`"
     }
     {
       name: "efficiency_rating"
       req: false
+      short: "Compensation efficiency rating"
       type: "`$NUMBER`"
     }
     {
       name: "employees"
       req: false
+      short: "Number of employees"
       type: "`$INTEGER`"
     }
     {
       name: "headquarters"
       req: false
+      short: "Company headquarters location"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the company"
       type: "`$STRING`"
     }
     {
       name: "industry"
       req: false
+      short: "Industry sector"
       type: "`$STRING`"
     }
     {
@@ -53,21 +61,25 @@ main: kit: entity: company: {
     {
       name: "performance_score"
       req: false
+      short: "Overall performance score"
       type: "`$NUMBER`"
     }
     {
       name: "revenue"
       req: false
+      short: "Annual revenue"
       type: "`$NUMBER`"
     }
     {
       name: "revenue_growth"
       req: false
+      short: "Revenue growth percentage"
       type: "`$NUMBER`"
     }
     {
       name: "stock_performance"
       req: false
+      short: "Stock performance percentage"
       type: "`$NUMBER`"
     }
   ]

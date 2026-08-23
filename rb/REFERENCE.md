@@ -169,19 +169,19 @@ company = client.Company
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `Float` | No |  |
-| `ceo_name` | `String` | No |  |
-| `company_name` | `String` | No |  |
-| `efficiency_rating` | `Float` | No |  |
-| `employees` | `Integer` | No |  |
-| `headquarters` | `String` | No |  |
-| `id` | `String` | No |  |
-| `industry` | `String` | No |  |
+| `ceo_compensation` | `Float` | No | Total CEO compensation |
+| `ceo_name` | `String` | No | Name of the CEO |
+| `company_name` | `String` | No | Name of the company |
+| `efficiency_rating` | `Float` | No | Compensation efficiency rating |
+| `employees` | `Integer` | No | Number of employees |
+| `headquarters` | `String` | No | Company headquarters location |
+| `id` | `String` | No | Unique identifier for the company |
+| `industry` | `String` | No | Industry sector |
 | `performance_metrics` | `Hash` | No |  |
-| `performance_score` | `Float` | No |  |
-| `revenue` | `Float` | No |  |
-| `revenue_growth` | `Float` | No |  |
-| `stock_performance` | `Float` | No |  |
+| `performance_score` | `Float` | No | Overall performance score |
+| `revenue` | `Float` | No | Annual revenue |
+| `revenue_growth` | `Float` | No | Revenue growth percentage |
+| `stock_performance` | `Float` | No | Stock performance percentage |
 
 ### Operations
 
@@ -243,7 +243,7 @@ compensation_efficiency = client.CompensationEfficiency
 | --- | --- | --- | --- |
 | `ceo_name` | `String` | No |  |
 | `company_name` | `String` | No |  |
-| `efficiency_ratio` | `Float` | No |  |
+| `efficiency_ratio` | `Float` | No | Performance per compensation dollar |
 | `performance_score` | `Float` | No |  |
 | `total_compensation` | `Float` | No |  |
 
@@ -403,15 +403,15 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `Float` | No |  |
-| `ceo_name` | `String` | No |  |
-| `company_name` | `String` | No |  |
-| `employees` | `Integer` | No |  |
-| `headquarters` | `String` | No |  |
-| `id` | `String` | No |  |
-| `industry` | `String` | No |  |
+| `ceo_compensation` | `Float` | No | Total CEO compensation |
+| `ceo_name` | `String` | No | Name of the CEO |
+| `company_name` | `String` | No | Name of the company |
+| `employees` | `Integer` | No | Number of employees |
+| `headquarters` | `String` | No | Company headquarters location |
+| `id` | `String` | No | Unique identifier for the company |
+| `industry` | `String` | No | Industry sector |
 | `performance_metrics` | `Hash` | No |  |
-| `revenue` | `Float` | No |  |
+| `revenue` | `Float` | No | Annual revenue |
 
 ### Operations
 

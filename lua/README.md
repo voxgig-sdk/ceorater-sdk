@@ -252,19 +252,19 @@ API path: `/metrics/ceo-performance`
 
 | Field | Description |
 | --- | --- |
-| `ceo_compensation` |  |
-| `ceo_name` |  |
-| `company_name` |  |
-| `efficiency_rating` |  |
-| `employees` |  |
-| `headquarters` |  |
-| `id` |  |
-| `industry` |  |
+| `ceo_compensation` | Total CEO compensation |
+| `ceo_name` | Name of the CEO |
+| `company_name` | Name of the company |
+| `efficiency_rating` | Compensation efficiency rating |
+| `employees` | Number of employees |
+| `headquarters` | Company headquarters location |
+| `id` | Unique identifier for the company |
+| `industry` | Industry sector |
 | `performance_metrics` |  |
-| `performance_score` |  |
-| `revenue` |  |
-| `revenue_growth` |  |
-| `stock_performance` |  |
+| `performance_score` | Overall performance score |
+| `revenue` | Annual revenue |
+| `revenue_growth` | Revenue growth percentage |
+| `stock_performance` | Stock performance percentage |
 
 Operations: List, Load.
 
@@ -276,7 +276,7 @@ API path: `/companies`
 | --- | --- |
 | `ceo_name` |  |
 | `company_name` |  |
-| `efficiency_ratio` |  |
+| `efficiency_ratio` | Performance per compensation dollar |
 | `performance_score` |  |
 | `total_compensation` |  |
 
@@ -310,15 +310,15 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ceo_compensation` |  |
-| `ceo_name` |  |
-| `company_name` |  |
-| `employees` |  |
-| `headquarters` |  |
-| `id` |  |
-| `industry` |  |
+| `ceo_compensation` | Total CEO compensation |
+| `ceo_name` | Name of the CEO |
+| `company_name` | Name of the company |
+| `employees` | Number of employees |
+| `headquarters` | Company headquarters location |
+| `id` | Unique identifier for the company |
+| `industry` | Industry sector |
 | `performance_metrics` |  |
-| `revenue` |  |
+| `revenue` | Annual revenue |
 
 Operations: List.
 
@@ -371,19 +371,19 @@ Create an instance: `local company = client:Company(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | `number` |  |
-| `ceo_name` | `string` |  |
-| `company_name` | `string` |  |
-| `efficiency_rating` | `number` |  |
-| `employees` | `number` |  |
-| `headquarters` | `string` |  |
-| `id` | `string` |  |
-| `industry` | `string` |  |
+| `ceo_compensation` | `number` | Total CEO compensation |
+| `ceo_name` | `string` | Name of the CEO |
+| `company_name` | `string` | Name of the company |
+| `efficiency_rating` | `number` | Compensation efficiency rating |
+| `employees` | `number` | Number of employees |
+| `headquarters` | `string` | Company headquarters location |
+| `id` | `string` | Unique identifier for the company |
+| `industry` | `string` | Industry sector |
 | `performance_metrics` | `table` |  |
-| `performance_score` | `number` |  |
-| `revenue` | `number` |  |
-| `revenue_growth` | `number` |  |
-| `stock_performance` | `number` |  |
+| `performance_score` | `number` | Overall performance score |
+| `revenue` | `number` | Annual revenue |
+| `revenue_growth` | `number` | Revenue growth percentage |
+| `stock_performance` | `number` | Stock performance percentage |
 
 #### Example: Load
 
@@ -414,7 +414,7 @@ Create an instance: `local compensation_efficiency = client:CompensationEfficien
 | --- | --- | --- |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `efficiency_ratio` | `number` |  |
+| `efficiency_ratio` | `number` | Performance per compensation dollar |
 | `performance_score` | `number` |  |
 | `total_compensation` | `number` |  |
 
@@ -487,15 +487,15 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | `number` |  |
-| `ceo_name` | `string` |  |
-| `company_name` | `string` |  |
-| `employees` | `number` |  |
-| `headquarters` | `string` |  |
-| `id` | `string` |  |
-| `industry` | `string` |  |
+| `ceo_compensation` | `number` | Total CEO compensation |
+| `ceo_name` | `string` | Name of the CEO |
+| `company_name` | `string` | Name of the company |
+| `employees` | `number` | Number of employees |
+| `headquarters` | `string` | Company headquarters location |
+| `id` | `string` | Unique identifier for the company |
+| `industry` | `string` | Industry sector |
 | `performance_metrics` | `table` |  |
-| `revenue` | `number` |  |
+| `revenue` | `number` | Annual revenue |
 
 #### Example: List
 

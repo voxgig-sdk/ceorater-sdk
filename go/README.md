@@ -6,7 +6,7 @@ The Golang SDK for the Ceorater API — an entity-oriented client using standard
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.CeoPerformance(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -281,19 +281,19 @@ API path: `/metrics/ceo-performance`
 
 | Field | Description |
 | --- | --- |
-| `"ceo_compensation"` |  |
-| `"ceo_name"` |  |
-| `"company_name"` |  |
-| `"efficiency_rating"` |  |
-| `"employees"` |  |
-| `"headquarters"` |  |
-| `"id"` |  |
-| `"industry"` |  |
+| `"ceo_compensation"` | Total CEO compensation |
+| `"ceo_name"` | Name of the CEO |
+| `"company_name"` | Name of the company |
+| `"efficiency_rating"` | Compensation efficiency rating |
+| `"employees"` | Number of employees |
+| `"headquarters"` | Company headquarters location |
+| `"id"` | Unique identifier for the company |
+| `"industry"` | Industry sector |
 | `"performance_metrics"` |  |
-| `"performance_score"` |  |
-| `"revenue"` |  |
-| `"revenue_growth"` |  |
-| `"stock_performance"` |  |
+| `"performance_score"` | Overall performance score |
+| `"revenue"` | Annual revenue |
+| `"revenue_growth"` | Revenue growth percentage |
+| `"stock_performance"` | Stock performance percentage |
 
 Operations: List, Load.
 
@@ -305,7 +305,7 @@ API path: `/companies`
 | --- | --- |
 | `"ceo_name"` |  |
 | `"company_name"` |  |
-| `"efficiency_ratio"` |  |
+| `"efficiency_ratio"` | Performance per compensation dollar |
 | `"performance_score"` |  |
 | `"total_compensation"` |  |
 
@@ -339,15 +339,15 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `"ceo_compensation"` |  |
-| `"ceo_name"` |  |
-| `"company_name"` |  |
-| `"employees"` |  |
-| `"headquarters"` |  |
-| `"id"` |  |
-| `"industry"` |  |
+| `"ceo_compensation"` | Total CEO compensation |
+| `"ceo_name"` | Name of the CEO |
+| `"company_name"` | Name of the company |
+| `"employees"` | Number of employees |
+| `"headquarters"` | Company headquarters location |
+| `"id"` | Unique identifier for the company |
+| `"industry"` | Industry sector |
 | `"performance_metrics"` |  |
-| `"revenue"` |  |
+| `"revenue"` | Annual revenue |
 
 Operations: List.
 
@@ -404,19 +404,19 @@ Create an instance: `company := client.Company(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | `float64` |  |
-| `ceo_name` | `string` |  |
-| `company_name` | `string` |  |
-| `efficiency_rating` | `float64` |  |
-| `employees` | `int` |  |
-| `headquarters` | `string` |  |
-| `id` | `string` |  |
-| `industry` | `string` |  |
+| `ceo_compensation` | `float64` | Total CEO compensation |
+| `ceo_name` | `string` | Name of the CEO |
+| `company_name` | `string` | Name of the company |
+| `efficiency_rating` | `float64` | Compensation efficiency rating |
+| `employees` | `int` | Number of employees |
+| `headquarters` | `string` | Company headquarters location |
+| `id` | `string` | Unique identifier for the company |
+| `industry` | `string` | Industry sector |
 | `performance_metrics` | `map[string]any` |  |
-| `performance_score` | `float64` |  |
-| `revenue` | `float64` |  |
-| `revenue_growth` | `float64` |  |
-| `stock_performance` | `float64` |  |
+| `performance_score` | `float64` | Overall performance score |
+| `revenue` | `float64` | Annual revenue |
+| `revenue_growth` | `float64` | Revenue growth percentage |
+| `stock_performance` | `float64` | Stock performance percentage |
 
 #### Example: Load
 
@@ -455,7 +455,7 @@ Create an instance: `compensationEfficiency := client.CompensationEfficiency(nil
 | --- | --- | --- |
 | `ceo_name` | `string` |  |
 | `company_name` | `string` |  |
-| `efficiency_ratio` | `float64` |  |
+| `efficiency_ratio` | `float64` | Performance per compensation dollar |
 | `performance_score` | `float64` |  |
 | `total_compensation` | `float64` |  |
 
@@ -540,15 +540,15 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | `float64` |  |
-| `ceo_name` | `string` |  |
-| `company_name` | `string` |  |
-| `employees` | `int` |  |
-| `headquarters` | `string` |  |
-| `id` | `string` |  |
-| `industry` | `string` |  |
+| `ceo_compensation` | `float64` | Total CEO compensation |
+| `ceo_name` | `string` | Name of the CEO |
+| `company_name` | `string` | Name of the company |
+| `employees` | `int` | Number of employees |
+| `headquarters` | `string` | Company headquarters location |
+| `id` | `string` | Unique identifier for the company |
+| `industry` | `string` | Industry sector |
 | `performance_metrics` | `map[string]any` |  |
-| `revenue` | `float64` |  |
+| `revenue` | `float64` | Annual revenue |
 
 #### Example: List
 

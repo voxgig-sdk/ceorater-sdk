@@ -173,19 +173,19 @@ fmt.Println(company.GetName()) // "company"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `float64` | No |  |
-| `ceo_name` | `string` | No |  |
-| `company_name` | `string` | No |  |
-| `efficiency_rating` | `float64` | No |  |
-| `employees` | `int` | No |  |
-| `headquarters` | `string` | No |  |
-| `id` | `string` | No |  |
-| `industry` | `string` | No |  |
+| `ceo_compensation` | `float64` | No | Total CEO compensation |
+| `ceo_name` | `string` | No | Name of the CEO |
+| `company_name` | `string` | No | Name of the company |
+| `efficiency_rating` | `float64` | No | Compensation efficiency rating |
+| `employees` | `int` | No | Number of employees |
+| `headquarters` | `string` | No | Company headquarters location |
+| `id` | `string` | No | Unique identifier for the company |
+| `industry` | `string` | No | Industry sector |
 | `performance_metrics` | `map[string]any` | No |  |
-| `performance_score` | `float64` | No |  |
-| `revenue` | `float64` | No |  |
-| `revenue_growth` | `float64` | No |  |
-| `stock_performance` | `float64` | No |  |
+| `performance_score` | `float64` | No | Overall performance score |
+| `revenue` | `float64` | No | Annual revenue |
+| `revenue_growth` | `float64` | No | Revenue growth percentage |
+| `stock_performance` | `float64` | No | Stock performance percentage |
 
 ### Operations
 
@@ -250,7 +250,7 @@ fmt.Println(compensationEfficiency.GetName()) // "compensation_efficiency"
 | --- | --- | --- | --- |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `efficiency_ratio` | `float64` | No |  |
+| `efficiency_ratio` | `float64` | No | Performance per compensation dollar |
 | `performance_score` | `float64` | No |  |
 | `total_compensation` | `float64` | No |  |
 
@@ -407,15 +407,15 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `float64` | No |  |
-| `ceo_name` | `string` | No |  |
-| `company_name` | `string` | No |  |
-| `employees` | `int` | No |  |
-| `headquarters` | `string` | No |  |
-| `id` | `string` | No |  |
-| `industry` | `string` | No |  |
+| `ceo_compensation` | `float64` | No | Total CEO compensation |
+| `ceo_name` | `string` | No | Name of the CEO |
+| `company_name` | `string` | No | Name of the company |
+| `employees` | `int` | No | Number of employees |
+| `headquarters` | `string` | No | Company headquarters location |
+| `id` | `string` | No | Unique identifier for the company |
+| `industry` | `string` | No | Industry sector |
 | `performance_metrics` | `map[string]any` | No |  |
-| `revenue` | `float64` | No |  |
+| `revenue` | `float64` | No | Annual revenue |
 
 ### Operations
 

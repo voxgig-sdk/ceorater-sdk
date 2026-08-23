@@ -164,19 +164,19 @@ company = client.Company()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `float` | No |  |
-| `ceo_name` | `str` | No |  |
-| `company_name` | `str` | No |  |
-| `efficiency_rating` | `float` | No |  |
-| `employees` | `int` | No |  |
-| `headquarters` | `str` | No |  |
-| `id` | `str` | No |  |
-| `industry` | `str` | No |  |
+| `ceo_compensation` | `float` | No | Total CEO compensation |
+| `ceo_name` | `str` | No | Name of the CEO |
+| `company_name` | `str` | No | Name of the company |
+| `efficiency_rating` | `float` | No | Compensation efficiency rating |
+| `employees` | `int` | No | Number of employees |
+| `headquarters` | `str` | No | Company headquarters location |
+| `id` | `str` | No | Unique identifier for the company |
+| `industry` | `str` | No | Industry sector |
 | `performance_metrics` | `dict` | No |  |
-| `performance_score` | `float` | No |  |
-| `revenue` | `float` | No |  |
-| `revenue_growth` | `float` | No |  |
-| `stock_performance` | `float` | No |  |
+| `performance_score` | `float` | No | Overall performance score |
+| `revenue` | `float` | No | Annual revenue |
+| `revenue_growth` | `float` | No | Revenue growth percentage |
+| `stock_performance` | `float` | No | Stock performance percentage |
 
 ### Operations
 
@@ -239,7 +239,7 @@ compensation_efficiency = client.CompensationEfficiency()
 | --- | --- | --- | --- |
 | `ceo_name` | `str` | No |  |
 | `company_name` | `str` | No |  |
-| `efficiency_ratio` | `float` | No |  |
+| `efficiency_ratio` | `float` | No | Performance per compensation dollar |
 | `performance_score` | `float` | No |  |
 | `total_compensation` | `float` | No |  |
 
@@ -398,15 +398,15 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `float` | No |  |
-| `ceo_name` | `str` | No |  |
-| `company_name` | `str` | No |  |
-| `employees` | `int` | No |  |
-| `headquarters` | `str` | No |  |
-| `id` | `str` | No |  |
-| `industry` | `str` | No |  |
+| `ceo_compensation` | `float` | No | Total CEO compensation |
+| `ceo_name` | `str` | No | Name of the CEO |
+| `company_name` | `str` | No | Name of the company |
+| `employees` | `int` | No | Number of employees |
+| `headquarters` | `str` | No | Company headquarters location |
+| `id` | `str` | No | Unique identifier for the company |
+| `industry` | `str` | No | Industry sector |
 | `performance_metrics` | `dict` | No |  |
-| `revenue` | `float` | No |  |
+| `revenue` | `float` | No | Annual revenue |
 
 ### Operations
 

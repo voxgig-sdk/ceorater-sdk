@@ -8,36 +8,43 @@ main: kit: entity: search: {
     {
       name: "ceo_compensation"
       req: false
+      short: "Total CEO compensation"
       type: "`$NUMBER`"
     }
     {
       name: "ceo_name"
       req: false
+      short: "Name of the CEO"
       type: "`$STRING`"
     }
     {
       name: "company_name"
       req: false
+      short: "Name of the company"
       type: "`$STRING`"
     }
     {
       name: "employees"
       req: false
+      short: "Number of employees"
       type: "`$INTEGER`"
     }
     {
       name: "headquarters"
       req: false
+      short: "Company headquarters location"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the company"
       type: "`$STRING`"
     }
     {
       name: "industry"
       req: false
+      short: "Industry sector"
       type: "`$STRING`"
     }
     {
@@ -48,6 +55,7 @@ main: kit: entity: search: {
     {
       name: "revenue"
       req: false
+      short: "Annual revenue"
       type: "`$NUMBER`"
     }
   ]

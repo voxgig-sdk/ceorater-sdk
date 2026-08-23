@@ -230,19 +230,19 @@ const company = client.Company()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `number` | No |  |
-| `ceo_name` | `string` | No |  |
-| `company_name` | `string` | No |  |
-| `efficiency_rating` | `number` | No |  |
-| `employees` | `number` | No |  |
-| `headquarters` | `string` | No |  |
-| `id` | `string` | No |  |
-| `industry` | `string` | No |  |
+| `ceo_compensation` | `number` | No | Total CEO compensation |
+| `ceo_name` | `string` | No | Name of the CEO |
+| `company_name` | `string` | No | Name of the company |
+| `efficiency_rating` | `number` | No | Compensation efficiency rating |
+| `employees` | `number` | No | Number of employees |
+| `headquarters` | `string` | No | Company headquarters location |
+| `id` | `string` | No | Unique identifier for the company |
+| `industry` | `string` | No | Industry sector |
 | `performance_metrics` | `Record<string, any>` | No |  |
-| `performance_score` | `number` | No |  |
-| `revenue` | `number` | No |  |
-| `revenue_growth` | `number` | No |  |
-| `stock_performance` | `number` | No |  |
+| `performance_score` | `number` | No | Overall performance score |
+| `revenue` | `number` | No | Annual revenue |
+| `revenue_growth` | `number` | No | Revenue growth percentage |
+| `stock_performance` | `number` | No | Stock performance percentage |
 
 ### Operations
 
@@ -302,7 +302,7 @@ const compensation_efficiency = client.CompensationEfficiency()
 | --- | --- | --- | --- |
 | `ceo_name` | `string` | No |  |
 | `company_name` | `string` | No |  |
-| `efficiency_ratio` | `number` | No |  |
+| `efficiency_ratio` | `number` | No | Performance per compensation dollar |
 | `performance_score` | `number` | No |  |
 | `total_compensation` | `number` | No |  |
 
@@ -456,15 +456,15 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ceo_compensation` | `number` | No |  |
-| `ceo_name` | `string` | No |  |
-| `company_name` | `string` | No |  |
-| `employees` | `number` | No |  |
-| `headquarters` | `string` | No |  |
-| `id` | `string` | No |  |
-| `industry` | `string` | No |  |
+| `ceo_compensation` | `number` | No | Total CEO compensation |
+| `ceo_name` | `string` | No | Name of the CEO |
+| `company_name` | `string` | No | Name of the company |
+| `employees` | `number` | No | Number of employees |
+| `headquarters` | `string` | No | Company headquarters location |
+| `id` | `string` | No | Unique identifier for the company |
+| `industry` | `string` | No | Industry sector |
 | `performance_metrics` | `Record<string, any>` | No |  |
-| `revenue` | `number` | No |  |
+| `revenue` | `number` | No | Annual revenue |
 
 ### Operations
 

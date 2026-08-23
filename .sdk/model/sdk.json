@@ -127,48 +127,56 @@
               "active": true,
               "name": "ceo_compensation",
               "req": false,
+              "short": "Total CEO compensation",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "ceo_name",
               "req": false,
+              "short": "Name of the CEO",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "company_name",
               "req": false,
+              "short": "Name of the company",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "efficiency_rating",
               "req": false,
+              "short": "Compensation efficiency rating",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "employees",
               "req": false,
+              "short": "Number of employees",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "headquarters",
               "req": false,
+              "short": "Company headquarters location",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the company",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "industry",
               "req": false,
+              "short": "Industry sector",
               "type": "`$STRING`"
             },
             {
@@ -181,24 +189,28 @@
               "active": true,
               "name": "performance_score",
               "req": false,
+              "short": "Overall performance score",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "revenue",
               "req": false,
+              "short": "Annual revenue",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "revenue_growth",
               "req": false,
+              "short": "Revenue growth percentage",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "stock_performance",
               "req": false,
+              "short": "Stock performance percentage",
               "type": "`$NUMBER`"
             }
           ],
@@ -324,6 +336,7 @@
               "active": true,
               "name": "efficiency_ratio",
               "req": false,
+              "short": "Performance per compensation dollar",
               "type": "`$NUMBER`"
             },
             {
@@ -470,42 +483,49 @@
               "active": true,
               "name": "ceo_compensation",
               "req": false,
+              "short": "Total CEO compensation",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "ceo_name",
               "req": false,
+              "short": "Name of the CEO",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "company_name",
               "req": false,
+              "short": "Name of the company",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "employees",
               "req": false,
+              "short": "Number of employees",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "headquarters",
               "req": false,
+              "short": "Company headquarters location",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the company",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "industry",
               "req": false,
+              "short": "Industry sector",
               "type": "`$STRING`"
             },
             {
@@ -518,6 +538,7 @@
               "active": true,
               "name": "revenue",
               "req": false,
+              "short": "Annual revenue",
               "type": "`$NUMBER`"
             }
           ],

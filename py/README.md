@@ -263,19 +263,19 @@ API path: `/metrics/ceo-performance`
 
 | Field | Description |
 | --- | --- |
-| `ceo_compensation` |  |
-| `ceo_name` |  |
-| `company_name` |  |
-| `efficiency_rating` |  |
-| `employees` |  |
-| `headquarters` |  |
-| `id` |  |
-| `industry` |  |
+| `ceo_compensation` | Total CEO compensation |
+| `ceo_name` | Name of the CEO |
+| `company_name` | Name of the company |
+| `efficiency_rating` | Compensation efficiency rating |
+| `employees` | Number of employees |
+| `headquarters` | Company headquarters location |
+| `id` | Unique identifier for the company |
+| `industry` | Industry sector |
 | `performance_metrics` |  |
-| `performance_score` |  |
-| `revenue` |  |
-| `revenue_growth` |  |
-| `stock_performance` |  |
+| `performance_score` | Overall performance score |
+| `revenue` | Annual revenue |
+| `revenue_growth` | Revenue growth percentage |
+| `stock_performance` | Stock performance percentage |
 
 Operations: List, Load.
 
@@ -287,7 +287,7 @@ API path: `/companies`
 | --- | --- |
 | `ceo_name` |  |
 | `company_name` |  |
-| `efficiency_ratio` |  |
+| `efficiency_ratio` | Performance per compensation dollar |
 | `performance_score` |  |
 | `total_compensation` |  |
 
@@ -321,15 +321,15 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ceo_compensation` |  |
-| `ceo_name` |  |
-| `company_name` |  |
-| `employees` |  |
-| `headquarters` |  |
-| `id` |  |
-| `industry` |  |
+| `ceo_compensation` | Total CEO compensation |
+| `ceo_name` | Name of the CEO |
+| `company_name` | Name of the company |
+| `employees` | Number of employees |
+| `headquarters` | Company headquarters location |
+| `id` | Unique identifier for the company |
+| `industry` | Industry sector |
 | `performance_metrics` |  |
-| `revenue` |  |
+| `revenue` | Annual revenue |
 
 Operations: List.
 
@@ -382,19 +382,19 @@ Create an instance: `company = client.Company()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | `float` |  |
-| `ceo_name` | `str` |  |
-| `company_name` | `str` |  |
-| `efficiency_rating` | `float` |  |
-| `employees` | `int` |  |
-| `headquarters` | `str` |  |
-| `id` | `str` |  |
-| `industry` | `str` |  |
+| `ceo_compensation` | `float` | Total CEO compensation |
+| `ceo_name` | `str` | Name of the CEO |
+| `company_name` | `str` | Name of the company |
+| `efficiency_rating` | `float` | Compensation efficiency rating |
+| `employees` | `int` | Number of employees |
+| `headquarters` | `str` | Company headquarters location |
+| `id` | `str` | Unique identifier for the company |
+| `industry` | `str` | Industry sector |
 | `performance_metrics` | `dict` |  |
-| `performance_score` | `float` |  |
-| `revenue` | `float` |  |
-| `revenue_growth` | `float` |  |
-| `stock_performance` | `float` |  |
+| `performance_score` | `float` | Overall performance score |
+| `revenue` | `float` | Annual revenue |
+| `revenue_growth` | `float` | Revenue growth percentage |
+| `stock_performance` | `float` | Stock performance percentage |
 
 #### Example: Load
 
@@ -425,7 +425,7 @@ Create an instance: `compensation_efficiency = client.CompensationEfficiency()`
 | --- | --- | --- |
 | `ceo_name` | `str` |  |
 | `company_name` | `str` |  |
-| `efficiency_ratio` | `float` |  |
+| `efficiency_ratio` | `float` | Performance per compensation dollar |
 | `performance_score` | `float` |  |
 | `total_compensation` | `float` |  |
 
@@ -498,15 +498,15 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ceo_compensation` | `float` |  |
-| `ceo_name` | `str` |  |
-| `company_name` | `str` |  |
-| `employees` | `int` |  |
-| `headquarters` | `str` |  |
-| `id` | `str` |  |
-| `industry` | `str` |  |
+| `ceo_compensation` | `float` | Total CEO compensation |
+| `ceo_name` | `str` | Name of the CEO |
+| `company_name` | `str` | Name of the company |
+| `employees` | `int` | Number of employees |
+| `headquarters` | `str` | Company headquarters location |
+| `id` | `str` | Unique identifier for the company |
+| `industry` | `str` | Industry sector |
 | `performance_metrics` | `dict` |  |
-| `revenue` | `float` |  |
+| `revenue` | `float` | Annual revenue |
 
 #### Example: List
 

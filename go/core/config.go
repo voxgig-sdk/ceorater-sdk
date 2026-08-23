@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Ceorater",
+			"slug": "ceorater",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -110,34 +113,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ceo_compensation",
+						"short": "Total CEO compensation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "ceo_name",
+						"short": "Name of the CEO",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "company_name",
+						"short": "Name of the company",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "efficiency_rating",
+						"short": "Compensation efficiency rating",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "employees",
+						"short": "Number of employees",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "headquarters",
+						"short": "Company headquarters location",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the company",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "industry",
+						"short": "Industry sector",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -146,18 +157,22 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "performance_score",
+						"short": "Overall performance score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "revenue",
+						"short": "Annual revenue",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "revenue_growth",
+						"short": "Revenue growth percentage",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "stock_performance",
+						"short": "Stock performance percentage",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -262,6 +277,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "efficiency_ratio",
+						"short": "Performance per compensation dollar",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -379,30 +395,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ceo_compensation",
+						"short": "Total CEO compensation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "ceo_name",
+						"short": "Name of the CEO",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "company_name",
+						"short": "Name of the company",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "employees",
+						"short": "Number of employees",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "headquarters",
+						"short": "Company headquarters location",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the company",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "industry",
+						"short": "Industry sector",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -411,6 +434,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "revenue",
+						"short": "Annual revenue",
 						"type": "`$NUMBER`",
 					},
 				},

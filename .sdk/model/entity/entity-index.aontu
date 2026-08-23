@@ -1,8 +1,0 @@
-# Entity Models
-
-@"ceo_performance.aontu"
-@"company.aontu"
-@"compensation_efficiency.aontu"
-@"general.aontu"
-@"get_root.aontu"
-@"search.aontu"

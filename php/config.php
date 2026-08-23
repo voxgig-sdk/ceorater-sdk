@@ -33,6 +33,9 @@ class CeoraterConfig
         return [
             "main" => [
                 "name" => "Ceorater",
+                "slug" => "ceorater",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -132,34 +135,42 @@ class CeoraterConfig
           'fields' => [
             [
               'name' => 'ceo_compensation',
+              'short' => 'Total CEO compensation',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'ceo_name',
+              'short' => 'Name of the CEO',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'company_name',
+              'short' => 'Name of the company',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'efficiency_rating',
+              'short' => 'Compensation efficiency rating',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'employees',
+              'short' => 'Number of employees',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'headquarters',
+              'short' => 'Company headquarters location',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique identifier for the company',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'industry',
+              'short' => 'Industry sector',
               'type' => '`$STRING`',
             ],
             [
@@ -168,18 +179,22 @@ class CeoraterConfig
             ],
             [
               'name' => 'performance_score',
+              'short' => 'Overall performance score',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'revenue',
+              'short' => 'Annual revenue',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'revenue_growth',
+              'short' => 'Revenue growth percentage',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'stock_performance',
+              'short' => 'Stock performance percentage',
               'type' => '`$NUMBER`',
             ],
           ],
@@ -284,6 +299,7 @@ class CeoraterConfig
             ],
             [
               'name' => 'efficiency_ratio',
+              'short' => 'Performance per compensation dollar',
               'type' => '`$NUMBER`',
             ],
             [
@@ -401,30 +417,37 @@ class CeoraterConfig
           'fields' => [
             [
               'name' => 'ceo_compensation',
+              'short' => 'Total CEO compensation',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'ceo_name',
+              'short' => 'Name of the CEO',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'company_name',
+              'short' => 'Name of the company',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'employees',
+              'short' => 'Number of employees',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'headquarters',
+              'short' => 'Company headquarters location',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique identifier for the company',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'industry',
+              'short' => 'Industry sector',
               'type' => '`$STRING`',
             ],
             [
@@ -433,6 +456,7 @@ class CeoraterConfig
             ],
             [
               'name' => 'revenue',
+              'short' => 'Annual revenue',
               'type' => '`$NUMBER`',
             ],
           ],
