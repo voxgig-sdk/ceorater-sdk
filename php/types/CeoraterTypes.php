@@ -25,11 +25,8 @@ class CeoPerformance
 /** Request payload for CeoPerformance#list. */
 class CeoPerformanceListMatch
 {
-    public ?string $ceo_name = null;
-    public ?string $company_name = null;
-    public ?float $compensation = null;
-    public ?float $performance_score = null;
-    public ?int $tenure_years = null;
+    public ?string $order = null;
+    public ?string $sort_by = null;
 }
 
 /** Company entity data model. */
@@ -59,19 +56,8 @@ class CompanyLoadMatch
 /** Request payload for Company#list. */
 class CompanyListMatch
 {
-    public ?float $ceo_compensation = null;
-    public ?string $ceo_name = null;
-    public ?string $company_name = null;
-    public ?float $efficiency_rating = null;
-    public ?int $employees = null;
-    public ?string $headquarters = null;
-    public ?string $id = null;
-    public ?string $industry = null;
-    public ?array $performance_metrics = null;
-    public ?float $performance_score = null;
-    public ?float $revenue = null;
-    public ?float $revenue_growth = null;
-    public ?float $stock_performance = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
 }
 
 /** CompensationEfficiency entity data model. */
@@ -139,14 +125,7 @@ class Search
 /** Request payload for Search#list. */
 class SearchListMatch
 {
-    public ?float $ceo_compensation = null;
-    public ?string $ceo_name = null;
-    public ?string $company_name = null;
-    public ?int $employees = null;
-    public ?string $headquarters = null;
-    public ?string $id = null;
-    public ?string $industry = null;
-    public ?array $performance_metrics = null;
-    public ?float $revenue = null;
+    public ?string $field = null;
+    public string $q;
 }
 

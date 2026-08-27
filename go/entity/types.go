@@ -23,11 +23,8 @@ type CeoPerformance struct {
 
 // CeoPerformanceListMatch is the typed request payload for CeoPerformance.ListTyped.
 type CeoPerformanceListMatch struct {
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	Compensation *float64 `json:"compensation,omitempty"`
-	PerformanceScore *float64 `json:"performance_score,omitempty"`
-	TenureYears *int `json:"tenure_years,omitempty"`
+	Order *string `json:"order,omitempty"`
+	SortBy *string `json:"sort_by,omitempty"`
 }
 
 // Company is the typed data model for the company entity.
@@ -54,19 +51,8 @@ type CompanyLoadMatch struct {
 
 // CompanyListMatch is the typed request payload for Company.ListTyped.
 type CompanyListMatch struct {
-	CeoCompensation *float64 `json:"ceo_compensation,omitempty"`
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	EfficiencyRating *float64 `json:"efficiency_rating,omitempty"`
-	Employees *int `json:"employees,omitempty"`
-	Headquarters *string `json:"headquarters,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Industry *string `json:"industry,omitempty"`
-	PerformanceMetrics *map[string]any `json:"performance_metrics,omitempty"`
-	PerformanceScore *float64 `json:"performance_score,omitempty"`
-	Revenue *float64 `json:"revenue,omitempty"`
-	RevenueGrowth *float64 `json:"revenue_growth,omitempty"`
-	StockPerformance *float64 `json:"stock_performance,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
 }
 
 // CompensationEfficiency is the typed data model for the compensation_efficiency entity.
@@ -126,15 +112,8 @@ type Search struct {
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
-	CeoCompensation *float64 `json:"ceo_compensation,omitempty"`
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	Employees *int `json:"employees,omitempty"`
-	Headquarters *string `json:"headquarters,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Industry *string `json:"industry,omitempty"`
-	PerformanceMetrics *map[string]any `json:"performance_metrics,omitempty"`
-	Revenue *float64 `json:"revenue,omitempty"`
+	Field *string `json:"field,omitempty"`
+	Q string `json:"q"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

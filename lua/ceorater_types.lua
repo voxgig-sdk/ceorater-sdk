@@ -14,11 +14,8 @@
 ---@field tenure_years? number
 
 ---@class CeoPerformanceListMatch
----@field ceo_name? string
----@field company_name? string
----@field compensation? number
----@field performance_score? number
----@field tenure_years? number
+---@field order? string
+---@field sort_by? string
 
 ---@class Company
 ---@field ceo_compensation? number
@@ -39,19 +36,8 @@
 ---@field id string
 
 ---@class CompanyListMatch
----@field ceo_compensation? number
----@field ceo_name? string
----@field company_name? string
----@field efficiency_rating? number
----@field employees? number
----@field headquarters? string
----@field id? string
----@field industry? string
----@field performance_metrics? table
----@field performance_score? number
----@field revenue? number
----@field revenue_growth? number
----@field stock_performance? number
+---@field limit? number
+---@field offset? number
 
 ---@class CompensationEfficiency
 ---@field ceo_name? string
@@ -95,15 +81,8 @@
 ---@field revenue? number
 
 ---@class SearchListMatch
----@field ceo_compensation? number
----@field ceo_name? string
----@field company_name? string
----@field employees? number
----@field headquarters? string
----@field id? string
----@field industry? string
----@field performance_metrics? table
----@field revenue? number
+---@field field? string
+---@field q string
 
 local M = {}
 

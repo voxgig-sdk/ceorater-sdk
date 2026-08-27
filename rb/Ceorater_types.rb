@@ -35,26 +35,14 @@ CeoPerformance = Struct.new(
 
 # Request payload for CeoPerformance#list.
 #
-# @!attribute [rw] ceo_name
+# @!attribute [rw] order
 #   @return [String, nil]
 #
-# @!attribute [rw] company_name
+# @!attribute [rw] sort_by
 #   @return [String, nil]
-#
-# @!attribute [rw] compensation
-#   @return [Float, nil]
-#
-# @!attribute [rw] performance_score
-#   @return [Float, nil]
-#
-# @!attribute [rw] tenure_years
-#   @return [Integer, nil]
 CeoPerformanceListMatch = Struct.new(
-  :ceo_name,
-  :company_name,
-  :compensation,
-  :performance_score,
-  :tenure_years,
+  :order,
+  :sort_by,
   keyword_init: true
 )
 
@@ -126,58 +114,14 @@ CompanyLoadMatch = Struct.new(
 
 # Request payload for Company#list.
 #
-# @!attribute [rw] ceo_compensation
-#   @return [Float, nil]
-#
-# @!attribute [rw] ceo_name
-#   @return [String, nil]
-#
-# @!attribute [rw] company_name
-#   @return [String, nil]
-#
-# @!attribute [rw] efficiency_rating
-#   @return [Float, nil]
-#
-# @!attribute [rw] employees
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] headquarters
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] industry
-#   @return [String, nil]
-#
-# @!attribute [rw] performance_metrics
-#   @return [Hash, nil]
-#
-# @!attribute [rw] performance_score
-#   @return [Float, nil]
-#
-# @!attribute [rw] revenue
-#   @return [Float, nil]
-#
-# @!attribute [rw] revenue_growth
-#   @return [Float, nil]
-#
-# @!attribute [rw] stock_performance
-#   @return [Float, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 CompanyListMatch = Struct.new(
-  :ceo_compensation,
-  :ceo_name,
-  :company_name,
-  :efficiency_rating,
-  :employees,
-  :headquarters,
-  :id,
-  :industry,
-  :performance_metrics,
-  :performance_score,
-  :revenue,
-  :revenue_growth,
-  :stock_performance,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -326,42 +270,14 @@ Search = Struct.new(
 
 # Request payload for Search#list.
 #
-# @!attribute [rw] ceo_compensation
-#   @return [Float, nil]
-#
-# @!attribute [rw] ceo_name
+# @!attribute [rw] field
 #   @return [String, nil]
 #
-# @!attribute [rw] company_name
-#   @return [String, nil]
-#
-# @!attribute [rw] employees
-#   @return [Integer, nil]
-#
-# @!attribute [rw] headquarters
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] industry
-#   @return [String, nil]
-#
-# @!attribute [rw] performance_metrics
-#   @return [Hash, nil]
-#
-# @!attribute [rw] revenue
-#   @return [Float, nil]
+# @!attribute [rw] q
+#   @return [String]
 SearchListMatch = Struct.new(
-  :ceo_compensation,
-  :ceo_name,
-  :company_name,
-  :employees,
-  :headquarters,
-  :id,
-  :industry,
-  :performance_metrics,
-  :revenue,
+  :field,
+  :q,
   keyword_init: true
 )
 

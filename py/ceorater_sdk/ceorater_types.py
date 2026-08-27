@@ -25,11 +25,8 @@ class CeoPerformance(TypedDict, total=False):
 
 
 class CeoPerformanceListMatch(TypedDict, total=False):
-    ceo_name: str
-    company_name: str
-    compensation: float
-    performance_score: float
-    tenure_years: int
+    order: str
+    sort_by: str
 
 
 class Company(TypedDict, total=False):
@@ -53,19 +50,8 @@ class CompanyLoadMatch(TypedDict):
 
 
 class CompanyListMatch(TypedDict, total=False):
-    ceo_compensation: float
-    ceo_name: str
-    company_name: str
-    efficiency_rating: float
-    employees: int
-    headquarters: str
-    id: str
-    industry: str
-    performance_metrics: dict
-    performance_score: float
-    revenue: float
-    revenue_growth: float
-    stock_performance: float
+    limit: int
+    offset: int
 
 
 class CompensationEfficiency(TypedDict, total=False):
@@ -116,13 +102,9 @@ class Search(TypedDict, total=False):
     revenue: float
 
 
-class SearchListMatch(TypedDict, total=False):
-    ceo_compensation: float
-    ceo_name: str
-    company_name: str
-    employees: int
-    headquarters: str
-    id: str
-    industry: str
-    performance_metrics: dict
-    revenue: float
+class SearchListMatchRequired(TypedDict):
+    q: str
+
+
+class SearchListMatch(SearchListMatchRequired, total=False):
+    field: str

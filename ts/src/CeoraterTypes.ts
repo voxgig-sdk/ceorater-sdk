@@ -14,11 +14,8 @@ export interface CeoPerformance {
 }
 
 export interface CeoPerformanceListMatch {
-  ceo_name?: string
-  company_name?: string
-  compensation?: number
-  performance_score?: number
-  tenure_years?: number
+  order?: string
+  sort_by?: string
 }
 
 export interface Company {
@@ -42,19 +39,8 @@ export interface CompanyLoadMatch {
 }
 
 export interface CompanyListMatch {
-  ceo_compensation?: number
-  ceo_name?: string
-  company_name?: string
-  efficiency_rating?: number
-  employees?: number
-  headquarters?: string
-  id?: string
-  industry?: string
-  performance_metrics?: Record<string, any>
-  performance_score?: number
-  revenue?: number
-  revenue_growth?: number
-  stock_performance?: number
+  limit?: number
+  offset?: number
 }
 
 export interface CompensationEfficiency {
@@ -106,14 +92,7 @@ export interface Search {
 }
 
 export interface SearchListMatch {
-  ceo_compensation?: number
-  ceo_name?: string
-  company_name?: string
-  employees?: number
-  headquarters?: string
-  id?: string
-  industry?: string
-  performance_metrics?: Record<string, any>
-  revenue?: number
+  field?: string
+  q: string
 }
 
