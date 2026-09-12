@@ -98,7 +98,7 @@ func TestCeoPerformanceEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		ceoPerformanceRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.ceo_performance", setup.data)))
+		ceoPerformanceRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.ceo_performance")))
 		var ceoPerformanceRef01Data map[string]any
 		if len(ceoPerformanceRef01DataRaw) > 0 {
 			ceoPerformanceRef01Data = core.ToMapAny(ceoPerformanceRef01DataRaw[0][1])
@@ -147,7 +147,7 @@ func ceo_performanceBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"ceo_performance01", "ceo_performance02", "ceo_performance03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -175,10 +175,22 @@ func ceo_performanceBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["CEORATER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewCeoraterSDK(core.ToMapAny(mergedOpts))
 	}

@@ -6,6 +6,7 @@ main: kit: entity: search: {
 
   fields: [
     {
+      format: "double"
       name: "ceo_compensation"
       req: false
       short: "Total CEO compensation"
@@ -53,6 +54,7 @@ main: kit: entity: search: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "revenue"
       req: false
       short: "Annual revenue"
@@ -91,8 +93,10 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/search"
-          parts: [
-            "search"
+          segments: [
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [

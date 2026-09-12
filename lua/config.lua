@@ -45,10 +45,12 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "compensation",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "performance_score",
             ["type"] = "`$NUMBER`",
           },
@@ -84,9 +86,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/metrics/ceo-performance",
-                ["parts"] = {
-                  "metrics",
-                  "ceo-performance",
+                ["segments"] = {
+                  {
+                    ["lit"] = "metrics",
+                  },
+                  {
+                    ["lit"] = "ceo-performance",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -97,6 +103,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "metrics",
+                  "ceo-performance",
                 },
               },
             },
@@ -109,6 +119,7 @@ local function make_config()
       ["company"] = {
         ["fields"] = {
           {
+            ["format"] = "double",
             ["name"] = "ceo_compensation",
             ["short"] = "Total CEO compensation",
             ["type"] = "`$NUMBER`",
@@ -124,6 +135,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "efficiency_rating",
             ["short"] = "Compensation efficiency rating",
             ["type"] = "`$NUMBER`",
@@ -153,25 +165,33 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "double",
             ["name"] = "performance_score",
             ["short"] = "Overall performance score",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "revenue",
             ["short"] = "Annual revenue",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "revenue_growth",
             ["short"] = "Revenue growth percentage",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "stock_performance",
             ["short"] = "Stock performance percentage",
             ["type"] = "`$NUMBER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "company",
         ["op"] = {
@@ -201,8 +221,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/companies",
-                ["parts"] = {
-                  "companies",
+                ["segments"] = {
+                  {
+                    ["lit"] = "companies",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -213,6 +235,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.companies`",
+                },
+                ["parts"] = {
+                  "companies",
                 },
               },
             },
@@ -236,13 +261,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/companies/{companyId}",
-                ["parts"] = {
-                  "companies",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["companyId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "companies",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -253,6 +282,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.performance_metrics`",
+                },
+                ["parts"] = {
+                  "companies",
+                  "{id}",
                 },
               },
             },
@@ -273,15 +306,18 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "efficiency_ratio",
             ["short"] = "Performance per compensation dollar",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "performance_score",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "total_compensation",
             ["type"] = "`$NUMBER`",
           },
@@ -297,14 +333,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/metrics/compensation-efficiency",
-                ["parts"] = {
-                  "metrics",
-                  "compensation-efficiency",
+                ["segments"] = {
+                  {
+                    ["lit"] = "metrics",
+                  },
+                  {
+                    ["lit"] = "compensation-efficiency",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "metrics",
+                  "compensation-efficiency",
                 },
               },
             },
@@ -321,6 +365,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "timestamp",
             ["type"] = "`$STRING`",
           },
@@ -336,13 +381,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/health",
-                ["parts"] = {
-                  "health",
+                ["segments"] = {
+                  {
+                    ["lit"] = "health",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "health",
                 },
               },
             },
@@ -355,6 +405,7 @@ local function make_config()
       ["get_root"] = {
         ["fields"] = {
           {
+            ["format"] = "uri",
             ["name"] = "documentation",
             ["type"] = "`$STRING`",
           },
@@ -374,12 +425,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
-                ["parts"] = {},
+                ["segments"] = {},
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {},
               },
             },
           },
@@ -391,6 +443,7 @@ local function make_config()
       ["search"] = {
         ["fields"] = {
           {
+            ["format"] = "double",
             ["name"] = "ceo_compensation",
             ["short"] = "Total CEO compensation",
             ["type"] = "`$NUMBER`",
@@ -430,10 +483,15 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "double",
             ["name"] = "revenue",
             ["short"] = "Annual revenue",
             ["type"] = "`$NUMBER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "search",
         ["op"] = {
@@ -462,8 +520,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search",
-                ["parts"] = {
-                  "search",
+                ["segments"] = {
+                  {
+                    ["lit"] = "search",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -474,6 +534,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.results`",
+                },
+                ["parts"] = {
+                  "search",
                 },
               },
             },

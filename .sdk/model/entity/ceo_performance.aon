@@ -16,11 +16,13 @@ main: kit: entity: ceo_performance: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "compensation"
       req: false
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "performance_score"
       req: false
       type: "`$NUMBER`"
@@ -59,9 +61,13 @@ main: kit: entity: ceo_performance: {
           }
           method: "GET"
           orig: "/metrics/ceo-performance"
-          parts: [
-            "metrics"
-            "ceo-performance"
+          segments: [
+            {
+              lit: "metrics"
+            }
+            {
+              lit: "ceo-performance"
+            }
           ]
           select: {
             exist: [

@@ -16,17 +16,20 @@ main: kit: entity: compensation_efficiency: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "efficiency_ratio"
       req: false
       short: "Performance per compensation dollar"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "performance_score"
       req: false
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "total_compensation"
       req: false
       type: "`$NUMBER`"
@@ -41,9 +44,13 @@ main: kit: entity: compensation_efficiency: {
         {
           method: "GET"
           orig: "/metrics/compensation-efficiency"
-          parts: [
-            "metrics"
-            "compensation-efficiency"
+          segments: [
+            {
+              lit: "metrics"
+            }
+            {
+              lit: "compensation-efficiency"
+            }
           ]
           transform: {
             req: "`reqdata`"

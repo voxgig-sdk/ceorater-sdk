@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -90,10 +101,12 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "compensation",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "performance_score",
           "type": "`$NUMBER`"
         },
@@ -129,9 +142,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/metrics/ceo-performance",
-              "parts": [
-                "metrics",
-                "ceo-performance"
+              "segments": [
+                {
+                  "lit": "metrics"
+                },
+                {
+                  "lit": "ceo-performance"
+                }
               ],
               "select": {
                 "exist": [
@@ -142,7 +159,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "metrics",
+                "ceo-performance"
+              ]
             }
           ]
         }
@@ -154,6 +175,7 @@ class Config {
     "company": {
       "fields": [
         {
+          "format": "double",
           "name": "ceo_compensation",
           "short": "Total CEO compensation",
           "type": "`$NUMBER`"
@@ -169,6 +191,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "efficiency_rating",
           "short": "Compensation efficiency rating",
           "type": "`$NUMBER`"
@@ -198,26 +221,34 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "double",
           "name": "performance_score",
           "short": "Overall performance score",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "revenue",
           "short": "Annual revenue",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "revenue_growth",
           "short": "Revenue growth percentage",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "stock_performance",
           "short": "Stock performance percentage",
           "type": "`$NUMBER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "company",
       "op": {
         "list": {
@@ -246,8 +277,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/companies",
-              "parts": [
-                "companies"
+              "segments": [
+                {
+                  "lit": "companies"
+                }
               ],
               "select": {
                 "exist": [
@@ -258,7 +291,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.companies`"
-              }
+              },
+              "parts": [
+                "companies"
+              ]
             }
           ]
         },
@@ -281,15 +317,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/companies/{companyId}",
-              "parts": [
-                "companies",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "companyId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "companies"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -298,7 +338,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.performance_metrics`"
-              }
+              },
+              "parts": [
+                "companies",
+                "{id}"
+              ]
             }
           ]
         }
@@ -318,15 +362,18 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "efficiency_ratio",
           "short": "Performance per compensation dollar",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "performance_score",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "total_compensation",
           "type": "`$NUMBER`"
         }
@@ -342,15 +389,23 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/metrics/compensation-efficiency",
-              "parts": [
-                "metrics",
-                "compensation-efficiency"
+              "segments": [
+                {
+                  "lit": "metrics"
+                },
+                {
+                  "lit": "compensation-efficiency"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "metrics",
+                "compensation-efficiency"
+              ]
             }
           ]
         }
@@ -366,6 +421,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "type": "`$STRING`"
         }
@@ -381,14 +437,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/health",
-              "parts": [
-                "health"
+              "segments": [
+                {
+                  "lit": "health"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "health"
+              ]
             }
           ]
         }
@@ -400,6 +461,7 @@ class Config {
     "get_root": {
       "fields": [
         {
+          "format": "uri",
           "name": "documentation",
           "type": "`$STRING`"
         },
@@ -419,12 +481,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/",
-              "parts": [],
+              "segments": [],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": []
             }
           ]
         }
@@ -436,6 +499,7 @@ class Config {
     "search": {
       "fields": [
         {
+          "format": "double",
           "name": "ceo_compensation",
           "short": "Total CEO compensation",
           "type": "`$NUMBER`"
@@ -475,11 +539,16 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "double",
           "name": "revenue",
           "short": "Annual revenue",
           "type": "`$NUMBER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "search",
       "op": {
         "list": {
@@ -507,8 +576,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/search",
-              "parts": [
-                "search"
+              "segments": [
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "exist": [
@@ -519,7 +590,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.results`"
-              }
+              },
+              "parts": [
+                "search"
+              ]
             }
           ]
         }
@@ -535,6 +609,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

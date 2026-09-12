@@ -49,10 +49,12 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "compensation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "performance_score",
 						"type": "`$NUMBER`",
 					},
@@ -88,9 +90,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/metrics/ceo-performance",
-								"parts": []any{
-									"metrics",
-									"ceo-performance",
+								"segments": []any{
+									map[string]any{
+										"lit": "metrics",
+									},
+									map[string]any{
+										"lit": "ceo-performance",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -101,6 +107,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"metrics",
+									"ceo-performance",
 								},
 							},
 						},
@@ -113,6 +123,7 @@ func MakeConfig() map[string]any {
 			"company": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "ceo_compensation",
 						"short": "Total CEO compensation",
 						"type": "`$NUMBER`",
@@ -128,6 +139,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "efficiency_rating",
 						"short": "Compensation efficiency rating",
 						"type": "`$NUMBER`",
@@ -157,25 +169,33 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "performance_score",
 						"short": "Overall performance score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "revenue",
 						"short": "Annual revenue",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "revenue_growth",
 						"short": "Revenue growth percentage",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "stock_performance",
 						"short": "Stock performance percentage",
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "company",
 				"op": map[string]any{
@@ -205,8 +225,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/companies",
-								"parts": []any{
-									"companies",
+								"segments": []any{
+									map[string]any{
+										"lit": "companies",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -217,6 +239,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.companies`",
+								},
+								"parts": []any{
+									"companies",
 								},
 							},
 						},
@@ -240,13 +265,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/companies/{companyId}",
-								"parts": []any{
-									"companies",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"companyId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "companies",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -257,6 +286,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.performance_metrics`",
+								},
+								"parts": []any{
+									"companies",
+									"{id}",
 								},
 							},
 						},
@@ -277,15 +310,18 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "efficiency_ratio",
 						"short": "Performance per compensation dollar",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "performance_score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "total_compensation",
 						"type": "`$NUMBER`",
 					},
@@ -301,14 +337,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/metrics/compensation-efficiency",
-								"parts": []any{
-									"metrics",
-									"compensation-efficiency",
+								"segments": []any{
+									map[string]any{
+										"lit": "metrics",
+									},
+									map[string]any{
+										"lit": "compensation-efficiency",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"metrics",
+									"compensation-efficiency",
 								},
 							},
 						},
@@ -325,6 +369,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"type": "`$STRING`",
 					},
@@ -340,13 +385,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/health",
-								"parts": []any{
-									"health",
+								"segments": []any{
+									map[string]any{
+										"lit": "health",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"health",
 								},
 							},
 						},
@@ -359,6 +409,7 @@ func MakeConfig() map[string]any {
 			"get_root": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "uri",
 						"name": "documentation",
 						"type": "`$STRING`",
 					},
@@ -378,12 +429,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/",
-								"parts": []any{},
+								"segments": []any{},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{},
 							},
 						},
 					},
@@ -395,6 +447,7 @@ func MakeConfig() map[string]any {
 			"search": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "ceo_compensation",
 						"short": "Total CEO compensation",
 						"type": "`$NUMBER`",
@@ -434,10 +487,15 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "revenue",
 						"short": "Annual revenue",
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "search",
 				"op": map[string]any{
@@ -466,8 +524,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
-								"parts": []any{
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -479,6 +539,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.results`",
 								},
+								"parts": []any{
+									"search",
+								},
 							},
 						},
 					},
@@ -489,6 +552,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

@@ -6,6 +6,7 @@ main: kit: entity: company: {
 
   fields: [
     {
+      format: "double"
       name: "ceo_compensation"
       req: false
       short: "Total CEO compensation"
@@ -24,6 +25,7 @@ main: kit: entity: company: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "efficiency_rating"
       req: false
       short: "Compensation efficiency rating"
@@ -59,24 +61,28 @@ main: kit: entity: company: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "performance_score"
       req: false
       short: "Overall performance score"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "revenue"
       req: false
       short: "Annual revenue"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "revenue_growth"
       req: false
       short: "Revenue growth percentage"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "stock_performance"
       req: false
       short: "Stock performance percentage"
@@ -117,8 +123,10 @@ main: kit: entity: company: {
           }
           method: "GET"
           orig: "/companies"
-          parts: [
-            "companies"
+          segments: [
+            {
+              lit: "companies"
+            }
           ]
           select: {
             exist: [
@@ -150,15 +158,19 @@ main: kit: entity: company: {
           }
           method: "GET"
           orig: "/companies/{companyId}"
-          parts: [
-            "companies"
-            "{id}"
-          ]
           rename: {
             param: {
               companyId: "id"
             }
           }
+          segments: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

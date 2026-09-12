@@ -46,12 +46,14 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "compensation",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
+              "format": "double",
               "name": "performance_score",
               "req": false,
               "type": "`$NUMBER`"
@@ -95,9 +97,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/metrics/ceo-performance",
-                  "parts": [
-                    "metrics",
-                    "ceo-performance"
+                  "segments": [
+                    {
+                      "lit": "metrics"
+                    },
+                    {
+                      "lit": "ceo-performance"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -125,6 +131,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "ceo_compensation",
               "req": false,
               "short": "Total CEO compensation",
@@ -146,6 +153,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "efficiency_rating",
               "req": false,
               "short": "Compensation efficiency rating",
@@ -187,6 +195,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "performance_score",
               "req": false,
               "short": "Overall performance score",
@@ -194,6 +203,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "revenue",
               "req": false,
               "short": "Annual revenue",
@@ -201,6 +211,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "revenue_growth",
               "req": false,
               "short": "Revenue growth percentage",
@@ -208,6 +219,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "stock_performance",
               "req": false,
               "short": "Stock performance percentage",
@@ -251,8 +263,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/companies",
-                  "parts": [
-                    "companies"
+                  "segments": [
+                    {
+                      "lit": "companies"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -288,15 +302,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/companies/{companyId}",
-                  "parts": [
-                    "companies",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "companyId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "companies"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -334,6 +352,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "efficiency_ratio",
               "req": false,
               "short": "Performance per compensation dollar",
@@ -341,12 +360,14 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "performance_score",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
+              "format": "double",
               "name": "total_compensation",
               "req": false,
               "type": "`$NUMBER`"
@@ -364,9 +385,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/metrics/compensation-efficiency",
-                  "parts": [
-                    "metrics",
-                    "compensation-efficiency"
+                  "segments": [
+                    {
+                      "lit": "metrics"
+                    },
+                    {
+                      "lit": "compensation-efficiency"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -395,6 +420,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "timestamp",
               "req": false,
               "type": "`$STRING`"
@@ -412,8 +438,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/health",
-                  "parts": [
-                    "health"
+                  "segments": [
+                    {
+                      "lit": "health"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -436,6 +464,7 @@
           "fields": [
             {
               "active": true,
+              "format": "uri",
               "name": "documentation",
               "req": false,
               "type": "`$STRING`"
@@ -459,7 +488,7 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/",
-                  "parts": [],
+                  "segments": [],
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
@@ -481,6 +510,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "ceo_compensation",
               "req": false,
               "short": "Total CEO compensation",
@@ -536,6 +566,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "revenue",
               "req": false,
               "short": "Annual revenue",
@@ -577,8 +608,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/search",
-                  "parts": [
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -663,8 +696,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -942,6 +978,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -967,6 +1006,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1018,6 +1061,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1042,6 +1086,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1093,6 +1138,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1117,6 +1163,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1157,6 +1204,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1182,6 +1232,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1216,6 +1269,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1241,6 +1297,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1281,6 +1340,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1306,6 +1368,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1351,6 +1416,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1376,6 +1444,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1393,11 +1464,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1426,6 +1492,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1450,6 +1519,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

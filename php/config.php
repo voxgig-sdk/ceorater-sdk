@@ -71,10 +71,12 @@ class CeoraterConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'compensation',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'performance_score',
               'type' => '`$NUMBER`',
             ],
@@ -110,9 +112,13 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/metrics/ceo-performance',
-                  'parts' => [
-                    'metrics',
-                    'ceo-performance',
+                  'segments' => [
+                    [
+                      'lit' => 'metrics',
+                    ],
+                    [
+                      'lit' => 'ceo-performance',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -123,6 +129,10 @@ class CeoraterConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'metrics',
+                    'ceo-performance',
                   ],
                 ],
               ],
@@ -135,6 +145,7 @@ class CeoraterConfig
         'company' => [
           'fields' => [
             [
+              'format' => 'double',
               'name' => 'ceo_compensation',
               'short' => 'Total CEO compensation',
               'type' => '`$NUMBER`',
@@ -150,6 +161,7 @@ class CeoraterConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'efficiency_rating',
               'short' => 'Compensation efficiency rating',
               'type' => '`$NUMBER`',
@@ -179,25 +191,33 @@ class CeoraterConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'double',
               'name' => 'performance_score',
               'short' => 'Overall performance score',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'revenue',
               'short' => 'Annual revenue',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'revenue_growth',
               'short' => 'Revenue growth percentage',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'stock_performance',
               'short' => 'Stock performance percentage',
               'type' => '`$NUMBER`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'company',
           'op' => [
@@ -227,8 +247,10 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/companies',
-                  'parts' => [
-                    'companies',
+                  'segments' => [
+                    [
+                      'lit' => 'companies',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -239,6 +261,9 @@ class CeoraterConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.companies`',
+                  ],
+                  'parts' => [
+                    'companies',
                   ],
                 ],
               ],
@@ -262,13 +287,17 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/companies/{companyId}',
-                  'parts' => [
-                    'companies',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'companyId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'companies',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -279,6 +308,10 @@ class CeoraterConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.performance_metrics`',
+                  ],
+                  'parts' => [
+                    'companies',
+                    '{id}',
                   ],
                 ],
               ],
@@ -299,15 +332,18 @@ class CeoraterConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'efficiency_ratio',
               'short' => 'Performance per compensation dollar',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'performance_score',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'total_compensation',
               'type' => '`$NUMBER`',
             ],
@@ -323,14 +359,22 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/metrics/compensation-efficiency',
-                  'parts' => [
-                    'metrics',
-                    'compensation-efficiency',
+                  'segments' => [
+                    [
+                      'lit' => 'metrics',
+                    ],
+                    [
+                      'lit' => 'compensation-efficiency',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'metrics',
+                    'compensation-efficiency',
                   ],
                 ],
               ],
@@ -347,6 +391,7 @@ class CeoraterConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'type' => '`$STRING`',
             ],
@@ -362,13 +407,18 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/health',
-                  'parts' => [
-                    'health',
+                  'segments' => [
+                    [
+                      'lit' => 'health',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'health',
                   ],
                 ],
               ],
@@ -381,6 +431,7 @@ class CeoraterConfig
         'get_root' => [
           'fields' => [
             [
+              'format' => 'uri',
               'name' => 'documentation',
               'type' => '`$STRING`',
             ],
@@ -400,12 +451,13 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],
@@ -417,6 +469,7 @@ class CeoraterConfig
         'search' => [
           'fields' => [
             [
+              'format' => 'double',
               'name' => 'ceo_compensation',
               'short' => 'Total CEO compensation',
               'type' => '`$NUMBER`',
@@ -456,10 +509,15 @@ class CeoraterConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'double',
               'name' => 'revenue',
               'short' => 'Annual revenue',
               'type' => '`$NUMBER`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'search',
           'op' => [
@@ -488,8 +546,10 @@ class CeoraterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
-                  'parts' => [
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -500,6 +560,9 @@ class CeoraterConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
+                  ],
+                  'parts' => [
+                    'search',
                   ],
                 ],
               ],
