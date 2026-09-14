@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CeoraterSDK } from '@voxgig-sdk/ceorater'
+import { CeoraterSDK } from '@voxgig-sdk/ceorater-sdk'
 
 const client = new CeoraterSDK()
 ```
@@ -642,7 +642,7 @@ ceorater/
 Import the SDK from the package root:
 
 ```ts
-import { CeoraterSDK } from '@voxgig-sdk/ceorater'
+import { CeoraterSDK } from '@voxgig-sdk/ceorater-sdk'
 ```
 
 ### Entity state

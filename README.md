@@ -105,7 +105,7 @@ local result, err = client:General():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ceorater-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
 | Python | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
 | PHP | `voxgig-sdk/ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ceorater-sdk/go` | `go get github.com/voxgig-sdk/ceorater-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:General():load()
 ### TypeScript
 
 ```ts
-import { CeoraterSDK } from '@voxgig-sdk/ceorater'
+import { CeoraterSDK } from '@voxgig-sdk/ceorater-sdk'
 
 const client = new CeoraterSDK()
 
