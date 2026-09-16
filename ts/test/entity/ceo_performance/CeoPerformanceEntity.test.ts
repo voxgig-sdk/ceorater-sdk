@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { CeoraterSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('CeoPerformanceEntity', async () => {
 
     const live = 'TRUE' === process.env.CEORATER_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'ceo_performance.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'ceo_performance.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set CEORATER_TEST_CEO_PERFORMANCE_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"ceo_name","req":false,"type":"`$STRING`","index$":0},{"active":true,"name":"company_name","req":false,"type":"`$STRING`","index$":1},{"active":true,"format":"double","name":"compensation","req":false,"type":"`$NUMBER`","index$":2},{"active":true,"format":"double","name":"performance_score","req":false,"type":"`$NUMBER`","index$":3},{"active":true,"name":"tenure_years","req":false,"type":"`$INTEGER`","index$":4}],"name":"ceo_performance","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":"desc","kind":"query","name":"order","orig":"order","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"sort_by","orig":"sort_by","reqd":false,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /metrics/ceo-performance","json":"{\"operationId\":\"getCEOPerformanceMetrics\",\"parameters\":[{\"description\":\"Field to sort results by\",\"in\":\"query\",\"name\":\"sort_by\",\"required\":false,\"schema\":{\"enum\":[\"performance_score\",\"compensation\",\"efficiency\"],\"type\":\"string\"}},{\"description\":\"Sort order\",\"in\":\"query\",\"name\":\"order\",\"required\":false,\"schema\":{\"default\":\"desc\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"ceo_name\":{\"type\":\"string\"},\"company_name\":{\"type\":\"string\"},\"compensation\":{\"format\":\"double\",\"type\":\"number\"},\"performance_score\":{\"format\":\"double\",\"type\":\"number\"},\"tenure_years\":{\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with CEO performance metrics\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/metrics/ceo-performance","segments":[{"lit":"metrics"},{"lit":"ceo-performance"}],"select":{"exist":["order","sort_by"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"ceo_performance","name__orig":"ceo_performance","Name":"CeoPerformance","name_":"ceo_performance","name-":"ceo-performance","NAME":"CEO_PERFORMANCE","index$":0}, {"active":true,"entity":"ceo_performance","key$":"BasicCeoPerformanceFlow","kind":"basic","name":"BasicCeoPerformanceFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"ceo_performance_ref01"}}],"index$":0}]}, 'CeoPerformance')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['CEORATER_TEST_CEO_PERFORMANCE_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'CEORATER_TEST_CEO_PERFORMANCE_ENTID': idmap,
     'CEORATER_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.CEORATER_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['CEORATER_TEST_CEO_PERFORMANCE_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new CeoraterSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.CEORATER_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

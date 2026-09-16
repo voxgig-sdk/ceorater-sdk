@@ -25,5 +25,39 @@
         "message": "s51"
       }
     }
+  },
+  "requests": {
+    "GET /": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRoot",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "documentation": {
+                      "example": "https://ceorater-api.onrender.com/docs",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "message": {
+                      "example": "CEORater API",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with API information"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

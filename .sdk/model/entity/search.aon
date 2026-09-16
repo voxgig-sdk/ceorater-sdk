@@ -91,6 +91,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /search"
+            json: "{\"operationId\":\"searchCompanies\",\"parameters\":[{\"description\":\"Search query string\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Field to search in (e.g., company_name, ceo_name)\",\"in\":\"query\",\"name\":\"field\",\"required\":false,\"schema\":{\"enum\":[\"company_name\",\"ceo_name\",\"all\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"results\":{\"items\":{\"properties\":{\"ceo_compensation\":{\"description\":\"Total CEO compensation\",\"format\":\"double\",\"type\":\"number\"},\"ceo_name\":{\"description\":\"Name of the CEO\",\"type\":\"string\"},\"company_name\":{\"description\":\"Name of the company\",\"type\":\"string\"},\"employees\":{\"description\":\"Number of employees\",\"type\":\"integer\"},\"headquarters\":{\"description\":\"Company headquarters location\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the company\",\"type\":\"string\"},\"industry\":{\"description\":\"Industry sector\",\"type\":\"string\"},\"performance_metrics\":{\"properties\":{\"efficiency_rating\":{\"description\":\"Compensation efficiency rating\",\"format\":\"double\",\"type\":\"number\"},\"performance_score\":{\"description\":\"Overall performance score\",\"format\":\"double\",\"type\":\"number\"},\"revenue_growth\":{\"description\":\"Revenue growth percentage\",\"format\":\"double\",\"type\":\"number\"},\"stock_performance\":{\"description\":\"Stock performance percentage\",\"format\":\"double\",\"type\":\"number\"}},\"type\":\"object\"},\"revenue\":{\"description\":\"Annual revenue\",\"format\":\"double\",\"type\":\"number\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful search response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid search parameters\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/search"
           segments: [

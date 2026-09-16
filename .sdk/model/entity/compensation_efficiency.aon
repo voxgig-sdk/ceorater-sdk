@@ -42,6 +42,12 @@ main: kit: entity: compensation_efficiency: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /metrics/compensation-efficiency"
+            json: "{\"operationId\":\"getCompensationEfficiency\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"ceo_name\":{\"type\":\"string\"},\"company_name\":{\"type\":\"string\"},\"efficiency_ratio\":{\"description\":\"Performance per compensation dollar\",\"format\":\"double\",\"type\":\"number\"},\"performance_score\":{\"format\":\"double\",\"type\":\"number\"},\"total_compensation\":{\"format\":\"double\",\"type\":\"number\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with compensation efficiency data\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/metrics/compensation-efficiency"
           segments: [

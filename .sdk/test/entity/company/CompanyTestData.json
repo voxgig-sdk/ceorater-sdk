@@ -6,7 +6,7 @@
         "ceo_name": "s83",
         "company_name": "s84",
         "efficiency_rating": 133,
-        "employees": "s86",
+        "employees": 134,
         "headquarters": "s87",
         "id": "COMPANY00",
         "industry": "s89",
@@ -21,7 +21,7 @@
         "ceo_name": "s105",
         "company_name": "s106",
         "efficiency_rating": 263,
-        "employees": "s108",
+        "employees": 264,
         "headquarters": "s109",
         "id": "COMPANY01",
         "industry": "s10b",
@@ -36,7 +36,7 @@
         "ceo_name": "s187",
         "company_name": "s188",
         "efficiency_rating": 393,
-        "employees": "s18a",
+        "employees": 394,
         "headquarters": "s18b",
         "id": "COMPANY02",
         "industry": "s18d",
@@ -55,7 +55,7 @@
         "ceo_name": "s209",
         "company_name": "s20a",
         "efficiency_rating": 523,
-        "employees": "s20c",
+        "employees": 524,
         "headquarters": "s20d",
         "industry": "s20f",
         "performance_metrics": {},
@@ -63,6 +63,248 @@
         "revenue": 530,
         "revenue_growth": 531,
         "stock_performance": 532
+      }
+    }
+  },
+  "requests": {
+    "GET /companies": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCompanies",
+        "parameters": [
+          {
+            "description": "Maximum number of companies to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of companies to skip for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "companies": {
+                      "items": {
+                        "properties": {
+                          "ceo_compensation": {
+                            "description": "Total CEO compensation",
+                            "format": "double",
+                            "type": "number"
+                          },
+                          "ceo_name": {
+                            "description": "Name of the CEO",
+                            "type": "string"
+                          },
+                          "company_name": {
+                            "description": "Name of the company",
+                            "type": "string"
+                          },
+                          "employees": {
+                            "description": "Number of employees",
+                            "type": "integer"
+                          },
+                          "headquarters": {
+                            "description": "Company headquarters location",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the company",
+                            "type": "string"
+                          },
+                          "industry": {
+                            "description": "Industry sector",
+                            "type": "string"
+                          },
+                          "performance_metrics": {
+                            "properties": {
+                              "efficiency_rating": {
+                                "description": "Compensation efficiency rating",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "performance_score": {
+                                "description": "Overall performance score",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "revenue_growth": {
+                                "description": "Revenue growth percentage",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "stock_performance": {
+                                "description": "Stock performance percentage",
+                                "format": "double",
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "revenue": {
+                            "description": "Annual revenue",
+                            "format": "double",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "total": {
+                      "description": "Total number of companies available",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of companies"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /companies/{companyId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCompanyById",
+        "parameters": [
+          {
+            "description": "Unique identifier of the company",
+            "in": "path",
+            "name": "companyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "ceo_compensation": {
+                      "description": "Total CEO compensation",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "ceo_name": {
+                      "description": "Name of the CEO",
+                      "type": "string"
+                    },
+                    "company_name": {
+                      "description": "Name of the company",
+                      "type": "string"
+                    },
+                    "employees": {
+                      "description": "Number of employees",
+                      "type": "integer"
+                    },
+                    "headquarters": {
+                      "description": "Company headquarters location",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the company",
+                      "type": "string"
+                    },
+                    "industry": {
+                      "description": "Industry sector",
+                      "type": "string"
+                    },
+                    "performance_metrics": {
+                      "properties": {
+                        "efficiency_rating": {
+                          "description": "Compensation efficiency rating",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "performance_score": {
+                          "description": "Overall performance score",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "revenue_growth": {
+                          "description": "Revenue growth percentage",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "stock_performance": {
+                          "description": "Stock performance percentage",
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "revenue": {
+                      "description": "Annual revenue",
+                      "format": "double",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with company details"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Company not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

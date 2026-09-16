@@ -59,6 +59,12 @@ main: kit: entity: ceo_performance: {
               }
             ]
           }
+          contract: {
+            id: "GET /metrics/ceo-performance"
+            json: "{\"operationId\":\"getCEOPerformanceMetrics\",\"parameters\":[{\"description\":\"Field to sort results by\",\"in\":\"query\",\"name\":\"sort_by\",\"required\":false,\"schema\":{\"enum\":[\"performance_score\",\"compensation\",\"efficiency\"],\"type\":\"string\"}},{\"description\":\"Sort order\",\"in\":\"query\",\"name\":\"order\",\"required\":false,\"schema\":{\"default\":\"desc\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"ceo_name\":{\"type\":\"string\"},\"company_name\":{\"type\":\"string\"},\"compensation\":{\"format\":\"double\",\"type\":\"number\"},\"performance_score\":{\"format\":\"double\",\"type\":\"number\"},\"tenure_years\":{\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with CEO performance metrics\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/metrics/ceo-performance"
           segments: [

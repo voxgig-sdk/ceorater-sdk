@@ -6,21 +6,21 @@
         "company_name": "s33",
         "compensation": 52,
         "performance_score": 53,
-        "tenure_years": "s36"
+        "tenure_years": 54
       },
       "CEO_PERFORMANCE01": {
         "ceo_name": "s64",
         "company_name": "s65",
         "compensation": 102,
         "performance_score": 103,
-        "tenure_years": "s68"
+        "tenure_years": 104
       },
       "CEO_PERFORMANCE02": {
         "ceo_name": "s96",
         "company_name": "s97",
         "compensation": 152,
         "performance_score": 153,
-        "tenure_years": "s9a"
+        "tenure_years": 154
       }
     }
   },
@@ -31,7 +31,81 @@
         "company_name": "sc9",
         "compensation": 202,
         "performance_score": 203,
-        "tenure_years": "scc"
+        "tenure_years": 204
+      }
+    }
+  },
+  "requests": {
+    "GET /metrics/ceo-performance": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCEOPerformanceMetrics",
+        "parameters": [
+          {
+            "description": "Field to sort results by",
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "schema": {
+              "enum": [
+                "performance_score",
+                "compensation",
+                "efficiency"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort order",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "ceo_name": {
+                        "type": "string"
+                      },
+                      "company_name": {
+                        "type": "string"
+                      },
+                      "compensation": {
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "performance_score": {
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "tenure_years": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response with CEO performance metrics"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

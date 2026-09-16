@@ -5,7 +5,7 @@
         "ceo_compensation": 90,
         "ceo_name": "s5b",
         "company_name": "s5c",
-        "employees": "s5d",
+        "employees": 93,
         "headquarters": "s5e",
         "id": "SEARCH00",
         "industry": "s60",
@@ -16,7 +16,7 @@
         "ceo_compensation": 180,
         "ceo_name": "sb5",
         "company_name": "sb6",
-        "employees": "sb7",
+        "employees": 183,
         "headquarters": "sb8",
         "id": "SEARCH01",
         "industry": "sba",
@@ -27,7 +27,7 @@
         "ceo_compensation": 270,
         "ceo_name": "s10f",
         "company_name": "s110",
-        "employees": "s111",
+        "employees": 273,
         "headquarters": "s112",
         "id": "SEARCH02",
         "industry": "s114",
@@ -42,11 +42,154 @@
         "ceo_compensation": 360,
         "ceo_name": "s169",
         "company_name": "s16a",
-        "employees": "s16b",
+        "employees": 363,
         "headquarters": "s16c",
         "industry": "s16e",
         "performance_metrics": {},
         "revenue": 368
+      }
+    }
+  },
+  "requests": {
+    "GET /search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchCompanies",
+        "parameters": [
+          {
+            "description": "Search query string",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Field to search in (e.g., company_name, ceo_name)",
+            "in": "query",
+            "name": "field",
+            "required": false,
+            "schema": {
+              "enum": [
+                "company_name",
+                "ceo_name",
+                "all"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "ceo_compensation": {
+                            "description": "Total CEO compensation",
+                            "format": "double",
+                            "type": "number"
+                          },
+                          "ceo_name": {
+                            "description": "Name of the CEO",
+                            "type": "string"
+                          },
+                          "company_name": {
+                            "description": "Name of the company",
+                            "type": "string"
+                          },
+                          "employees": {
+                            "description": "Number of employees",
+                            "type": "integer"
+                          },
+                          "headquarters": {
+                            "description": "Company headquarters location",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the company",
+                            "type": "string"
+                          },
+                          "industry": {
+                            "description": "Industry sector",
+                            "type": "string"
+                          },
+                          "performance_metrics": {
+                            "properties": {
+                              "efficiency_rating": {
+                                "description": "Compensation efficiency rating",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "performance_score": {
+                                "description": "Overall performance score",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "revenue_growth": {
+                                "description": "Revenue growth percentage",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "stock_performance": {
+                                "description": "Stock performance percentage",
+                                "format": "double",
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "revenue": {
+                            "description": "Annual revenue",
+                            "format": "double",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful search response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid search parameters"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
