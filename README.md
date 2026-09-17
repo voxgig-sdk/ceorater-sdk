@@ -105,12 +105,12 @@ local result, err = client:General():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ceorater-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
-| Python | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
-| PHP | `voxgig-sdk/ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ceorater-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/tags) |
+| Python | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/tags) |
+| PHP | `voxgig-sdk/ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ceorater-sdk/go` | `go get github.com/voxgig-sdk/ceorater-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
-| Lua | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/releases) |
+| Ruby | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/tags) |
+| Lua | `voxgig-sdk-ceorater` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ceorater-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ceorater-sdk/go-cli` | `go install github.com/voxgig-sdk/ceorater-sdk/go-cli/cmd/ceorater@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ceorater-sdk/go-mcp` | `go get github.com/voxgig-sdk/ceorater-sdk/go-mcp@latest` |
 

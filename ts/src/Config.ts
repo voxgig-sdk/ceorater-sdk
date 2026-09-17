@@ -127,24 +127,24 @@ class Config {
 
     entity: {
       
-      ceo_performance: {
-      },
-
-      company: {
-      },
-
-      compensation_efficiency: {
-      },
-
-      general: {
-      },
-
-      get_root: {
-      },
-
-      search: {
-      },
-
+        ceo_performance: {
+        },
+  
+        company: {
+        },
+  
+        compensation_efficiency: {
+        },
+  
+        general: {
+        },
+  
+        get_root: {
+        },
+  
+        search: {
+        },
+  
     }
   }
 
