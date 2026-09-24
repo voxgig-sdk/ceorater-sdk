@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -119,24 +112,29 @@ class Config {
             "fields": [
                 {
                     "name": "ceo_name",
+                    "title": "Ceo Name",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "company_name",
+                    "title": "Company Name",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "double",
                     "name": "compensation",
-                    "type": "`$NUMBER`"
+                    "title": "Compensation",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "performance_score",
-                    "type": "`$NUMBER`"
+                    "title": "Performance Score",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 },
                 {
                     "name": "tenure_years",
+                    "title": "Tenure Years",
                     "type": "`$INTEGER`"
                 }
             ],
@@ -147,23 +145,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "desc",
-                                        "kind": "query",
-                                        "name": "order",
-                                        "orig": "order",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort_by",
-                                        "orig": "sort_by",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/metrics/ceo-performance",
@@ -175,20 +156,38 @@ class Config {
                                     "lit": "ceo-performance"
                                 }
                             ],
+                            "parts": [
+                                "metrics",
+                                "ceo-performance"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "order",
+                                        "orig": "order",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "desc"
+                                    },
+                                    {
+                                        "name": "sort_by",
+                                        "orig": "sort_by",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "order",
                                     "sort_by"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "metrics",
-                                "ceo-performance"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -200,74 +199,87 @@ class Config {
         "company": {
             "fields": [
                 {
-                    "format": "double",
                     "name": "ceo_compensation",
+                    "title": "Ceo Compensation",
+                    "type": "`$NUMBER`",
                     "short": "Total CEO compensation",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
                     "name": "ceo_name",
-                    "short": "Name of the CEO",
-                    "type": "`$STRING`"
+                    "title": "Ceo Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the CEO"
                 },
                 {
                     "name": "company_name",
-                    "short": "Name of the company",
-                    "type": "`$STRING`"
+                    "title": "Company Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the company"
                 },
                 {
-                    "format": "double",
                     "name": "efficiency_rating",
+                    "title": "Efficiency Rating",
+                    "type": "`$NUMBER`",
                     "short": "Compensation efficiency rating",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
                     "name": "employees",
-                    "short": "Number of employees",
-                    "type": "`$INTEGER`"
+                    "title": "Employees",
+                    "type": "`$INTEGER`",
+                    "short": "Number of employees"
                 },
                 {
                     "name": "headquarters",
-                    "short": "Company headquarters location",
-                    "type": "`$STRING`"
+                    "title": "Headquarters",
+                    "type": "`$STRING`",
+                    "short": "Company headquarters location"
                 },
                 {
                     "name": "id",
-                    "short": "Unique identifier for the company",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the company"
                 },
                 {
                     "name": "industry",
-                    "short": "Industry sector",
-                    "type": "`$STRING`"
+                    "title": "Industry",
+                    "type": "`$STRING`",
+                    "short": "Industry sector"
                 },
                 {
                     "name": "performance_metrics",
+                    "title": "Performance Metrics",
                     "type": "`$OBJECT`"
                 },
                 {
-                    "format": "double",
                     "name": "performance_score",
+                    "title": "Performance Score",
+                    "type": "`$NUMBER`",
                     "short": "Overall performance score",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "revenue",
+                    "title": "Revenue",
+                    "type": "`$NUMBER`",
                     "short": "Annual revenue",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "revenue_growth",
+                    "title": "Revenue Growth",
+                    "type": "`$NUMBER`",
                     "short": "Revenue growth percentage",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "stock_performance",
+                    "title": "Stock Performance",
+                    "type": "`$NUMBER`",
                     "short": "Stock performance percentage",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "id": {
@@ -281,24 +293,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 100,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "offset",
-                                        "orig": "offset",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/companies",
@@ -307,19 +301,38 @@ class Config {
                                     "lit": "companies"
                                 }
                             ],
+                            "parts": [
+                                "companies"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.companies`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    },
+                                    {
+                                        "name": "offset",
+                                        "orig": "offset",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "limit",
                                     "offset"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.companies`"
-                            },
-                            "parts": [
-                                "companies"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -328,25 +341,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "company_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/companies/{companyId}",
-                            "rename": {
-                                "param": {
-                                    "companyId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "companies"
@@ -355,19 +352,35 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
+                            "parts": [
+                                "companies",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "companyId": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.performance_metrics`"
                             },
-                            "parts": [
-                                "companies",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "company_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -380,27 +393,32 @@ class Config {
             "fields": [
                 {
                     "name": "ceo_name",
+                    "title": "Ceo Name",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "company_name",
+                    "title": "Company Name",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "double",
                     "name": "efficiency_ratio",
+                    "title": "Efficiency Ratio",
+                    "type": "`$NUMBER`",
                     "short": "Performance per compensation dollar",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "performance_score",
-                    "type": "`$NUMBER`"
+                    "title": "Performance Score",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 },
                 {
-                    "format": "double",
                     "name": "total_compensation",
-                    "type": "`$NUMBER`"
+                    "title": "Total Compensation",
+                    "type": "`$NUMBER`",
+                    "format": "double"
                 }
             ],
             "name": "compensation_efficiency",
@@ -410,7 +428,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/metrics/compensation-efficiency",
@@ -422,15 +439,17 @@ class Config {
                                     "lit": "compensation-efficiency"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "metrics",
+                                "compensation-efficiency"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "metrics",
-                                "compensation-efficiency"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -443,12 +462,14 @@ class Config {
             "fields": [
                 {
                     "name": "status",
+                    "title": "Status",
                     "type": "`$STRING`"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
-                    "type": "`$STRING`"
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
+                    "format": "date-time"
                 }
             ],
             "name": "general",
@@ -458,7 +479,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/health",
@@ -467,14 +487,16 @@ class Config {
                                     "lit": "health"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "health"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "health"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -486,12 +508,14 @@ class Config {
         "get_root": {
             "fields": [
                 {
-                    "format": "uri",
                     "name": "documentation",
-                    "type": "`$STRING`"
+                    "title": "Documentation",
+                    "type": "`$STRING`",
+                    "format": "uri"
                 },
                 {
                     "name": "message",
+                    "title": "Message",
                     "type": "`$STRING`"
                 }
             ],
@@ -502,17 +526,18 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/",
                             "segments": [],
-                            "select": {},
+                            "parts": [],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": []
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -524,50 +549,59 @@ class Config {
         "search": {
             "fields": [
                 {
-                    "format": "double",
                     "name": "ceo_compensation",
+                    "title": "Ceo Compensation",
+                    "type": "`$NUMBER`",
                     "short": "Total CEO compensation",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 },
                 {
                     "name": "ceo_name",
-                    "short": "Name of the CEO",
-                    "type": "`$STRING`"
+                    "title": "Ceo Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the CEO"
                 },
                 {
                     "name": "company_name",
-                    "short": "Name of the company",
-                    "type": "`$STRING`"
+                    "title": "Company Name",
+                    "type": "`$STRING`",
+                    "short": "Name of the company"
                 },
                 {
                     "name": "employees",
-                    "short": "Number of employees",
-                    "type": "`$INTEGER`"
+                    "title": "Employees",
+                    "type": "`$INTEGER`",
+                    "short": "Number of employees"
                 },
                 {
                     "name": "headquarters",
-                    "short": "Company headquarters location",
-                    "type": "`$STRING`"
+                    "title": "Headquarters",
+                    "type": "`$STRING`",
+                    "short": "Company headquarters location"
                 },
                 {
                     "name": "id",
-                    "short": "Unique identifier for the company",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the company"
                 },
                 {
                     "name": "industry",
-                    "short": "Industry sector",
-                    "type": "`$STRING`"
+                    "title": "Industry",
+                    "type": "`$STRING`",
+                    "short": "Industry sector"
                 },
                 {
                     "name": "performance_metrics",
+                    "title": "Performance Metrics",
                     "type": "`$OBJECT`"
                 },
                 {
-                    "format": "double",
                     "name": "revenue",
+                    "title": "Revenue",
+                    "type": "`$NUMBER`",
                     "short": "Annual revenue",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "id": {
@@ -581,23 +615,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "field",
-                                        "orig": "field",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/search",
@@ -606,19 +623,37 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.results`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "field",
+                                        "orig": "field",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "field",
                                     "q"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.results`"
-                            },
-                            "parts": [
-                                "search"
-                            ]
+                            }
                         }
                     ]
                 }

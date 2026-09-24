@@ -121,24 +121,29 @@ def make_config():
         "fields": [
           {
             "name": "ceo_name",
+            "title": "Ceo Name",
             "type": "`$STRING`",
           },
           {
             "name": "company_name",
+            "title": "Company Name",
             "type": "`$STRING`",
           },
           {
-            "format": "double",
             "name": "compensation",
+            "title": "Compensation",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "performance_score",
+            "title": "Performance Score",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "tenure_years",
+            "title": "Tenure Years",
             "type": "`$INTEGER`",
           },
         ],
@@ -149,23 +154,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "desc",
-                      "kind": "query",
-                      "name": "order",
-                      "orig": "order",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "sort_by",
-                      "orig": "sort_by",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/metrics/ceo-performance",
@@ -177,20 +165,38 @@ def make_config():
                     "lit": "ceo-performance",
                   },
                 ],
+                "parts": [
+                  "metrics",
+                  "ceo-performance",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "order",
+                      "orig": "order",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "desc",
+                    },
+                    {
+                      "name": "sort_by",
+                      "orig": "sort_by",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "order",
                     "sort_by",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "metrics",
-                  "ceo-performance",
-                ],
               },
             ],
           },
@@ -202,74 +208,87 @@ def make_config():
       "company": {
         "fields": [
           {
-            "format": "double",
             "name": "ceo_compensation",
-            "short": "Total CEO compensation",
+            "title": "Ceo Compensation",
             "type": "`$NUMBER`",
+            "short": "Total CEO compensation",
+            "format": "double",
           },
           {
             "name": "ceo_name",
-            "short": "Name of the CEO",
+            "title": "Ceo Name",
             "type": "`$STRING`",
+            "short": "Name of the CEO",
           },
           {
             "name": "company_name",
-            "short": "Name of the company",
+            "title": "Company Name",
             "type": "`$STRING`",
+            "short": "Name of the company",
           },
           {
-            "format": "double",
             "name": "efficiency_rating",
-            "short": "Compensation efficiency rating",
+            "title": "Efficiency Rating",
             "type": "`$NUMBER`",
+            "short": "Compensation efficiency rating",
+            "format": "double",
           },
           {
             "name": "employees",
-            "short": "Number of employees",
+            "title": "Employees",
             "type": "`$INTEGER`",
+            "short": "Number of employees",
           },
           {
             "name": "headquarters",
-            "short": "Company headquarters location",
+            "title": "Headquarters",
             "type": "`$STRING`",
+            "short": "Company headquarters location",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the company",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique identifier for the company",
           },
           {
             "name": "industry",
-            "short": "Industry sector",
+            "title": "Industry",
             "type": "`$STRING`",
+            "short": "Industry sector",
           },
           {
             "name": "performance_metrics",
+            "title": "Performance Metrics",
             "type": "`$OBJECT`",
           },
           {
-            "format": "double",
             "name": "performance_score",
+            "title": "Performance Score",
+            "type": "`$NUMBER`",
             "short": "Overall performance score",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "revenue",
+            "title": "Revenue",
+            "type": "`$NUMBER`",
             "short": "Annual revenue",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "revenue_growth",
-            "short": "Revenue growth percentage",
+            "title": "Revenue Growth",
             "type": "`$NUMBER`",
+            "short": "Revenue growth percentage",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "stock_performance",
-            "short": "Stock performance percentage",
+            "title": "Stock Performance",
             "type": "`$NUMBER`",
+            "short": "Stock performance percentage",
+            "format": "double",
           },
         ],
         "id": {
@@ -283,24 +302,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 100,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/companies",
@@ -309,19 +310,38 @@ def make_config():
                     "lit": "companies",
                   },
                 ],
+                "parts": [
+                  "companies",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.companies`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 100,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "limit",
                     "offset",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.companies`",
-                },
-                "parts": [
-                  "companies",
-                ],
               },
             ],
           },
@@ -330,25 +350,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "company_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/companies/{companyId}",
-                "rename": {
-                  "param": {
-                    "companyId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "companies",
@@ -357,19 +361,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "companies",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "companyId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.performance_metrics`",
                 },
-                "parts": [
-                  "companies",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "company_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -382,27 +402,32 @@ def make_config():
         "fields": [
           {
             "name": "ceo_name",
+            "title": "Ceo Name",
             "type": "`$STRING`",
           },
           {
             "name": "company_name",
+            "title": "Company Name",
             "type": "`$STRING`",
           },
           {
-            "format": "double",
             "name": "efficiency_ratio",
+            "title": "Efficiency Ratio",
+            "type": "`$NUMBER`",
             "short": "Performance per compensation dollar",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "performance_score",
+            "title": "Performance Score",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "total_compensation",
+            "title": "Total Compensation",
             "type": "`$NUMBER`",
+            "format": "double",
           },
         ],
         "name": "compensation_efficiency",
@@ -412,7 +437,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/metrics/compensation-efficiency",
@@ -424,15 +448,17 @@ def make_config():
                     "lit": "compensation-efficiency",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "metrics",
                   "compensation-efficiency",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -445,12 +471,14 @@ def make_config():
         "fields": [
           {
             "name": "status",
+            "title": "Status",
             "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "format": "date-time",
           },
         ],
         "name": "general",
@@ -460,7 +488,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/health",
@@ -469,14 +496,16 @@ def make_config():
                     "lit": "health",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "health",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "health",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -488,12 +517,14 @@ def make_config():
       "get_root": {
         "fields": [
           {
-            "format": "uri",
             "name": "documentation",
+            "title": "Documentation",
             "type": "`$STRING`",
+            "format": "uri",
           },
           {
             "name": "message",
+            "title": "Message",
             "type": "`$STRING`",
           },
         ],
@@ -504,17 +535,18 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/",
                 "segments": [],
-                "select": {},
+                "parts": [],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -526,50 +558,59 @@ def make_config():
       "search": {
         "fields": [
           {
-            "format": "double",
             "name": "ceo_compensation",
-            "short": "Total CEO compensation",
+            "title": "Ceo Compensation",
             "type": "`$NUMBER`",
+            "short": "Total CEO compensation",
+            "format": "double",
           },
           {
             "name": "ceo_name",
-            "short": "Name of the CEO",
+            "title": "Ceo Name",
             "type": "`$STRING`",
+            "short": "Name of the CEO",
           },
           {
             "name": "company_name",
-            "short": "Name of the company",
+            "title": "Company Name",
             "type": "`$STRING`",
+            "short": "Name of the company",
           },
           {
             "name": "employees",
-            "short": "Number of employees",
+            "title": "Employees",
             "type": "`$INTEGER`",
+            "short": "Number of employees",
           },
           {
             "name": "headquarters",
-            "short": "Company headquarters location",
+            "title": "Headquarters",
             "type": "`$STRING`",
+            "short": "Company headquarters location",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the company",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique identifier for the company",
           },
           {
             "name": "industry",
-            "short": "Industry sector",
+            "title": "Industry",
             "type": "`$STRING`",
+            "short": "Industry sector",
           },
           {
             "name": "performance_metrics",
+            "title": "Performance Metrics",
             "type": "`$OBJECT`",
           },
           {
-            "format": "double",
             "name": "revenue",
-            "short": "Annual revenue",
+            "title": "Revenue",
             "type": "`$NUMBER`",
+            "short": "Annual revenue",
+            "format": "double",
           },
         ],
         "id": {
@@ -583,23 +624,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "field",
-                      "orig": "field",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "q",
-                      "orig": "q",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search",
@@ -608,19 +632,37 @@ def make_config():
                     "lit": "search",
                   },
                 ],
+                "parts": [
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "q",
+                      "orig": "q",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "q",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "parts": [
-                  "search",
-                ],
               },
             ],
           },

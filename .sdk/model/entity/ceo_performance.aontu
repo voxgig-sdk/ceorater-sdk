@@ -1,0 +1,99 @@
+# Entity: ceo_performance
+
+main: kit: entity: ceo_performance: {
+
+  alias: field: {}
+
+  fields: {
+    ceo_name: {
+      h: "Ceo Name"
+      n: "ceo_name"
+      r: false
+      t: "`$STRING`"
+    }
+    company_name: {
+      h: "Company Name"
+      n: "company_name"
+      r: false
+      t: "`$STRING`"
+    }
+    compensation: {
+      fo: "double"
+      h: "Compensation"
+      n: "compensation"
+      r: false
+      t: "`$NUMBER`"
+    }
+    performance_score: {
+      fo: "double"
+      h: "Performance Score"
+      n: "performance_score"
+      r: false
+      t: "`$NUMBER`"
+    }
+    tenure_years: {
+      h: "Tenure Years"
+      n: "tenure_years"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "ceo_performance"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /metrics/ceo-performance"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "desc"
+                k: "query"
+                n: "order"
+                or: "order"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/metrics/ceo-performance"
+          q: {
+            exist: [
+              "order"
+              "sort_by"
+            ]
+          }
+          s: [
+            {
+              lit: "metrics"
+            }
+            {
+              lit: "ceo-performance"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

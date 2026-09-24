@@ -19,7 +19,6 @@ import type {
   CompensationEfficiencyListMatch,
 } from '../CeoraterTypes'
 
-// TODO: needs Entity superclass
 class CompensationEfficiencyEntity extends CeoraterEntityBase<CompensationEfficiency> {
 
   constructor(client: CeoraterSDK, entopts: any) {

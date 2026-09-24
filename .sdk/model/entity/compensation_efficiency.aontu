@@ -1,0 +1,76 @@
+# Entity: compensation_efficiency
+
+main: kit: entity: compensation_efficiency: {
+
+  alias: field: {}
+
+  fields: {
+    ceo_name: {
+      h: "Ceo Name"
+      n: "ceo_name"
+      r: false
+      t: "`$STRING`"
+    }
+    company_name: {
+      h: "Company Name"
+      n: "company_name"
+      r: false
+      t: "`$STRING`"
+    }
+    efficiency_ratio: {
+      fo: "double"
+      h: "Efficiency Ratio"
+      n: "efficiency_ratio"
+      r: false
+      sh: "Performance per compensation dollar"
+      t: "`$NUMBER`"
+    }
+    performance_score: {
+      fo: "double"
+      h: "Performance Score"
+      n: "performance_score"
+      r: false
+      t: "`$NUMBER`"
+    }
+    total_compensation: {
+      fo: "double"
+      h: "Total Compensation"
+      n: "total_compensation"
+      r: false
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "compensation_efficiency"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /metrics/compensation-efficiency"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/metrics/compensation-efficiency"
+          s: [
+            {
+              lit: "metrics"
+            }
+            {
+              lit: "compensation-efficiency"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

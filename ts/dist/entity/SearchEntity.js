@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchEntity = void 0;
 const CeoraterEntityBase_1 = require("../CeoraterEntityBase");
-// TODO: needs Entity superclass
 class SearchEntity extends CeoraterEntityBase_1.CeoraterEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

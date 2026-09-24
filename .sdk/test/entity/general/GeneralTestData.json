@@ -29,34 +29,8 @@
   "requests": {
     "GET /health": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getHealth",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "status": {
-                      "example": "healthy",
-                      "type": "string"
-                    },
-                    "timestamp": {
-                      "format": "date-time",
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "API is healthy"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

@@ -1,0 +1,132 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: {
+    ceo_compensation: {
+      fo: "double"
+      h: "Ceo Compensation"
+      n: "ceo_compensation"
+      r: false
+      sh: "Total CEO compensation"
+      t: "`$NUMBER`"
+    }
+    ceo_name: {
+      h: "Ceo Name"
+      n: "ceo_name"
+      r: false
+      sh: "Name of the CEO"
+      t: "`$STRING`"
+    }
+    company_name: {
+      h: "Company Name"
+      n: "company_name"
+      r: false
+      sh: "Name of the company"
+      t: "`$STRING`"
+    }
+    employees: {
+      h: "Employees"
+      n: "employees"
+      r: false
+      sh: "Number of employees"
+      t: "`$INTEGER`"
+    }
+    headquarters: {
+      h: "Headquarters"
+      n: "headquarters"
+      r: false
+      sh: "Company headquarters location"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the company"
+      t: "`$STRING`"
+    }
+    industry: {
+      h: "Industry"
+      n: "industry"
+      r: false
+      sh: "Industry sector"
+      t: "`$STRING`"
+    }
+    performance_metrics: {
+      h: "Performance Metrics"
+      n: "performance_metrics"
+      r: false
+      t: "`$OBJECT`"
+    }
+    revenue: {
+      fo: "double"
+      h: "Revenue"
+      n: "revenue"
+      r: false
+      sh: "Annual revenue"
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "field"
+                or: "field"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search"
+          q: {
+            exist: [
+              "field"
+              "q"
+            ]
+          }
+          s: [
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

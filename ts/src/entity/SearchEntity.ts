@@ -19,7 +19,6 @@ import type {
   SearchListMatch,
 } from '../CeoraterTypes'
 
-// TODO: needs Entity superclass
 class SearchEntity extends CeoraterEntityBase<Search> {
 
   constructor(client: CeoraterSDK, entopts: any) {

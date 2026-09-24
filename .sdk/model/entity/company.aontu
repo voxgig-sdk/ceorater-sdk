@@ -1,0 +1,213 @@
+# Entity: company
+
+main: kit: entity: company: {
+
+  alias: field: {}
+
+  fields: {
+    ceo_compensation: {
+      fo: "double"
+      h: "Ceo Compensation"
+      n: "ceo_compensation"
+      r: false
+      sh: "Total CEO compensation"
+      t: "`$NUMBER`"
+    }
+    ceo_name: {
+      h: "Ceo Name"
+      n: "ceo_name"
+      r: false
+      sh: "Name of the CEO"
+      t: "`$STRING`"
+    }
+    company_name: {
+      h: "Company Name"
+      n: "company_name"
+      r: false
+      sh: "Name of the company"
+      t: "`$STRING`"
+    }
+    efficiency_rating: {
+      fo: "double"
+      h: "Efficiency Rating"
+      n: "efficiency_rating"
+      r: false
+      sh: "Compensation efficiency rating"
+      t: "`$NUMBER`"
+    }
+    employees: {
+      h: "Employees"
+      n: "employees"
+      r: false
+      sh: "Number of employees"
+      t: "`$INTEGER`"
+    }
+    headquarters: {
+      h: "Headquarters"
+      n: "headquarters"
+      r: false
+      sh: "Company headquarters location"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the company"
+      t: "`$STRING`"
+    }
+    industry: {
+      h: "Industry"
+      n: "industry"
+      r: false
+      sh: "Industry sector"
+      t: "`$STRING`"
+    }
+    performance_metrics: {
+      h: "Performance Metrics"
+      n: "performance_metrics"
+      r: false
+      t: "`$OBJECT`"
+    }
+    performance_score: {
+      fo: "double"
+      h: "Performance Score"
+      n: "performance_score"
+      r: false
+      sh: "Overall performance score"
+      t: "`$NUMBER`"
+    }
+    revenue: {
+      fo: "double"
+      h: "Revenue"
+      n: "revenue"
+      r: false
+      sh: "Annual revenue"
+      t: "`$NUMBER`"
+    }
+    revenue_growth: {
+      fo: "double"
+      h: "Revenue Growth"
+      n: "revenue_growth"
+      r: false
+      sh: "Revenue growth percentage"
+      t: "`$NUMBER`"
+    }
+    stock_performance: {
+      fo: "double"
+      h: "Stock Performance"
+      n: "stock_performance"
+      r: false
+      sh: "Stock performance percentage"
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "company"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /companies"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/companies"
+          q: {
+            exist: [
+              "limit"
+              "offset"
+            ]
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.companies`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /companies/{companyId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/companies/{companyId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              companyId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.performance_metrics`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

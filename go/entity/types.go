@@ -1,7 +1,7 @@
 // Typed models for the Ceorater SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,11 +14,6 @@ import (
 
 // CeoPerformance is the typed data model for the ceo_performance entity.
 type CeoPerformance struct {
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	Compensation *float64 `json:"compensation,omitempty"`
-	PerformanceScore *float64 `json:"performance_score,omitempty"`
-	TenureYears *int `json:"tenure_years,omitempty"`
 }
 
 // CeoPerformanceListMatch is the typed request payload for CeoPerformance.ListTyped.
@@ -29,19 +24,6 @@ type CeoPerformanceListMatch struct {
 
 // Company is the typed data model for the company entity.
 type Company struct {
-	CeoCompensation *float64 `json:"ceo_compensation,omitempty"`
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	EfficiencyRating *float64 `json:"efficiency_rating,omitempty"`
-	Employees *int `json:"employees,omitempty"`
-	Headquarters *string `json:"headquarters,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Industry *string `json:"industry,omitempty"`
-	PerformanceMetrics *map[string]any `json:"performance_metrics,omitempty"`
-	PerformanceScore *float64 `json:"performance_score,omitempty"`
-	Revenue *float64 `json:"revenue,omitempty"`
-	RevenueGrowth *float64 `json:"revenue_growth,omitempty"`
-	StockPerformance *float64 `json:"stock_performance,omitempty"`
 }
 
 // CompanyLoadMatch is the typed request payload for Company.LoadTyped.
@@ -57,11 +39,6 @@ type CompanyListMatch struct {
 
 // CompensationEfficiency is the typed data model for the compensation_efficiency entity.
 type CompensationEfficiency struct {
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	EfficiencyRatio *float64 `json:"efficiency_ratio,omitempty"`
-	PerformanceScore *float64 `json:"performance_score,omitempty"`
-	TotalCompensation *float64 `json:"total_compensation,omitempty"`
 }
 
 // CompensationEfficiencyListMatch is the typed request payload for CompensationEfficiency.ListTyped.
@@ -75,8 +52,6 @@ type CompensationEfficiencyListMatch struct {
 
 // General is the typed data model for the general entity.
 type General struct {
-	Status *string `json:"status,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
 }
 
 // GeneralLoadMatch is the typed request payload for General.LoadTyped.
@@ -87,8 +62,6 @@ type GeneralLoadMatch struct {
 
 // GetRoot is the typed data model for the get_root entity.
 type GetRoot struct {
-	Documentation *string `json:"documentation,omitempty"`
-	Message *string `json:"message,omitempty"`
 }
 
 // GetRootLoadMatch is the typed request payload for GetRoot.LoadTyped.
@@ -99,15 +72,6 @@ type GetRootLoadMatch struct {
 
 // Search is the typed data model for the search entity.
 type Search struct {
-	CeoCompensation *float64 `json:"ceo_compensation,omitempty"`
-	CeoName *string `json:"ceo_name,omitempty"`
-	CompanyName *string `json:"company_name,omitempty"`
-	Employees *int `json:"employees,omitempty"`
-	Headquarters *string `json:"headquarters,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Industry *string `json:"industry,omitempty"`
-	PerformanceMetrics *map[string]any `json:"performance_metrics,omitempty"`
-	Revenue *float64 `json:"revenue,omitempty"`
 }
 
 // SearchListMatch is the typed request payload for Search.ListTyped.

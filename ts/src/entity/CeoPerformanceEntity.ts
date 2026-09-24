@@ -19,7 +19,6 @@ import type {
   CeoPerformanceListMatch,
 } from '../CeoraterTypes'
 
-// TODO: needs Entity superclass
 class CeoPerformanceEntity extends CeoraterEntityBase<CeoPerformance> {
 
   constructor(client: CeoraterSDK, entopts: any) {

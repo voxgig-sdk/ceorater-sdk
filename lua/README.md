@@ -43,7 +43,7 @@ local ceoperformances, err = client:CeoPerformance():list()
 if err then error(err) end
 
 for _, item in ipairs(ceoperformances) do
-  print(item["ceo_name"])
+  print(item)
 end
 ```
 

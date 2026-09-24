@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CeoPerformanceEntity = void 0;
 const CeoraterEntityBase_1 = require("../CeoraterEntityBase");
-// TODO: needs Entity superclass
 class CeoPerformanceEntity extends CeoraterEntityBase_1.CeoraterEntityBase {
     constructor(client, entopts) {
         super(client, entopts);
